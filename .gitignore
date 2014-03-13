@@ -16,3 +16,4 @@ dist
 *.class
 /.cache
 /.target/
+/bin
