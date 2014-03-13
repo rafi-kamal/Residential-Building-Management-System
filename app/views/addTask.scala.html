@@ -1,8 +1,34 @@
 
-@main("") {
-
-    <input type="date" name="date">Enter Date:</input>
-	<input type="text" name="description">Enter Description:</input>
+@main("Add a Scheduled Task") {
+	
+	<br>
+	<br>
+	<br>
+	
+	Type: 
+	<!-- Single button -->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	    Select task type <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#">Action</a></li>
+	    <li><a href="#">Another action</a></li>
+	    <li><a href="#">Something else here</a></li>
+	    <li class="divider"></li>
+	    <li><a href="#">Separated link</a></li>
+	  </ul>
+	</div>
+	<br><br>
+	
+	Description:
+	<input type="text" name="description"></input>
+	<br>
+	
+	Date:
+    <input type="date" name="date"></input>
+	<br>
+	
     <button id="submit">Save</button>
-
+	<br>
 }
