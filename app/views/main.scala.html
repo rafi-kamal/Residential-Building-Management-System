@@ -6,18 +6,14 @@
     @head(title) 
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a id="titleLink" class="brand" href="/">@title</a>
-            </div>
-        </div>
-    </div>
+    
+    @navbar(title)
+    
     <div class="container">
         @content
     </div>
-    <footer class="bs-docs-footer" role="contentinfo">
-    	@footer()
-    </footer>
+    
+    @footer()
+    
 </body>
 </html>
