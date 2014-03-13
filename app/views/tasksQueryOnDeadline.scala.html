@@ -1,5 +1,5 @@
 
-@main("Maintenance Tasks Records") {	
+@main("Query Maintenance Tasks Records") {	
 
 	<br>
 	<br>
@@ -7,7 +7,7 @@
 	
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading"><h3>Maintenance Tasks Records</h3></div>
+	  <div class="panel-heading"><h3>Maintenance Tasks Records Query</h3></div>
 	  <div class="panel-body">	   
 	 </div>
 	
@@ -15,11 +15,42 @@
 	  <table class="table table-bordered table-striped">
 	  
 	    <tr>
-		<th>Type</th>
-		<th>Description</th>		
-		<th>Deadline</th>
-		<th>Status</th>
-		<th>Note</th>
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default"> Type </button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			    <span class="sr-only"> Select Type </span> 
+			  </button> 
+			</div>
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">Description</button>
+		</th>		
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default"> Deadline </button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			    <span class="sr-only"> 14/02/2014 </span> 
+			  </button> 
+			</div> 
+		</th>
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default">Status</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			    <span class="sr-only">Set Status</span> 
+			  </button> 
+			</div> 
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">Note</button>
+		</th>
 		</tr>
 		
 		<tr class="success">
@@ -86,29 +117,6 @@
 		<td>No problems found</td>
 		</tr>
 		
-		<tr class="active">
-		<td>Water Supply Maintenance</td>
-		<td>Bi-weekly water supply checking </td>
-		<td>15-02-14</td>
-		<td>Queued</td>
-		<td>---</td>
-		</tr>
-		
-		<tr class="warning">
-		<td>Sewerage Maintenance</td>
-		<td>Monthly sewerage connections check </td>
-		<td>28-02-14</td>
-		<td>Cancelled</td>
-		<td>Cancelled due to other task of same type</td>
-		</tr>
-		
-		<tr class="success">
-		<td>Sewerage Maintenance</td>
-		<td>Unexpected failure in a sewerage connection </td>
-		<td>30-01-14</td>
-		<td>Done</td>
-		<td>Crack in main pipeline 3. Replaced.</td> 
-		</tr>
 	  </table>
 	</div>
 }
