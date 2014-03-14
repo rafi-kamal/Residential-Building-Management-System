@@ -1,41 +1,34 @@
 @(title: String)
-
+<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img width="18" src="./apartment-icon.jpg"></a>
-        </div>
-        
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Bill</a></li>
-            <li><a href="#">Poll</a></li>
-            <li><a href="#">Maintenance</a></li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-globe"></span></a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rafi Kamal <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+      	<img width="18" src="@routes.Assets.at("images/apartment-icon.jpg")"></img>
+      </a>
     </div>
-
     
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Bill</a></li>
+        <li><a href="#">Poll</a></li>
+        <li><a href="#">Maintenance</a></li>
+      </ul>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./Non-responsive Template for Bootstrap_files/jquery.min.js"></script>
-    <script src="./Non-responsive Template for Bootstrap_files/bootstrap.min.js"></script>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-globe"></span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rafi Kamal <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
