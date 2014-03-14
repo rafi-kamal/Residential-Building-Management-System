@@ -1,5 +1,5 @@
 
-package controllers;
+package controllers.maintenance;
 
 import play.mvc.Controller;
 import play.mvc.Result;
