@@ -12,6 +12,7 @@ GET 	/tasksQueryOnType			controllers.maintenance.TasksQueryOnType.index()
 GET 	/tasksQueryOnDeadline		controllers.maintenance.TasksQueryOnDeadline.index()
 GET		/tasksQueryOnStatus			controllers.maintenance.TasksQueryOnStatus.index()
 GET		/tasksQueryOnMultiple		controllers.maintenance.TasksQueryOnMultiple.index()
+GET		/editTask					controllers.maintenance.EditTask.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

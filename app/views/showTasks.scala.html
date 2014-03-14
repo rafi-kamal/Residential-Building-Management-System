@@ -12,15 +12,46 @@
 	 </div>
 	
 	  <!-- Table -->
-	  <table class="table table-bordered table-striped table-hover">
+	  <table class="table table-bordered table-striped table-hover table-condensed">
 	  
 	    <tr>
-		<th>Type</th>
-		<th>Description</th>		
-		<th>Deadline</th>
-		<th>Status</th>
-		<th>Note</th>
-		</tr>
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default">Type</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			    <span class="sr-only">Select Type</span> 
+			  </button> 
+			</div>
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">Description</button>
+		</th>		
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default">Deadline</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			    <span class="sr-only">Set Deadline</span> 
+			  </button> 
+			</div> 
+		</th>
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default">Status</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			    <span class="sr-only">Set Status</span> 
+			  </button> 
+			</div> 
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">Note</button>
+		</th>
+		</tr> 
 		
 		<tr class="success">
 		<td>Electricity Maintenance</td>
