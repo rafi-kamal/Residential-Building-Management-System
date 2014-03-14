@@ -2,16 +2,16 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                           controllers.MainController.index()
+GET     /                           controllers.account.MainController.index()
 GET     /message                    controllers.MessageController.getMessage()
 GET     /assets/javascripts/routes  controllers.MessageController.javascriptRoutes()
-GET		/addTask					controllers.AddTask.index()
-GET 	/showTasks					controllers.ShowTasks.index()
-GET		/tasksQuery					controllers.TasksQuery.index()
-GET 	/tasksQueryOnType			controllers.TasksQueryOnType.index()
-GET 	/tasksQueryOnDeadline		controllers.TasksQueryOnDeadline.index()
-GET		/tasksQueryOnStatus			controllers.TasksQueryOnStatus.index()
-GET		/tasksQueryOnMultiple		controllers.TasksQueryOnMultiple.index()
+GET		/addTask					controllers.maintenance.AddTask.index()
+GET 	/showTasks					controllers.maintenance.ShowTasks.index()
+GET		/tasksQuery					controllers.maintenance.TasksQuery.index()
+GET 	/tasksQueryOnType			controllers.maintenance.TasksQueryOnType.index()
+GET 	/tasksQueryOnDeadline		controllers.maintenance.TasksQueryOnDeadline.index()
+GET		/tasksQueryOnStatus			controllers.maintenance.TasksQueryOnStatus.index()
+GET		/tasksQueryOnMultiple		controllers.maintenance.TasksQueryOnMultiple.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

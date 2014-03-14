@@ -1,11 +1,15 @@
 @(title: String)
 
-@guest("Residential Building Management System") {
+@common.guest("Residential Building Management System") {
 	<img id="main" src="@routes.Assets.at("images/apartment.png")"></img>
-	<form id="sign-up-in">
-		<button type="button" id="sign-up" class="btn btn-primary btn-large btn-block btn-lg" 
-			role="button" >Sign Up</button>
-		<button type="button" id="sign-in" class="btn btn-default btn-large btn-block btn-lg"
-			role="button" >Sign In</button>
-	</form>
+	<div class="container" id="sign-up-in-container">
+		<h4>Automation Scheme for Apartment Building Management</h4>
+		<form id="sign-up-in">
+			<button type="button" id="sign-up" class="btn btn-primary btn-large btn-block btn-lg" 
+				role="button" >Sign Up</button>
+			<p class="or">Or</p>
+			<button type="button" id="sign-in" class="btn btn-default btn-large btn-block btn-lg"
+				role="button" >Sign In</button>
+		</form>
+	</div>
 }
