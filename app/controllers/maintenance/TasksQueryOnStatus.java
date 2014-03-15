@@ -7,7 +7,7 @@ import play.mvc.Result;
 public class TasksQueryOnStatus extends Controller {
     
     public static Result index() {
-        return ok(views.html.tasksQueryOnStatus.render());
+        return ok(views.html.maintenance.tasksQueryOnStatus.render());
     }
     
 }

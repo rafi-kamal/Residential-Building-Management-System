@@ -6,7 +6,7 @@ import play.mvc.Result;
 public class TasksQuery extends Controller {
     
     public static Result index() {
-        return ok(views.html.tasksQuery.render());
+        return ok(views.html.maintenance.tasksQuery.render());
     }
     
 }

@@ -6,7 +6,7 @@ import play.mvc.Result;
 public class ShowTasks extends Controller {
     
     public static Result index() {
-        return ok(views.html.showTasks.render());
+        return ok(views.html.maintenance.showTasks.render());
     }
     
 }

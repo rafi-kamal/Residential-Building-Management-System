@@ -6,7 +6,7 @@ import play.mvc.Result;
 public class AddTask extends Controller {
     
     public static Result index() {
-        return ok(views.html.addTask.render());
+        return ok(views.html.maintenance.addTask.render());
     }
     
 }
