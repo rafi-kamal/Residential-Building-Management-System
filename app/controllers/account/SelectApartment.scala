@@ -5,6 +5,6 @@ import play.api.mvc.Controller
 
 object SelectApartment extends Controller {
 	def index = Action {
-	  Ok(views.html.account.apartmentSelect.render())
+	  Ok(views.html.account.selectApartment.render())
 	}
 }
