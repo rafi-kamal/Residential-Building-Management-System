@@ -1,61 +1,73 @@
 
-@common.main("Edit a Scheduled Task") {
-	
+@common.main("Maintenance Tasks Records") {	
+
 	<br>
 	<br>
 	<br>
 	
-	<div class="modal fade">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title"> Edit Task Record </h4>
-	      </div>
-	      
-	      <div class="modal-body">
-	      	<!-- Table -->
-	  		<table class="table table-bordered table-striped table-hover">
-	        <tr class="active">
-	        
-			<td>
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading"><h3>Edit Task Record</h3></div>
+	  <div class="panel-body">	   
+	 </div>
+	
+	  <!-- Table -->
+	  <table class="table table-bordered table-striped table-hover">
+	  
+	    <tr>
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default">Type</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			    <span class="caret"></span>
-			    <span class="sr-only"> Electricity Maintenance </span> 
-			  	</button> 				
-			</td>
-			
-			<td>
-				<textarea> Monthly electricity checking </textarea>
-			</td>
-			
-			<td>
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    Select Type
+			  </button> 
+			</div>
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">Description</button>
+		</th>		
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default">Deadline</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			    <span class="caret"></span>
-			    <span class="sr-only"> 07-02-2014</span> 
-			  	</button>
-			</td>
-			
-			<td>
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			    Set Deadline
+			  </button> 
+			</div> 
+		</th>
+		<th>
+			<!-- Split button -->
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default">Status</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			    <span class="caret"></span>
-			    <span class="sr-only"> Queued </span> 
-			  	</button> 
-			</td>
-			
-			<td>
-				<textarea> --- </textarea>
-			</td>
-			</tr>
-			</table>  
-	      </div>
-	      
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
-	        <button type="button" class="btn btn-primary"> Save changes </button>
-	      </div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal --> 
+			    Select Status
+			  </button> 
+			</div> 
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">Note</button>
+		</th>
+		</tr> 
+		
+		<tr class="active">
+		<td>Electricity Maintenance</td>
+		<td>
+			<textarea>Monthly electricity checking</textarea>
+		</td>
+		<td>07-02-14</td>
+		<td>Queued</td>
+		<td>
+			<textarea> --- </textarea>
+		</td>
+		</tr>
+		
+	  </table>
+	</div>
+	
+	<button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+	<button type="button" class="btn btn-primary"> Save changes </button>  	 
 }
- 
