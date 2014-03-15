@@ -1,17 +1,18 @@
 @(title: String)
 
 @common.guest("Residential Building Management System") {
-	<img id="main" src="@routes.Assets.at("images/apartment.png")"></img>
-	<div class="container" id="sign-up-in-container">
-		<h4>Automation Scheme for Apartment Building Management</h4>
-		<form id="sign-up-in">
-			<button type="button" id="sign-up" class="btn btn-primary btn-large btn-block btn-lg" 
-				role="button" >Sign Up</button>
-			<p class="or">Or</p>
-			<button type="button" id="sign-in" class="btn btn-default btn-large btn-block btn-lg"
-				role="button" data-toggle="modal" data-target="#myModal">Sign In</button>
-		</form>
+	<div class="container">
+		<img id="main" src="@routes.Assets.at("images/apartment.png")"></img>
+		<div class="container" id="sign-up-in-container">
+			<h4>Automation Scheme for Apartment Building Management</h4>
+			<form id="sign-up-in">
+				<button type="button" id="sign-up" class="btn btn-primary btn-large btn-block btn-lg" 
+					role="button" >Sign Up</button>
+				<p class="or">Or</p>
+				<button type="button" id="sign-in" class="btn btn-default btn-large btn-block btn-lg"
+					role="button" data-toggle="modal" data-target="#signInModal">Sign In</button>
+			</form>
+		</div>
 	</div>
-	
-	@views.html.account.loginModal()
+	@views.html.account.signInModal()
 }
