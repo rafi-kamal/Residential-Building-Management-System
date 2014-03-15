@@ -15,6 +15,7 @@ GET		/tasksQueryOnMultiple		controllers.maintenance.TasksQueryOnMultiple.index()
 GET		/editTask					controllers.maintenance.EditTask.index()
 
 GET		/selectApartment			controllers.account.SelectApartment.index()
+GET		/profile					controllers.account.Profile.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
