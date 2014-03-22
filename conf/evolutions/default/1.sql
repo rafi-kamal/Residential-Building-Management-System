@@ -17,16 +17,33 @@ create table bill (
 
 create table message (
   internal_id               bigint not null,
+  THREAD_ID                 bigint not null,
   time_stamp                time,
   body                      varchar(255),
   is_read                   boolean,
   constraint pk_message primary key (internal_id))
 ;
 
+<<<<<<< HEAD
 create sequence bill_seq;
+=======
+create table thread (
+  internal_id               bigint not null,
+  category                  varchar(255),
+  date                      date,
+  subject                   varchar(255),
+  sender_id                 bigint,
+  receiver_id               bigint,
+  constraint pk_thread primary key (internal_id))
+;
+>>>>>>> 1f1171d0fb903fd4068e1294c45bc2b21ab2a663
 
 create sequence message_seq;
 
+create sequence thread_seq;
+
+alter table message add constraint fk_message_thread_1 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
+create index ix_message_thread_1 on message (THREAD_ID);
 
 
 
@@ -38,9 +55,13 @@ drop table if exists bill;
 
 drop table if exists message;
 
+drop table if exists thread;
+
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists bill_seq;
 
 drop sequence if exists message_seq;
+
+drop sequence if exists thread_seq;
 
