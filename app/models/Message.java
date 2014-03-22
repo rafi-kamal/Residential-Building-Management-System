@@ -19,7 +19,7 @@ public class Message extends play.db.ebean.Model {
 
 	public String body;
 
-	public boolean isRead=0;
+	public boolean isRead=false;
 
 	public Message(){
 
@@ -30,5 +30,5 @@ public class Message extends play.db.ebean.Model {
 		this.body=body;
 	}
 
-	public static Finder<Long,Message> find = new Finder<Long,Chat> (Long.class, Message.class);
+	public static Finder<Long,Message> find = new Finder<Long,Message> (Long.class, Message.class);
 }
