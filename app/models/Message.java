@@ -1,5 +1,7 @@
 package models;
 
+import org.joda.time.LocalTime;
+
 import play.data.*;
 import play.data.validation.Constraints.*;
 import javax.validation.Valid;
@@ -7,13 +9,13 @@ import javax.validation.Valid;
 import javax.persistence.*;
 
 @Entity
-public class Message Extends play.db.ebean.Model {
+public class Message extends play.db.ebean.Model {
 	@Id
 	@GeneratedValue
 	public Long internalId;
 
 	@Required
-	public LocalDate date;
+	public LocalTime timeStamp;
 
 	public String body;
 
@@ -23,8 +25,8 @@ public class Message Extends play.db.ebean.Model {
 
 	}
 
-	public Message(LocalDate date, String body) {
-		this.dat=date;
+	public Message(LocalTime timeStamp, String body) {
+		this.timeStamp=timeStamp;
 		this.body=body;
 	}
 
