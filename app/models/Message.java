@@ -1,15 +1,18 @@
 package models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import org.joda.time.LocalTime;
 
-import play.data.*;
-import play.data.validation.Constraints.*;
-import javax.validation.Valid;
-
-import javax.persistence.*;
+import play.data.validation.Constraints.Required;
 
 @Entity
 public class Message extends play.db.ebean.Model {
+
+	private static final long serialVersionUID = -4075050135481563304L;
+
 	@Id
 	@GeneratedValue
 	public Long internalId;
