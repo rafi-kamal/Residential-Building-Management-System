@@ -6,17 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 
-import models.enums.AccountType;
-import models.enums.VerificationStatus;
-import play.data.validation.Constraints.Max;
-import play.data.validation.Constraints.Min;
+import models.enums.NotificationStatus;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -29,49 +26,15 @@ public class Notification extends Model {
 	@GeneratedValue
 	public Long id;
 	
-	@Required
-	public String firstName;
-	public String lastName;
+	@ManyToOne(fetch=FetchType.LAZY)
+	public UserAccount receiver;
 	
-	@Required
-	@Min(5)
-	@Max(60)
-	public String email;
-	
-	@Required
-	@Min(6)
-	@Max(20)
-	public String phone;
-	
-	@Required
-	@Enumerated(EnumType.STRING)
-	public AccountType accountType;
-	
-	@Required
-	@Enumerated(EnumType.STRING)
-	public VerificationStatus verificationStatus;
-	
-	@Required
 	@Column(insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	public Date joinDate;
+	public Date issueDate;
 	
-	@Valid
 	@Required
-	@OneToOne
-	public Apartment apartment;
-	
-	public Notification() {}
-
-	public Notification(String firstName, String lastName, String email,
-			String phone, AccountType accountType,
-			VerificationStatus verificationStatus) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-		this.accountType = accountType;
-		this.verificationStatus = verificationStatus;
-	};
+	@Enumerated(EnumType.STRING)
+	public NotificationStatus status;
 	
 }
