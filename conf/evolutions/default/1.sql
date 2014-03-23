@@ -12,6 +12,7 @@ create table bill (
   deadline                  time,
   status                    varchar(255),
   amount                    double,
+  notification_id           bigint,
   constraint pk_bill primary key (id))
 ;
 
@@ -24,9 +25,17 @@ create table message (
   constraint pk_message primary key (internal_id))
 ;
 
-<<<<<<< HEAD
-create sequence bill_seq;
-=======
+create table notice (
+  internal_id               bigint not null,
+  category                  varchar(255),
+  subject                   varchar(255),
+  publish_date              date,
+  valid_until               date,
+  description               varchar(255),
+  published_by              bigint,
+  constraint pk_notice primary key (internal_id))
+;
+
 create table thread (
   internal_id               bigint not null,
   category                  varchar(255),
@@ -36,9 +45,12 @@ create table thread (
   receiver_id               bigint,
   constraint pk_thread primary key (internal_id))
 ;
->>>>>>> 1f1171d0fb903fd4068e1294c45bc2b21ab2a663
+
+create sequence bill_seq;
 
 create sequence message_seq;
+
+create sequence notice_seq;
 
 create sequence thread_seq;
 
@@ -55,6 +67,8 @@ drop table if exists bill;
 
 drop table if exists message;
 
+drop table if exists notice;
+
 drop table if exists thread;
 
 SET REFERENTIAL_INTEGRITY TRUE;
@@ -62,6 +76,8 @@ SET REFERENTIAL_INTEGRITY TRUE;
 drop sequence if exists bill_seq;
 
 drop sequence if exists message_seq;
+
+drop sequence if exists notice_seq;
 
 drop sequence if exists thread_seq;
 
