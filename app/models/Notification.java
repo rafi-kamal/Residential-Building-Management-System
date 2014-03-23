@@ -15,10 +15,10 @@ import javax.persistence.TemporalType;
 
 import models.enums.NotificationStatus;
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
+import play.db.ebean.*;
 
 @Entity
-public class Notification extends Model {
+public class Notification extends play.db.ebean.Model {
 
 	private static final long serialVersionUID = -3698872425235311089L;
 

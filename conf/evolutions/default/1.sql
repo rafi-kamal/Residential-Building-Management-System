@@ -31,9 +31,11 @@ create table bill (
 ;
 
 create table bill_notification (
-  notification_id           bigint not null,
+  issue_date                date,
+  status                    varchar(6),
   bill_id                   bigint,
-  constraint pk_bill_notification primary key (notification_id))
+  constraint ck_bill_notification_status check (status in ('Read','Unread')),
+  constraint pk_bill_notification primary key (issue_date, status))
 ;
 
 create table maintenance_task (
@@ -43,6 +45,14 @@ create table maintenance_task (
   status                    varchar(255),
   deadline                  time,
   constraint pk_maintenance_task primary key (id))
+;
+
+create table maintenance_task_notification (
+  issue_date                date,
+  status                    varchar(6),
+  maintenance_task_id       bigint,
+  constraint ck_maintenance_task_notification_status check (status in ('Read','Unread')),
+  constraint pk_maintenance_task_notification primary key (issue_date, status))
 ;
 
 create table message (
@@ -117,6 +127,8 @@ create sequence bill_notification_seq;
 
 create sequence maintenance_task_seq;
 
+create sequence maintenance_task_notification_seq;
+
 create sequence message_seq;
 
 create sequence notice_seq;
@@ -135,12 +147,14 @@ alter table apartment_building add constraint fk_apartment_building_realEsta_2 f
 create index ix_apartment_building_realEsta_2 on apartment_building (real_estate_company_id);
 alter table bill_notification add constraint fk_bill_notification_bill_3 foreign key (bill_id) references bill (id) on delete restrict on update restrict;
 create index ix_bill_notification_bill_3 on bill_notification (bill_id);
-alter table message add constraint fk_message_thread_4 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
-create index ix_message_thread_4 on message (THREAD_ID);
-alter table notification add constraint fk_notification_receiver_5 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
-create index ix_notification_receiver_5 on notification (receiver_id);
-alter table user_account add constraint fk_user_account_apartment_6 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
-create index ix_user_account_apartment_6 on user_account (apartment_id);
+alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_4 foreign key (maintenance_task_id) references maintenance_task (id) on delete restrict on update restrict;
+create index ix_maintenance_task_notificati_4 on maintenance_task_notification (maintenance_task_id);
+alter table message add constraint fk_message_thread_5 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
+create index ix_message_thread_5 on message (THREAD_ID);
+alter table notification add constraint fk_notification_receiver_6 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+create index ix_notification_receiver_6 on notification (receiver_id);
+alter table user_account add constraint fk_user_account_apartment_7 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+create index ix_user_account_apartment_7 on user_account (apartment_id);
 
 
 
@@ -157,6 +171,8 @@ drop table if exists bill;
 drop table if exists bill_notification;
 
 drop table if exists maintenance_task;
+
+drop table if exists maintenance_task_notification;
 
 drop table if exists message;
 
@@ -181,6 +197,8 @@ drop sequence if exists bill_seq;
 drop sequence if exists bill_notification_seq;
 
 drop sequence if exists maintenance_task_seq;
+
+drop sequence if exists maintenance_task_notification_seq;
 
 drop sequence if exists message_seq;
 
