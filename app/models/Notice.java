@@ -14,25 +14,27 @@ import javax.persistence.*;
 public class Notice extends play.db.ebean.Model {
 	@Id
 	@GeneratedValue
-	Long internalId;
+	public Long internalId;
 	
 	@Required
-	String category;
+	public String category;
 	
 	@Required
-	String subject="(No Subject)";
+	public String subject="(No Subject)";
 	
 	@Required
-	LocalDate publishDate;
+	public LocalDate publishDate;
 	
 	@Required
-	Date validUntil;
+	public Date validUntil;
 	
 	@Required 
-	String description;
+	public String description;
 	
 	@Required
-	Long publishedBy;
+	public Long publishedBy;
+	
+	public int viewcount=0;
 	
 	public Notice(){};
 

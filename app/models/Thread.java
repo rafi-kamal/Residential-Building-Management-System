@@ -3,11 +3,13 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
 import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints.Required;
+import play.db.ebean.Model.Finder;
 
 @Entity
 public class Thread extends play.db.ebean.Model {
@@ -48,5 +50,6 @@ public class Thread extends play.db.ebean.Model {
 		this.receiverId=receiverId;
 	}
 	
+	public static Finder<Long, Thread> find = new Finder<Long, Thread> (Long.class, Thread.class);
 	
 }
