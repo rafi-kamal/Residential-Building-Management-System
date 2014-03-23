@@ -50,7 +50,17 @@ create table notice (
   valid_until               date,
   description               varchar(255),
   published_by              bigint,
+  viewcount                 integer,
   constraint pk_notice primary key (internal_id))
+;
+
+create table notification (
+  id                        bigint not null,
+  receiver_id               bigint,
+  issue_date                date,
+  status                    varchar(6),
+  constraint ck_notification_status check (status in ('Read','Unread')),
+  constraint pk_notification primary key (id))
 ;
 
 create table real_estate_company (
@@ -79,11 +89,9 @@ create table user_account (
   email                     varchar(255),
   phone                     varchar(255),
   account_type              varchar(10),
-  verification_status       varchar(10),
-  date                      date,
+  join_date                 date,
   apartment_id              bigint,
   constraint ck_user_account_account_type check (account_type in ('Resident','Manager','Supervisor')),
-  constraint ck_user_account_verification_status check (verification_status in ('Verified','Unverified')),
   constraint pk_user_account primary key (id))
 ;
 
@@ -97,6 +105,8 @@ create sequence message_seq;
 
 create sequence notice_seq;
 
+create sequence notification_seq;
+
 create sequence real_estate_company_seq;
 
 create sequence thread_seq;
@@ -109,8 +119,10 @@ alter table apartment_building add constraint fk_apartment_building_realEsta_2 f
 create index ix_apartment_building_realEsta_2 on apartment_building (real_estate_company_id);
 alter table message add constraint fk_message_thread_3 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
 create index ix_message_thread_3 on message (THREAD_ID);
-alter table user_account add constraint fk_user_account_apartment_4 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
-create index ix_user_account_apartment_4 on user_account (apartment_id);
+alter table notification add constraint fk_notification_receiver_4 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+create index ix_notification_receiver_4 on notification (receiver_id);
+alter table user_account add constraint fk_user_account_apartment_5 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+create index ix_user_account_apartment_5 on user_account (apartment_id);
 
 
 
@@ -127,6 +139,8 @@ drop table if exists bill;
 drop table if exists message;
 
 drop table if exists notice;
+
+drop table if exists notification;
 
 drop table if exists real_estate_company;
 
@@ -145,6 +159,8 @@ drop sequence if exists bill_seq;
 drop sequence if exists message_seq;
 
 drop sequence if exists notice_seq;
+
+drop sequence if exists notification_seq;
 
 drop sequence if exists real_estate_company_seq;
 

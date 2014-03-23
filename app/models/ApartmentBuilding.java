@@ -47,4 +47,8 @@ public class ApartmentBuilding extends Model {
 	@Valid
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="apartmentBuilding")
 	public List<Apartment> apartments;
+	
+	public static Finder<Long, ApartmentBuilding> find = 
+			new Finder<Long, ApartmentBuilding> (Long.class, ApartmentBuilding.class);
+	
 }

@@ -14,11 +14,11 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import models.enums.AccountType;
-import models.enums.VerificationStatus;
 import play.data.validation.Constraints.Max;
 import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
+import play.db.ebean.Model.Finder;
 
 @Entity
 public class UserAccount extends Model {
@@ -47,30 +47,18 @@ public class UserAccount extends Model {
 	@Enumerated(EnumType.STRING)
 	public AccountType accountType;
 	
-	@Required
-	@Enumerated(EnumType.STRING)
-	public VerificationStatus verificationStatus;
+//	@Required
+//	@Enumerated(EnumType.STRING)
+//	public VerificationStatus verificationStatus;
 	
 	@Column(insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date joinDate;
 	
 	@Valid
-	@Required
 	@OneToOne
 	public Apartment apartment;
 	
-	public UserAccount() {}
-
-	public UserAccount(String firstName, String lastName, String email,
-			String phone, AccountType accountType,
-			VerificationStatus verificationStatus) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-		this.accountType = accountType;
-		this.verificationStatus = verificationStatus;
-	};
-	
+	public static Finder<Long, UserAccount> find = 
+			new Finder<Long, UserAccount> (Long.class, UserAccount.class);
 }

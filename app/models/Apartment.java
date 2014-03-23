@@ -25,4 +25,7 @@ public class Apartment extends Model {
 	@Valid
 	@ManyToOne(fetch=FetchType.LAZY)
 	public ApartmentBuilding apartmentBuilding;
+	
+	public static Finder<Long, Apartment> find = 
+			new Finder<Long, Apartment> (Long.class, Apartment.class);
 }
