@@ -2,19 +2,19 @@ package models;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
 import models.enums.NotificationStatus;
 import play.data.format.Formats;
 import play.data.validation.Constraints.Required;
 
-@Entity
+@MappedSuperclass
 public class Notification extends play.db.ebean.Model {
 
 	private static final long serialVersionUID = -3698872425235311089L;
