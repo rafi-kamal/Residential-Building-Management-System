@@ -1,24 +1,21 @@
 package models;
 
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import models.enums.AccountType;
+import play.data.format.Formats;
 import play.data.validation.Constraints.Max;
 import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
 
 @Entity
 public class UserAccount extends Model {
@@ -51,9 +48,8 @@ public class UserAccount extends Model {
 //	@Enumerated(EnumType.STRING)
 //	public VerificationStatus verificationStatus;
 	
-	@Column(insertable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date joinDate;
+	@Formats.DateTime(pattern="dd/MM/yyyy")
+	public Date joinDate = new Date();
 	
 	@Valid
 	@OneToOne

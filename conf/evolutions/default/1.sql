@@ -31,11 +31,11 @@ create table bill (
 ;
 
 create table bill_notification (
-  issue_date                date,
+  issu_date                 timestamp,
   status                    varchar(6),
   bill_id                   bigint,
   constraint ck_bill_notification_status check (status in ('Read','Unread')),
-  constraint pk_bill_notification primary key (issue_date, status))
+  constraint pk_bill_notification primary key (issu_date, status))
 ;
 
 create table maintenance_task (
@@ -48,11 +48,11 @@ create table maintenance_task (
 ;
 
 create table maintenance_task_notification (
-  issue_date                date,
+  issu_date                 timestamp,
   status                    varchar(6),
   maintenance_task_id       bigint,
   constraint ck_maintenance_task_notification_status check (status in ('Read','Unread')),
-  constraint pk_maintenance_task_notification primary key (issue_date, status))
+  constraint pk_maintenance_task_notification primary key (issu_date, status))
 ;
 
 create table message (
@@ -79,7 +79,7 @@ create table notice (
 create table notification (
   id                        bigint not null,
   receiver_id               bigint,
-  issue_date                date,
+  issu_date                 timestamp,
   status                    varchar(6),
   constraint ck_notification_status check (status in ('Read','Unread')),
   constraint pk_notification primary key (id))
@@ -111,7 +111,7 @@ create table user_account (
   email                     varchar(255),
   phone                     varchar(255),
   account_type              varchar(10),
-  join_date                 date,
+  join_date                 timestamp,
   apartment_id              bigint,
   constraint ck_user_account_account_type check (account_type in ('Resident','Manager','Supervisor')),
   constraint pk_user_account primary key (id))
