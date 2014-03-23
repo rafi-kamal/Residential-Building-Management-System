@@ -3,13 +3,18 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model.Finder;
 
 @Entity
 public class Thread extends play.db.ebean.Model {
@@ -38,7 +43,7 @@ public class Thread extends play.db.ebean.Model {
     @OneToMany(cascade=CascadeType.ALL)
     @OrderBy("timestamp")
     @JoinColumn(name="THREAD_ID", referencedColumnName="internal_id")
-    public List<Message> items = new ArrayList<Message>();
+    public List<Message> messages = new ArrayList<Message>();
 	
 	public Thread(){};
 	
