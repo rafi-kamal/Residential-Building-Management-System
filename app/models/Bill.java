@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import play.data.*;
+import play.data.validation.Constraints.*;
+
+import javax.validation.Valid;
+import javax.persistence.*;
 import org.joda.time.LocalTime;
 
 import play.data.validation.Constraints.Required;
@@ -19,10 +24,7 @@ public class Bill extends play.db.ebean.Model {
 	public Long id;
 	
 	@Required
-	public Long apartmentBuildingId;
-	
-	@Required
-	public Long apartmentNo;
+	public Apartment apartment;
 	
 	public String description;
 	
@@ -38,7 +40,20 @@ public class Bill extends play.db.ebean.Model {
 	@Required
 	public Double amount;
 	
-	@OneToOne
-	@Required
-	public Long notificationId;
+	public static Finder<Long, Bill> find = new Finder<Long, Bill> (Long.class, Bill.class);
+	
+	public Bill() {}
+
+	public Bill(Long id, Apartment apartment, String description,
+			LocalTime dateOfIssuing, LocalTime deadline, String status,
+			Double amount) {
+		super();
+		this.id = id;
+		this.apartment = apartment;
+		this.description = description;
+		this.dateOfIssuing = dateOfIssuing;
+		this.deadline = deadline;
+		this.status = status;
+		this.amount = amount;
+	}
 }

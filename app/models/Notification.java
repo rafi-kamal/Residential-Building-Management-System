@@ -1,24 +1,21 @@
 package models;
 
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.MappedSuperclass;
 
 import models.enums.NotificationStatus;
+import play.data.format.Formats;
 import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
 
-@Entity
-public class Notification extends Model {
+@MappedSuperclass
+public class Notification extends play.db.ebean.Model {
 
 	private static final long serialVersionUID = -3698872425235311089L;
 
@@ -29,12 +26,14 @@ public class Notification extends Model {
 	@ManyToOne(fetch=FetchType.LAZY)
 	public UserAccount receiver;
 	
-	@Column(insertable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date issueDate;
+	@Formats.DateTime(pattern="dd/MM/yyyy")
+	public Date issuDate = new Date();
 	
 	@Required
 	@Enumerated(EnumType.STRING)
 	public NotificationStatus status;
+	
+	public static Finder<Long, Notification> find = 
+			new Finder<Long, Notification> (Long.class, Notification.class);
 	
 }
