@@ -21,7 +21,7 @@ public class RealEstateCompany extends Model {
 
 	@Id
 	@GeneratedValue
-	public Long internalId;
+	public Long id;
 	
 	@Required
 	public String name;

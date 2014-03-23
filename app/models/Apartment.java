@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
@@ -18,13 +17,12 @@ public class Apartment extends Model {
 
 	@Id
 	@GeneratedValue
-	public Long internalId;
+	public Long id;
 	
 	@Required
 	public String apartmentNo;
 	
 	@Valid
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "internalId")
 	public ApartmentBuilding apartmentBuilding;
 }

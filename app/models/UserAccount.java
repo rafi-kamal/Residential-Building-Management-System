@@ -1,18 +1,11 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.validation.Valid;
 
 import models.enums.AccountType;
@@ -32,7 +25,7 @@ public class UserAccount extends Model {
 
 	@Id
 	@GeneratedValue
-	public Long internalId;
+	public Long id;
 	
 	@Required
 	public String firstName;
@@ -62,14 +55,7 @@ public class UserAccount extends Model {
 	@Valid
 	@Required
 	@OneToOne
-	@JoinColumn(name="internalId")
 	public Apartment apartment;
-	
-	@Valid
-    @OneToMany(cascade=CascadeType.ALL)
-    @OrderBy("timestamp")
-    @JoinColumn(name="THREAD_ID", referencedColumnName="internal_id")
-    public List<Message> items = new ArrayList<Message>();
 	
 	public UserAccount() {}
 
