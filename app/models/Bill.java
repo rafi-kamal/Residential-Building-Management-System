@@ -5,17 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-<<<<<<< HEAD
 import play.data.*;
 import play.data.validation.Constraints.*;
 
 import javax.validation.Valid;
 import javax.persistence.*;
-=======
 import org.joda.time.LocalTime;
 
 import play.data.validation.Constraints.Required;
->>>>>>> 720acae40e7affb1df72457563dab6daa6819edd
 
 @Entity
 public class Bill extends play.db.ebean.Model {
@@ -43,7 +40,6 @@ public class Bill extends play.db.ebean.Model {
 	@Required
 	public Double amount;
 	
-<<<<<<< HEAD
 	public static Finder<Long, Bill> find = new Finder<Long, Bill> (Long.class, Bill.class);
 	
 	public Bill() {}
@@ -60,9 +56,4 @@ public class Bill extends play.db.ebean.Model {
 		this.status = status;
 		this.amount = amount;
 	}
-=======
-	@OneToOne
-	@Required
-	public Long notificationId;
->>>>>>> 720acae40e7affb1df72457563dab6daa6819edd
 }
