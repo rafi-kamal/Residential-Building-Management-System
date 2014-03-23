@@ -57,4 +57,8 @@ public class Thread extends play.db.ebean.Model {
 	
 	public static Finder<Long, Thread> find = new Finder<Long, Thread> (Long.class, Thread.class);
 	
+	 public static int occurrencesFor(LocalDate date) {
+		    return find.where("date = :date").setParameter("date", date).findRowCount();
+		  }
+	
 }
