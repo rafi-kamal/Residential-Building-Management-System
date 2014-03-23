@@ -3,7 +3,6 @@
 # ~~~~
 
 GET     /                           controllers.account.MainController.index()
-GET     /message                    controllers.MessageController.getMessage()
 GET     /assets/javascripts/routes  controllers.MessageController.javascriptRoutes()
 GET		/addTask					controllers.maintenance.AddTask.index()
 GET 	/showTasks					controllers.maintenance.ShowTasks.index()

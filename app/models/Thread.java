@@ -3,13 +3,6 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
@@ -34,27 +27,25 @@ public class Thread extends play.db.ebean.Model {
 	public String subject="(No Subject)";
 	
 	@Required
-	@ManyToOne
-	public UserAccount sender;
+	public Long senderId;
 	
 	@Required
-	@ManyToOne
-	public UserAccount receiver;
+	public Long receiverId;
 	  
 	@Valid
     @OneToMany(cascade=CascadeType.ALL)
     @OrderBy("timestamp")
     @JoinColumn(name="THREAD_ID", referencedColumnName="internal_id")
-    public List<Message> messages = new ArrayList<Message>();
+    public List<Message> items = new ArrayList<Message>();
 	
 	public Thread(){};
 	
-	public Thread(String category, LocalDate date, String subject, UserAccount sender, UserAccount receiver) {
+	public Thread(String category, LocalDate date, String subject, Long senderId, long receiverId) {
 		this.category=category;
 		this.date=date;
 		this.subject=subject;
-		this.sender=sender;
-		this.receiver=receiver;
+		this.senderId=senderId;
+		this.receiverId=receiverId;
 	}
 	
 	
