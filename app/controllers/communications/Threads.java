@@ -1,4 +1,4 @@
-package controllers;
+package controllers.communications;
 
 
 import play.*;
@@ -9,11 +9,17 @@ import play.libs.*;
 import models.*;
 import play.data.validation.*;
 import static play.data.validation.Constraints.*;
+
 import javax.validation.*;
+
 import views.html.*;
+
 import java.util.*;
 
 import org.joda.time.LocalDate;
+
+import controllers.Message;
+import controllers.routes;
 
 public class Threads extends Controller {
 	  static public Form<Thread>  threadForm  = Form.form(Thread.class);
