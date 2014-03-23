@@ -12,6 +12,7 @@ create table bill (
   deadline                  time,
   status                    varchar(255),
   amount                    double,
+  notification_id           bigint,
   constraint pk_bill primary key (id))
 ;
 
@@ -24,9 +25,6 @@ create table message (
   constraint pk_message primary key (internal_id))
 ;
 
-<<<<<<< HEAD
-create sequence bill_seq;
-=======
 create table thread (
   internal_id               bigint not null,
   category                  varchar(255),
@@ -36,7 +34,8 @@ create table thread (
   receiver_id               bigint,
   constraint pk_thread primary key (internal_id))
 ;
->>>>>>> 1f1171d0fb903fd4068e1294c45bc2b21ab2a663
+
+create sequence bill_seq;
 
 create sequence message_seq;
 
