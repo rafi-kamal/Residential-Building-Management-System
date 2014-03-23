@@ -19,6 +19,9 @@ public class Message extends play.db.ebean.Model {
 
 	@Required
 	public LocalTime timeStamp;
+	
+	@Required
+	public UserAccount sender;
 
 	public String body;
 
@@ -28,9 +31,10 @@ public class Message extends play.db.ebean.Model {
 
 	}
 
-	public Message(LocalTime timeStamp, String body) {
-		this.timeStamp=timeStamp;
-		this.body=body;
+	public Message(LocalTime timeStamp, String body, UserAccount sender) {
+		this.timeStamp = timeStamp;
+		this.body = body;
+		this.sender = sender;
 	}
 
 	public static Finder<Long,Message> find = new Finder<Long,Message> (Long.class, Message.class);

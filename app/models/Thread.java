@@ -34,25 +34,27 @@ public class Thread extends play.db.ebean.Model {
 	public String subject="(No Subject)";
 	
 	@Required
-	public Long senderId;
+	@ManyToOne
+	public UserAccount sender;
 	
 	@Required
-	public Long receiverId;
+	@ManyToOne
+	public UserAccount receiver;
 	  
 	@Valid
     @OneToMany(cascade=CascadeType.ALL)
     @OrderBy("timestamp")
     @JoinColumn(name="THREAD_ID", referencedColumnName="internal_id")
-    public List<Message> items = new ArrayList<Message>();
+    public List<Message> messages = new ArrayList<Message>();
 	
 	public Thread(){};
 	
-	public Thread(String category, LocalDate date, String subject, Long senderId, long receiverId) {
+	public Thread(String category, LocalDate date, String subject, UserAccount sender, UserAccount receiver) {
 		this.category=category;
 		this.date=date;
 		this.subject=subject;
-		this.senderId=senderId;
-		this.receiverId=receiverId;
+		this.sender=sender;
+		this.receiver=receiver;
 	}
 	
 	

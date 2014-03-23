@@ -14,35 +14,37 @@ import javax.persistence.*;
 public class Notice extends play.db.ebean.Model {
 	@Id
 	@GeneratedValue
-	Long internalId;
+	public Long internalId;
 	
 	@Required
-	String category;
+	public String category;
 	
 	@Required
-	String subject="(No Subject)";
+	public String subject="(No Subject)";
 	
 	@Required
-	LocalDate publishDate;
+	public LocalDate publishDate;
 	
 	@Required
-	Date validUntil;
+	public Date validUntil;
 	
 	@Required 
-	String description;
+	public String description;
 	
 	@Required
-	Long publishedBy;
+	@ManyToOne
+	public UserAccount publishedBy;
 	
 	public Notice(){};
 
 	public Notice(String category, String subject, LocalDate publishDate,
-			Date validUntil, String description) {
+			Date validUntil, String description, UserAccount publishedBy) {
 		this.category = category;
 		this.subject = subject;
 		this.publishDate = publishDate;
 		this.validUntil = validUntil;
 		this.description = description;
+		this.publishedBy = publishedBy;
 	}
 	
 	public static Finder<Long, Notice> find = new Finder<Long, Notice> (Long.class, Notice.class);
