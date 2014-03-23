@@ -147,6 +147,7 @@ create index ix_apartment_apartmentBuilding_1 on apartment (apartment_building_i
 alter table apartment_building add constraint fk_apartment_building_realEsta_2 foreign key (real_estate_company_id) references real_estate_company (id) on delete restrict on update restrict;
 create index ix_apartment_building_realEsta_2 on apartment_building (real_estate_company_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 alter table message add constraint fk_message_thread_3 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
 create index ix_message_thread_3 on message (THREAD_ID);
 alter table notification add constraint fk_notification_receiver_4 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
@@ -156,6 +157,8 @@ create index ix_thread_sender_5 on thread (sender_id);
 alter table thread add constraint fk_thread_receiver_6 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
 create index ix_thread_receiver_6 on thread (receiver_id);
 =======
+=======
+>>>>>>> FETCH_HEAD
 alter table bill_notification add constraint fk_bill_notification_bill_3 foreign key (bill_id) references bill (id) on delete restrict on update restrict;
 create index ix_bill_notification_bill_3 on bill_notification (bill_id);
 alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_4 foreign key (maintenance_task_id) references maintenance_task (id) on delete restrict on update restrict;
@@ -164,6 +167,9 @@ alter table message add constraint fk_message_thread_5 foreign key (THREAD_ID) r
 create index ix_message_thread_5 on message (THREAD_ID);
 alter table notification add constraint fk_notification_receiver_6 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
 create index ix_notification_receiver_6 on notification (receiver_id);
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 alter table user_account add constraint fk_user_account_apartment_7 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
 create index ix_user_account_apartment_7 on user_account (apartment_id);
