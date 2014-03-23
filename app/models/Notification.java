@@ -21,7 +21,7 @@ import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
 @Entity
-public class UserAccount extends Model {
+public class Notification extends Model {
 
 	private static final long serialVersionUID = -3698872425235311089L;
 
@@ -51,6 +51,7 @@ public class UserAccount extends Model {
 	@Enumerated(EnumType.STRING)
 	public VerificationStatus verificationStatus;
 	
+	@Required
 	@Column(insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date joinDate;
@@ -60,9 +61,9 @@ public class UserAccount extends Model {
 	@OneToOne
 	public Apartment apartment;
 	
-	public UserAccount() {}
+	public Notification() {}
 
-	public UserAccount(String firstName, String lastName, String email,
+	public Notification(String firstName, String lastName, String email,
 			String phone, AccountType accountType,
 			VerificationStatus verificationStatus) {
 		this.firstName = firstName;
