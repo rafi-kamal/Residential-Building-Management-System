@@ -34,7 +34,7 @@ public class Bill extends play.db.ebean.Model {
 	@Required
 	public Double amount;
 	
-	@OnetoOne
+	@OneToOne
 	@Required
 	public Long notificationId;
 }
