@@ -1,0 +1,26 @@
+@(threads:List[models.Thread])
+
+@import org.joda.time.LocalDate
+
+@common.main ("All chats") {
+  <h2>Archives</h2>
+    @helper.form(action= routes.ThreadController.loadThread) {
+      <select>
+        @threads.filter(_.date isBefore LocalDate.now).sortBy(_.occurrence).map { t =>
+        <option value="@t.internalId">@t.subject on @t.date</option>
+        }
+      </select>
+      <button>Show</button>
+    }
+  <h2>Active</h2>
+    @helper.form(action=routes.ThreadController.loadThread) {
+      <select name="threadid">
+        @threads.filter(_.date == LocalDate.now).sortBy(_.occurrence).map { t =>
+        <option value="@t.internalId">@t.subject on @t.date</option>
+        }
+      </select>
+      <button>Load</button>
+    }
+  <hr>
+  <a href="@routes.ThreadController.registerThread()">Create a new one</a>
+}

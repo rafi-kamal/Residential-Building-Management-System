@@ -1,0 +1,9 @@
+@(threadForm:Form[models.Thread])
+
+@common.main ("Create new Thread") {
+  @helper.form(action=routes.ThreadController.createThread) {
+    @helper.inputText(threadForm("subject"))
+    <input type="hidden" name="date" value="@org.joda.time.LocalDate.now"/>
+    <input type="button" value="Create"/>
+  }
+}

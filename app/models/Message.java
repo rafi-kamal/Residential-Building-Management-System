@@ -18,19 +18,22 @@ public class Message extends play.db.ebean.Model {
 	public Long internalId;
 
 	@Required
-	public LocalTime timeStamp;
+	public LocalTime time;
 
 	public String body;
 
 	public boolean isRead=false;
+	
+	public UserAccount sender;
 
 	public Message(){
 
 	}
 
-	public Message(LocalTime timeStamp, String body) {
-		this.timeStamp=timeStamp;
+	public Message(LocalTime time, String body, UserAccount sender) {
+		this.time=time;
 		this.body=body;
+		this.sender=sender;
 	}
 
 	public static Finder<Long,Message> find = new Finder<Long,Message> (Long.class, Message.class);

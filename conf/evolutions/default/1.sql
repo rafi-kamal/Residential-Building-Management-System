@@ -36,7 +36,7 @@ create table bill (
 create table message (
   internal_id               bigint not null,
   THREAD_ID                 bigint not null,
-  time_stamp                time,
+  time                      time,
   body                      varchar(255),
   is_read                   boolean,
   constraint pk_message primary key (internal_id))
@@ -79,6 +79,7 @@ create table thread (
   subject                   varchar(255),
   sender_id                 bigint,
   receiver_id               bigint,
+  occurrence                integer,
   constraint pk_thread primary key (internal_id))
 ;
 
@@ -121,8 +122,12 @@ alter table message add constraint fk_message_thread_3 foreign key (THREAD_ID) r
 create index ix_message_thread_3 on message (THREAD_ID);
 alter table notification add constraint fk_notification_receiver_4 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
 create index ix_notification_receiver_4 on notification (receiver_id);
-alter table user_account add constraint fk_user_account_apartment_5 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
-create index ix_user_account_apartment_5 on user_account (apartment_id);
+alter table thread add constraint fk_thread_sender_5 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
+create index ix_thread_sender_5 on thread (sender_id);
+alter table thread add constraint fk_thread_receiver_6 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+create index ix_thread_receiver_6 on thread (receiver_id);
+alter table user_account add constraint fk_user_account_apartment_7 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+create index ix_user_account_apartment_7 on user_account (apartment_id);
 
 
 

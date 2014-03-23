@@ -42,7 +42,7 @@ public class Thread extends play.db.ebean.Model {
 	@ManyToOne
 	public UserAccount receiver;
 	
-	public int occurance;
+	public int occurrence;
 	  
 	@Valid
     @OneToMany(cascade=CascadeType.ALL)

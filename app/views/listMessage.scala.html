@@ -1,0 +1,5 @@
+@(message:Message)
+
+@import models.Message
+
+<li class="message"><span class="time">[@message.time]</span> <span>@if(message.sender!=null){@message.sender.email}</span> > @message.body</li>
