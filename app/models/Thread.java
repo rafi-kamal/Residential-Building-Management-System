@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.validation.Valid;
@@ -34,10 +35,14 @@ public class Thread extends play.db.ebean.Model {
 	public String subject="(No Subject)";
 	
 	@Required
-	public Long senderId;
+	@ManyToOne
+	public UserAccount sender;
 	
 	@Required
-	public Long receiverId;
+	@ManyToOne
+	public UserAccount receiver;
+	
+	public int occurance;
 	  
 	@Valid
     @OneToMany(cascade=CascadeType.ALL)
@@ -47,12 +52,12 @@ public class Thread extends play.db.ebean.Model {
 	
 	public Thread(){};
 	
-	public Thread(String category, LocalDate date, String subject, Long senderId, long receiverId) {
+	public Thread(String category, LocalDate date, String subject, UserAccount sender, UserAccount receiver) {
 		this.category=category;
 		this.date=date;
 		this.subject=subject;
-		this.senderId=senderId;
-		this.receiverId=receiverId;
+		this.sender=sender;
+		this.receiver=receiver;
 	}
 	
 	public static Finder<Long, Thread> find = new Finder<Long, Thread> (Long.class, Thread.class);
