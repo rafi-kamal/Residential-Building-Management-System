@@ -1,22 +1,24 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
-
-import models.enums.AccountType;
-import models.enums.VerificationStatus;
-
-import org.joda.time.LocalDate;
-import play.db.ebean;
 
 import play.data.validation.Constraints.Max;
 import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
+import play.db.ebean.Model;
 
 @Entity
-public class RealEstateCompany extends ebean.Model {
+public class RealEstateCompany extends Model {
+
+	private static final long serialVersionUID = -8057709955601867766L;
+
 	@Id
 	@GeneratedValue
 	public Long internalId;
@@ -39,6 +41,6 @@ public class RealEstateCompany extends ebean.Model {
 	public String address;
 	
 	@Valid
-	@OneToMany(fetchType=FetchType.LAZY, mappedBy="realEstateCompany")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="realEstateCompany")
 	public List<ApartmentBuilding> apartmentBuildings;
 }

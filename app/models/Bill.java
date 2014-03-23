@@ -1,15 +1,19 @@
 package models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import org.joda.time.LocalTime;
 
-import play.data.*;
-import play.data.validation.Constraints.*;
-import javax.validation.Valid;
-
-import javax.persistence.*;
+import play.data.validation.Constraints.Required;
 
 @Entity
 public class Bill extends play.db.ebean.Model {
+
+	private static final long serialVersionUID = -8662085771427157296L;
+
 	@Id
 	@GeneratedValue
 	public Long id;

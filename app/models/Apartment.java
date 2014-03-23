@@ -1,22 +1,21 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
-import models.enums.AccountType;
-import models.enums.VerificationStatus;
-
-import org.joda.time.LocalDate;
-
-import play.db.ebean;
-import play.data.validation.Constraints.Max;
-import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
+import play.db.ebean.Model;
 
 @Entity
-public class Apartment extends ebean.Model {
+public class Apartment extends Model {
+
+	private static final long serialVersionUID = -1531581245963642355L;
+
 	@Id
 	@GeneratedValue
 	public Long internalId;

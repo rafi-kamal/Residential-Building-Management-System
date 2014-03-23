@@ -3,20 +3,33 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.validation.Valid;
 
 import models.enums.AccountType;
 import models.enums.VerificationStatus;
 
 import org.joda.time.LocalDate;
-import play.db.ebean;
 
 import play.data.validation.Constraints.Max;
 import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
+import play.db.ebean.Model;
 
 @Entity
-public class UserAccount extends ebean.Model {
+public class UserAccount extends Model {
+
+	private static final long serialVersionUID = -3698872425235311089L;
+
 	@Id
 	@GeneratedValue
 	public Long internalId;
