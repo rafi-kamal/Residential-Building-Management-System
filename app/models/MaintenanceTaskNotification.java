@@ -9,11 +9,11 @@ import javax.validation.Valid;
 import javax.persistence.*;
 
 @Entity
-public class BillNotification extends play.db.ebean.Model {
+public class MaintenanceTaskNotification extends play.db.ebean.Model {
 	
 	@ManyToOne
 	@Required
-	public Bill bill;
+	public MaintenanceTask maintenanceTask;
 	
 	@OneToOne
 	@Id
