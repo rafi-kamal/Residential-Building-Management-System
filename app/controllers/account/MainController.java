@@ -16,6 +16,9 @@ public class MainController extends Controller {
     }
     
     public static Result signUp() {
-    	return ok();
+    	UserAccount userAccount = signUpForm.bindFromRequest().get();
+    	userAccount.save();
+    	
+    	return ok("Registered " + userAccount.toString());
     }
 }

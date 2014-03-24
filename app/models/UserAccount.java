@@ -59,4 +59,12 @@ public class UserAccount extends Model {
 	
 	public static Finder<Long, UserAccount> find = 
 			new Finder<Long, UserAccount> (Long.class, UserAccount.class);
+
+	@Override
+	public String toString() {
+		return "UserAccount [name=" + name + ", email=" + email + ", phone="
+				+ phone + ", accountType=" + accountType + ", joinDate="
+				+ joinDate + "]";
+	}
+	
 }
