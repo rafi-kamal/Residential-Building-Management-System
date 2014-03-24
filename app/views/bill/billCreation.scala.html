@@ -1,5 +1,25 @@
-@(billForm:Form[Bill])
+@(billForm:Form[Bill], apartments:Seq[Apartment])
 
 @common.main("New Bill") {
-	<h1> Add a Bill </h1>	
+	<h1> Add a Bill </h1>
+	@helper.form(action = controllers.bill.routes.BillController.postBill) {
+	
+		<!-- Apartment selection dropdown goes here -->
+		
+		<!-- select(billForm("selectField"), options("foo"->"Foo", "bar"->"Bar")) -->
+		
+		@helper.inputText(billForm("Desciption"))
+		
+		@helper.input(billForm("deadline")) { (id, name, value, args) =>
+                <input type="date" name="@name" id="@id" @toHtmlArgs(args)>
+            }
+            
+        @helper.input(billForm("status")) { (id, name, value, args) =>
+                <input type="text" name="@name" id="@id" @toHtmlArgs(args)>
+            }
+            
+        @helper.input(billForm("amount")) { (id, name, value, args) =>
+                <input type="number" name="@name" id="@id" @toHtmlArgs(args)>
+            }
+	}
 }

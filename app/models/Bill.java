@@ -23,6 +23,7 @@ public class Bill extends play.db.ebean.Model {
 	@GeneratedValue
 	public Long id;
 	
+	@ManyToOne
 	@Required
 	public Apartment apartment;
 	
