@@ -19,6 +19,10 @@ GET		/selectApartment			controllers.account.SelectApartment.index()
 GET		/profile					controllers.account.ProfileController.index()
 GET		/verifyAccount				controllers.account.VerifyAccount.index()
 
+# Bill & Maintenance
+GET		/createBill					controllers.bill.BillController.createBill()
+POST 	/postBill					controllers.bill.BillController.postBill()
+
 # Messaging
 GET  /form/thread           		controllers.communications.ThreadController.registerThread()
 GET  /allthreads               		controllers.communications.ThreadController.allThreads()
