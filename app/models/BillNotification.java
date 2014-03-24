@@ -1,21 +1,16 @@
 package models;
 
-import org.joda.time.LocalTime;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
-import play.data.*;
-import play.data.validation.Constraints.*;
-import javax.validation.Valid;
-
-import javax.persistence.*;
+import play.data.validation.Constraints.Required;
 
 @Entity
-public class BillNotification extends play.db.ebean.Model {
+public class BillNotification extends Notification {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
 	@Required
 	public Bill bill;
-	
-	@OneToOne
-	@Id
-	public Notification notification;
 }

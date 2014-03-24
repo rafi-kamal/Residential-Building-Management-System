@@ -27,7 +27,7 @@ public class Notification extends play.db.ebean.Model {
 	public UserAccount receiver;
 	
 	@Formats.DateTime(pattern="dd/MM/yyyy")
-	public Date issuDate = new Date();
+	public Date issueDate = new Date();
 	
 	@Required
 	@Enumerated(EnumType.STRING)
