@@ -2,6 +2,7 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -41,6 +42,6 @@ public class RealEstateCompany extends Model {
 	public String address;
 	
 	@Valid
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="realEstateCompany")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="realEstateCompany", cascade=CascadeType.ALL)
 	public List<ApartmentBuilding> apartmentBuildings;
 }

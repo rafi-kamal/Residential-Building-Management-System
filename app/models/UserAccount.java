@@ -12,8 +12,8 @@ import javax.validation.Valid;
 
 import models.enums.AccountType;
 import play.data.format.Formats;
-import play.data.validation.Constraints.Max;
-import play.data.validation.Constraints.Min;
+import play.data.validation.Constraints.MaxLength;
+import play.data.validation.Constraints.MinLength;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -27,17 +27,17 @@ public class UserAccount extends Model {
 	public Long id;
 	
 	@Required
-	public String firstName;
-	public String lastName;
+	@MaxLength(50)
+	public String name;
 	
 	@Required
-	@Min(5)
-	@Max(60)
+	@MinLength(5)
+	@MaxLength(60)
 	public String email;
 	
 	@Required
-	@Min(6)
-	@Max(20)
+	@MinLength(6)
+	@MaxLength(20)
 	public String phone;
 	
 	@Required

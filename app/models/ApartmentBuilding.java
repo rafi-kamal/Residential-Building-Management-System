@@ -2,6 +2,7 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -45,7 +46,7 @@ public class ApartmentBuilding extends Model {
 	public RealEstateCompany realEstateCompany;
 	
 	@Valid
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="apartmentBuilding")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="apartmentBuilding", cascade=CascadeType.ALL)
 	public List<Apartment> apartments;
 	
 	public static Finder<Long, ApartmentBuilding> find = 
