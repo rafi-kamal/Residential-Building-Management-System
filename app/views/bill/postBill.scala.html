@@ -1,0 +1,18 @@
+@(billForm:Form[Bill])
+
+@common.main("New Bill") {
+
+	@if(billForm.hasErrors) {
+        <div style="background-color:red; color:white;">The form has @billForm.errors.size errors</div>
+    }
+    
+    @if(billForm.value.isDefined) {
+    	<h1>Bill to apartment @billForm.get.apartment.apartmentNo added </h1> <br>
+        <h1>@billForm.get.description</h1>
+        <h2>Issued at @billForm.get.dateOfIssuing</h2> <br>
+        <h2>Deadline : @billForm.get.deadline</h2> <br>
+        <h2>Amount : @billForm.get.amount </h2> <br>
+    } else {    	
+    	Incomplete Bill Information    
+    }                  
+}

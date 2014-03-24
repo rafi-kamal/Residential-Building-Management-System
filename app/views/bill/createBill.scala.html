@@ -6,10 +6,8 @@
 	
 		<!-- Apartment selection dropdown goes here -->
 		
-		<!-- select(billForm("selectField"), options("foo"->"Foo", "bar"->"Bar")) -->
-		
-		@helper.inputText(billForm("Desciption"))
-		
+		@helper.inputText(billForm("desciption"))
+				
 		@helper.input(billForm("deadline")) { (id, name, value, args) =>
                 <input type="date" name="@name" id="@id" @toHtmlArgs(args)>
             }
@@ -21,5 +19,7 @@
         @helper.input(billForm("amount")) { (id, name, value, args) =>
                 <input type="number" name="@name" id="@id" @toHtmlArgs(args)>
             }
+            
+        <input type="submit" name="send" value="Feed" />
 	}
 }

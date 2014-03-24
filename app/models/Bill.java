@@ -10,6 +10,8 @@ import play.data.validation.Constraints.*;
 
 import javax.validation.Valid;
 import javax.persistence.*;
+
+import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
 import play.data.validation.Constraints.Required;
@@ -30,10 +32,10 @@ public class Bill extends play.db.ebean.Model {
 	public String description;
 	
 	@Required
-	public LocalTime dateOfIssuing;
+	public LocalDate dateOfIssuing = LocalDate.now();
 	
 	@Required
-	public LocalTime deadline;
+	public LocalDate deadline;
 	
 	@Required
 	public String status;
@@ -46,7 +48,7 @@ public class Bill extends play.db.ebean.Model {
 	public Bill() {}
 
 	public Bill(Long id, Apartment apartment, String description,
-			LocalTime dateOfIssuing, LocalTime deadline, String status,
+			LocalDate dateOfIssuing, LocalDate deadline, String status,
 			Double amount) {
 		super();
 		this.id = id;

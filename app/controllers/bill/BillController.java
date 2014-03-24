@@ -14,11 +14,11 @@ public class BillController extends Controller {
 	public static Result createBill()
 	{
 		List<Apartment> apartments = Apartment.find.all();
-		return ok(views.html.bill.billCreation.render(billForm, asScalaBuffer(apartments)));
+		return ok(views.html.bill.createBill.render(billForm, asScalaBuffer(apartments)));
 	}
 	
 	public static Result postBill()
 	{
-		return badRequest();
+		return ok(views.html.bill.postBill.render(billForm.bindFromRequest()));
 	}
 }
