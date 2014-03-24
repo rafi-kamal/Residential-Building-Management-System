@@ -2,6 +2,7 @@ package models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -33,6 +34,7 @@ public class UserAccount extends Model {
 	@Required
 	@MinLength(5)
 	@MaxLength(60)
+	@Column(unique=true)
 	public String email;
 	
 	@Required
@@ -42,7 +44,7 @@ public class UserAccount extends Model {
 	
 	@Required
 	@Enumerated(EnumType.STRING)
-	public AccountType accountType;
+	public AccountType accountType = AccountType.Resident;
 	
 //	@Required
 //	@Enumerated(EnumType.STRING)

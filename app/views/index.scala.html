@@ -1,4 +1,4 @@
-@(title: String)
+@(signUpForm: play.data.Form[models.UserAccount], signInForm: play.data.Form[models.SigninInfo])
 
 @common.guest("Residential Building Management System") {
 	<div class="container">
@@ -18,5 +18,5 @@
 		</div>
 	</div>
 	@views.html.account.signInModal()
-	@views.html.account.signUpModal()
+	@views.html.account.signUpModal(signUpForm)
 }

@@ -13,7 +13,7 @@ GET		/tasksQueryOnMultiple		controllers.maintenance.TasksQueryOnMultiple.index()
 GET		/editTask					controllers.maintenance.EditTask.index()
 
 # Account
-POST	/signup						controllers.account.AccountController.signUp()
+POST	/signup						controllers.account.MainController.signUp()
 GET		/selectApartment			controllers.account.SelectApartment.index()
 GET		/profile					controllers.account.ProfileController.index()
 GET		/verifyAccount				controllers.account.VerifyAccount.index()

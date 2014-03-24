@@ -1,3 +1,5 @@
+@(signUpForm: Form[models.UserAccount])
+
 <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"
 	aria-labelledby="signUpModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -9,11 +11,8 @@
 			</div>
 			<div class="modal-body">
 
-				@helper.form(action = controllers.account.routes.AccountController.signUp()) {
-					<p><input type="text" class="form-control"
-						placeholder="First Name" required="required" autofocus="autofocus"></p>
-					<p><input type="text" class="form-control"
-						placeholder="Last Name"></p> 
+				@helper.form(action = controllers.account.routes.MainController.signUp()) {
+					<p>@helper.inputText(signUpForm("name"))</p>
 					<p><input type="email" class="form-control"
 						placeholder="Email address" required="required"></p>
 					<p><input type="tel" class="form-control"
