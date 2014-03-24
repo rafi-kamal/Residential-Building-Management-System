@@ -12,7 +12,12 @@
 			<div class="modal-body">
 
 				@helper.form(action = controllers.account.routes.MainController.signUp()) {
-					<p>@helper.inputText(signUpForm("name"))</p>
+					@helper.input(signUpForm("name"),
+						 '_showConstraints -> false,
+						 '_label -> null) { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Name">
+					}
 					<p><input type="email" class="form-control"
 						placeholder="Email address" required="required"></p>
 					<p><input type="tel" class="form-control"
