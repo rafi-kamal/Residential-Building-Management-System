@@ -1,4 +1,4 @@
-package controllers;
+package controllers.communications;
 
 
 import java.util.List;
@@ -13,7 +13,7 @@ import models.UserAccount;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.xml.PrettyPrinter.Item;
+
 //import controllers.Message;
 import controllers.routes;
 
@@ -25,8 +25,8 @@ public class ThreadController extends Controller {
 	      int nextOccurrence =
 	        Thread.occurrencesFor(LocalDate.now())+1;
 	      m.put("occurrence", ""+nextOccurrence);
-	      java.util.List<UserAccount> receivers = UserAccount.find.all();
-	      return ok(views.html.thread.render(threadForm.bind(m), asScalaBuffer(receivers)));
+	      List<UserAccount> receivers = UserAccount.find.all();
+	      return ok(views.html.communications.thread.render(threadForm.bind(m), asScalaBuffer(receivers)));
 	  }
 
 	  public static Result loadThread() {
@@ -42,13 +42,13 @@ public class ThreadController extends Controller {
 	                        .findUnique();
 
 	    return ok(
-	      views.html.viewthread.render(thread, messageForm)
+	      views.html.communications.viewthread.render(thread, messageForm)
 	    );
 	  }
 
 	  public static Result allThreads() {
 	      return ok(
-	          views.html.threads.render(Thread.find.all())
+	          views.html.communications.threads.render(Thread.find.all())
 	      );
 	  }
 
@@ -62,7 +62,7 @@ public class ThreadController extends Controller {
 	          UserAccount sender = UserAccount.find.where().eq("email", session("email")).findUnique();
 	          thread.sender=sender;
 	          thread.save();
-	          return redirect( routes.ThreadController.allThreads() );
+	          return redirect( controllers.communications.routes.ThreadController.allThreads() );
 	      }
 	  }
 
@@ -84,7 +84,7 @@ public class ThreadController extends Controller {
 	    thread.save();
 
 	    return ok(
-	        views.html.viewthread.render(thread, messageForm)
+	        views.html.communications.viewthread.render(thread, messageForm)
 	    );
 	  }
 

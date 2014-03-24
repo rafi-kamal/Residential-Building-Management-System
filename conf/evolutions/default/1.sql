@@ -40,18 +40,6 @@ create table bill_notification (
   constraint pk_bill_notification primary key (id))
 ;
 
-create table login_info (
-  name                      varchar(255),
-  email                     varchar(255),
-  phone                     varchar(255),
-  account_type              varchar(10),
-  join_date                 timestamp,
-  password                  varchar(255),
-  constraint ck_login_info_account_type check (account_type in ('Resident','Manager','Supervisor')),
-  constraint uq_user_account_email unique (email),
-  constraint pk_login_info primary key (name, email, phone, account_type, join_date))
-;
-
 create table maintenance_task (
   id                        bigint not null,
   task_type                 varchar(255),
@@ -139,8 +127,6 @@ create sequence bill_seq;
 
 create sequence bill_notification_seq;
 
-create sequence login_info_seq;
-
 create sequence maintenance_task_seq;
 
 create sequence maintenance_task_notification_seq;
@@ -192,8 +178,6 @@ drop table if exists bill;
 
 drop table if exists bill_notification;
 
-drop table if exists login_info;
-
 drop table if exists maintenance_task;
 
 drop table if exists maintenance_task_notification;
@@ -219,8 +203,6 @@ drop sequence if exists apartment_building_seq;
 drop sequence if exists bill_seq;
 
 drop sequence if exists bill_notification_seq;
-
-drop sequence if exists login_info_seq;
 
 drop sequence if exists maintenance_task_seq;
 

@@ -19,11 +19,11 @@ GET		/profile					controllers.account.ProfileController.index()
 GET		/verifyAccount				controllers.account.VerifyAccount.index()
 
 # Messaging
-GET  /form/thread           controllers.ThreadController.registerThread()
-GET  /allthreads               controllers.ThreadController.allThreads()
-POST /thread                controllers.ThreadController.createThread()
-GET  /viewthread            controllers.ThreadController.loadThread()
-POST /thread/:thread/message  controllers.ThreadController.talk(thread:Long)
+GET  /form/thread           		controllers.communications.ThreadController.registerThread()
+GET  /allthreads               		controllers.communications.ThreadController.allThreads()
+POST /thread                		controllers.communications.ThreadController.createThread()
+GET  /viewthread            		controllers.communications.ThreadController.loadThread()
+POST /thread/:thread/message  		controllers.communications.ThreadController.talk(thread:Long)
 
 # POST /chat/:chat/image    controllers.Chats.receiveImage(chat:Long)
 

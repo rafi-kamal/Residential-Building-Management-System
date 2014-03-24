@@ -20,7 +20,7 @@
 
   <div style="float:left;width:500px;">
     <h3>React</h3>
-    @form(action=routes.ThreadController.talk(thread.internalId)) {
+    @form(action = controllers.communications.routes.ThreadController.talk(thread.internalId)) {
       <input type="hidden" name="timeStamp" value="@org.joda.time.LocalTime.now"/>
       @inputText(message("message"))
       <button>send</button>
