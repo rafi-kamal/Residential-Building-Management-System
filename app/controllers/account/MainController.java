@@ -1,7 +1,5 @@
 package controllers.account;
 
-import java.util.Map;
-
 import models.SigninInfo;
 import models.UserAccount;
 import play.data.Form;
@@ -18,19 +16,20 @@ public class MainController extends Controller {
     }
     
     public static Result signUp() {
-    	UserAccount userAccount = new UserAccount();
+    	Form<UserAccount> filledSignUpForm = signUpForm.bindFromRequest();
+    	if (filledSignUpForm.hasErrors()) {
+    		return ok(filledSignUpForm.errors().toString());
+    	}
+    	
+    	UserAccount userAccount = filledSignUpForm.get();
+    	
     	userAccount.save();
     	
     	return ok("Registered " + userAccount.toString());
     }
     
     public static Result signIn() {
-    	SigninInfo signinInfo = new SigninInfo();
-    	
-    	Map<String, String[]> params = request().body().asFormUrlEncoded();
-    	
-    	signinInfo.email = params.get("email")[0];
-    	signinInfo.password = params.get("password")[0];
+    	SigninInfo signinInfo = signInForm.bindFromRequest().get();
     	
     	return ok("Logged In: " + signinInfo.email);
     }

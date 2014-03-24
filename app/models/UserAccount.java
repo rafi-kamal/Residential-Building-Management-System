@@ -42,7 +42,6 @@ public class UserAccount extends Model {
 	@MaxLength(20)
 	public String phone;
 	
-	@Required
 	@Enumerated(EnumType.STRING)
 	public AccountType accountType = AccountType.Resident;
 	
