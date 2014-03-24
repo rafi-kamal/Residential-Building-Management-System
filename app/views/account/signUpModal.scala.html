@@ -9,7 +9,7 @@
 			</div>
 			<div class="modal-body">
 
-				<form class="form-signup" role="form">
+				@helper.form(action = controllers.account.routes.AccountController.signUp()) {
 					<p><input type="text" class="form-control"
 						placeholder="First Name" required="required" autofocus="autofocus"></p>
 					<p><input type="text" class="form-control"
@@ -22,7 +22,7 @@
 						required="required"></p> 
 					<p><button type="button" class="btn btn-default">Select Image</button>
 						<b>1005003.jpg</b></p>
-				</form>
+				}
 
 			</div>
 			<div class="modal-footer">
