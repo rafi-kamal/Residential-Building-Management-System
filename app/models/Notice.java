@@ -31,20 +31,21 @@ public class Notice extends play.db.ebean.Model {
 	@Required 
 	public String description;
 	
-	@Required
-	public Long publishedBy;
+	@ManyToOne
+	public UserAccount publishedBy;
 	
 	public int viewcount=0;
 	
-	public Notice(){};
+	public Notice() {};
 
 	public Notice(String category, String subject, LocalDate publishDate,
-			Date validUntil, String description) {
+			Date validUntil, String description, UserAccount publishedBy) {
 		this.category = category;
 		this.subject = subject;
 		this.publishDate = publishDate;
 		this.validUntil = validUntil;
 		this.description = description;
+		this.publishedBy = publishedBy;
 	}
 	
 	public static Finder<Long, Notice> find = new Finder<Long, Notice> (Long.class, Notice.class);
