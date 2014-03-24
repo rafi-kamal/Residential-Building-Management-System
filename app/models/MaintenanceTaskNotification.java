@@ -15,7 +15,6 @@ public class MaintenanceTaskNotification extends play.db.ebean.Model {
 	@Required
 	public MaintenanceTask maintenanceTask;
 	
-	@OneToOne
-	@Id
+	
 	public Notification notification;
 }

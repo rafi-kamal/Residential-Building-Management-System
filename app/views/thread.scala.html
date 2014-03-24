@@ -1,9 +1,14 @@
-@(threadForm:Form[models.Thread])
+@(threadForm:Form[models.Thread], receivers:Seq[UserAccount])
 
 @common.main ("Create new Thread") {
   @helper.form(action=routes.ThreadController.createThread) {
     @helper.inputText(threadForm("subject"))
-    <input type="hidden" name="date" value="@org.joda.time.LocalDate.now"/>
-    <input type="button" value="Create"/>
+	@helper.inputText(threadForm("category"))
+	@helper.inputRadioGroup(
+		threadForm("receiver"),
+		options = receivers.map(i=>(i.firstName+i.lastName)->i.id.toString),
+		'_label -> "Receiver",
+		'_error -> threadForm("receiver").error.map(_.withMessage("select receiver")))
+    <input type="submit" value="Create"/>
   }
 }

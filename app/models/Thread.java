@@ -29,12 +29,11 @@ public class Thread extends play.db.ebean.Model {
 	@Required
 	public String category;
 	
-	@Required 
-	public LocalDate date;
+	public LocalDate date=LocalDate.now();
 	
 	public String subject="(No Subject)";
 	
-	@Required
+	
 	@ManyToOne
 	public UserAccount sender;
 	

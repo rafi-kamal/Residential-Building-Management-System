@@ -14,8 +14,6 @@ public class BillNotification extends play.db.ebean.Model {
 	@ManyToOne
 	@Required
 	public Bill bill;
-	
-	@OneToOne
-	@Id
+
 	public Notification notification;
 }
