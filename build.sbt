@@ -8,8 +8,8 @@ libraryDependencies ++= Seq(
   //anorm,     // Scala RDBMS Library
   //javaJdbc,  // Java database API
   javaEbean, // Java Ebean plugin
-  //javaJpa,   // Java JPA plugin
-  //filters,   // A set of built-in filters
+  javaJpa,   // Java JPA plugin
+  filters,   // A set of built-in filters
   javaCore,  // The core Java API
   // WebJars pull in client-side web libraries
   "org.webjars" %% "webjars-play" % "2.2.0",

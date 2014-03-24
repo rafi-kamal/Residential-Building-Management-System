@@ -1,6 +1,7 @@
 package controllers.account;
 
-import models.SigninInfo;
+import java.util.Map;
+
 import models.UserAccount;
 import play.data.Form;
 import play.mvc.Controller;
@@ -9,10 +10,9 @@ import play.mvc.Result;
 public class MainController extends Controller {
 
 	static Form<UserAccount> signUpForm = Form.form(UserAccount.class);
-	static Form<SigninInfo> signInForm = Form.form(SigninInfo.class);
 	
     public static Result index() {
-        return ok(views.html.index.render(signUpForm, signInForm));
+        return ok(views.html.index.render(signUpForm));
     }
     
     public static Result signUp() {
@@ -29,8 +29,32 @@ public class MainController extends Controller {
     }
     
     public static Result signIn() {
-    	SigninInfo signinInfo = signInForm.bindFromRequest().get();
+    	Map<String, String[]> params = request().body().asFormUrlEncoded();
     	
-    	return ok("Logged In: " + signinInfo.email);
+    	String email = params.get("email")[0];
+    	String password = params.get("password")[0];
+    	
+    	try {
+    		UserAccount userAccount = UserAccount.find
+    				.where()
+    					.eq("email", email)
+    				.findUnique();
+    		
+    		if (password.equals(userAccount.password)) {
+    			session().clear();
+    			session("userId", String.valueOf(userAccount.id));
+    			session("name", userAccount.name);
+    			return redirect("/profile");
+    		}
+    		else
+    			throw new IllegalStateException();
+    	}
+    	catch (NullPointerException exception) {
+    		return ok("Username doesn't exist");
+    	}
+    	catch (IllegalStateException exception) {
+    		return ok("Invalid password");
+    	}
+    	
     }
 }

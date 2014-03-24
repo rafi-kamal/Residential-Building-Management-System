@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -24,14 +25,14 @@ public class UserAccount extends Model {
 	private static final long serialVersionUID = -3698872425235311089L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long id;
 	
 	@Required
 	@MaxLength(50)
 	public String name;
 	
-	@Required
+	@Id
 	@MinLength(5)
 	@MaxLength(60)
 	@Column(unique=true)
@@ -41,6 +42,11 @@ public class UserAccount extends Model {
 	@MinLength(6)
 	@MaxLength(20)
 	public String phone;
+	
+	@Required
+	@MinLength(4)
+	@MaxLength(20)
+	public String password;
 	
 	@Enumerated(EnumType.STRING)
 	public AccountType accountType = AccountType.Resident;
@@ -61,7 +67,7 @@ public class UserAccount extends Model {
 
 	@Override
 	public String toString() {
-		return "UserAccount [name=" + name + ", email=" + email + ", phone="
+		return "UserAccount [name=" + name + ", phone="
 				+ phone + ", accountType=" + accountType + ", joinDate="
 				+ joinDate + "]";
 	}
