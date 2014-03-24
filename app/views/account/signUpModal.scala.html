@@ -9,29 +9,38 @@
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="signUpModalLabel">Sign Up</h4>
 			</div>
-			<div class="modal-body">
+			@helper.form(action = controllers.account.routes.MainController.signUp()) {
+				<div class="modal-body">
 
-				@helper.form(action = controllers.account.routes.MainController.signUp()) {
 					@helper.input(signUpForm("name"),
-						 '_showConstraints -> false,
-						 '_label -> null) { (id, name, value, args) =>
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
 							<input type="text" class="form-control" name="@name" id="@id"
 							placeholder="Name">
 					}
-					<p><input type="email" class="form-control"
-						placeholder="Email address" required="required"></p>
-					<p><input type="tel" class="form-control"
-						placeholder="Phone"></p>
+					@helper.input(signUpForm("email"),
+						 '_showConstraints -> false,
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="email" class="form-control" name="@name" id="@id"
+							placeholder="Email">
+					}
+					
+					@helper.input(signUpForm("phone"),
+						 '_showConstraints -> false,
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="tel" class="form-control" name="@name" id="@id"
+							placeholder="Phone">
+					}
 					<p><input type="password" class="form-control" placeholder="Password"
-						required="required"></p> 
-					<p><button type="button" class="btn btn-default">Select Image</button>
-						<b>1005003.jpg</b></p>
-				}
+						required></p>
+					<!-- <p><button type="button" class="btn btn-default">Select Image</button>
+						<b>1005003.jpg</b></p>  --> 
 
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-success">Sign Up</button>
-			</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success">Sign Up</button>
+				</div>
+			}
 		</div>
 	</div>
 </div>
