@@ -1,11 +1,12 @@
 package controllers;
 
 
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.joda.time.LocalDate;
-
+import static scala.collection.JavaConversions.*;
 import models.Message;
 import models.Thread;
 import models.UserAccount;
@@ -18,13 +19,14 @@ import controllers.routes;
 
 public class ThreadController extends Controller {
 	  static public Form<Thread> threadForm  = Form.form(Thread.class);
-
+	  
 	  public static Result registerThread() {
 		  Map<String, String> m = new HashMap<String, String>();
 	      int nextOccurrence =
 	        Thread.occurrencesFor(LocalDate.now())+1;
 	      m.put("occurrence", ""+nextOccurrence);
-	      return ok(views.html.thread.render(threadForm.bind(m)));
+	      java.util.List<UserAccount> receivers = UserAccount.find.all();
+	      return ok(views.html.thread.render(threadForm.bind(m), asScalaBuffer(receivers)));
 	  }
 
 	  public static Result loadThread() {
@@ -57,7 +59,8 @@ public class ThreadController extends Controller {
 	            + boundForm.errorsAsJson().toString());
 	      } else {
 	          Thread thread = boundForm.get();
-
+	          UserAccount sender = UserAccount.find.where().eq("email", session("email")).findUnique();
+	          thread.sender=sender;
 	          thread.save();
 	          return redirect( routes.ThreadController.allThreads() );
 	      }

@@ -31,6 +31,7 @@ create table bill (
 ;
 
 create table bill_notification (
+<<<<<<< HEAD
   id                        bigint not null,
   receiver_id               bigint,
   issu_date                 timestamp,
@@ -38,6 +39,9 @@ create table bill_notification (
   bill_id                   bigint,
   constraint ck_bill_notification_status check (status in ('Read','Unread')),
   constraint pk_bill_notification primary key (id))
+=======
+  bill_id                   bigint)
+>>>>>>> 0a26e8e0de655415f311ebcba372101f3fb3028a
 ;
 
 create table maintenance_task (
@@ -50,6 +54,7 @@ create table maintenance_task (
 ;
 
 create table maintenance_task_notification (
+<<<<<<< HEAD
   id                        bigint not null,
   receiver_id               bigint,
   issu_date                 timestamp,
@@ -57,6 +62,9 @@ create table maintenance_task_notification (
   maintenance_task_id       bigint,
   constraint ck_maintenance_task_notification_status check (status in ('Read','Unread')),
   constraint pk_maintenance_task_notification primary key (id))
+=======
+  maintenance_task_id       bigint)
+>>>>>>> 0a26e8e0de655415f311ebcba372101f3fb3028a
 ;
 
 create table message (
@@ -118,11 +126,7 @@ create sequence apartment_building_seq;
 
 create sequence bill_seq;
 
-create sequence bill_notification_seq;
-
 create sequence maintenance_task_seq;
-
-create sequence maintenance_task_notification_seq;
 
 create sequence message_seq;
 
@@ -138,6 +142,7 @@ alter table apartment add constraint fk_apartment_apartmentBuilding_1 foreign ke
 create index ix_apartment_apartmentBuilding_1 on apartment (apartment_building_id);
 alter table apartment_building add constraint fk_apartment_building_realEsta_2 foreign key (real_estate_company_id) references real_estate_company (id) on delete restrict on update restrict;
 create index ix_apartment_building_realEsta_2 on apartment_building (real_estate_company_id);
+<<<<<<< HEAD
 alter table bill_notification add constraint fk_bill_notification_receiver_3 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
 create index ix_bill_notification_receiver_3 on bill_notification (receiver_id);
 alter table bill_notification add constraint fk_bill_notification_bill_4 foreign key (bill_id) references bill (id) on delete restrict on update restrict;
@@ -154,6 +159,20 @@ alter table thread add constraint fk_thread_receiver_9 foreign key (receiver_id)
 create index ix_thread_receiver_9 on thread (receiver_id);
 alter table user_account add constraint fk_user_account_apartment_10 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
 create index ix_user_account_apartment_10 on user_account (apartment_id);
+=======
+alter table bill_notification add constraint fk_bill_notification_bill_3 foreign key (bill_id) references bill (id) on delete restrict on update restrict;
+create index ix_bill_notification_bill_3 on bill_notification (bill_id);
+alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_4 foreign key (maintenance_task_id) references maintenance_task (id) on delete restrict on update restrict;
+create index ix_maintenance_task_notificati_4 on maintenance_task_notification (maintenance_task_id);
+alter table message add constraint fk_message_thread_5 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
+create index ix_message_thread_5 on message (THREAD_ID);
+alter table thread add constraint fk_thread_sender_6 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
+create index ix_thread_sender_6 on thread (sender_id);
+alter table thread add constraint fk_thread_receiver_7 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+create index ix_thread_receiver_7 on thread (receiver_id);
+alter table user_account add constraint fk_user_account_apartment_8 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+create index ix_user_account_apartment_8 on user_account (apartment_id);
+>>>>>>> 0a26e8e0de655415f311ebcba372101f3fb3028a
 
 
 
@@ -191,11 +210,7 @@ drop sequence if exists apartment_building_seq;
 
 drop sequence if exists bill_seq;
 
-drop sequence if exists bill_notification_seq;
-
 drop sequence if exists maintenance_task_seq;
-
-drop sequence if exists maintenance_task_notification_seq;
 
 drop sequence if exists message_seq;
 
