@@ -14,7 +14,6 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-//import controllers.Message;
 import controllers.routes;
 
 public class ThreadController extends Controller {

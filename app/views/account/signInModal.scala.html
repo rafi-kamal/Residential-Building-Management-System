@@ -1,3 +1,5 @@
+@(signInForm: play.data.Form[models.SigninInfo])
+
 <div class="modal fade" id="signInModal" tabindex="-1" role="dialog"
 	aria-labelledby="signInModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -7,22 +9,31 @@
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="signInModalLabel">Sign In</h4>
 			</div>
-			<div class="modal-body">
+			@helper.form(action = controllers.account.routes.MainController.signIn()) {
+				<div class="modal-body">
 
-				<form class="form-signin" role="form">
-					<p><input type="email" class="form-control"
-						placeholder="Email address" required="required" autofocus="autofocus"></p> 
-					<p><input type="password" class="form-control" placeholder="Password"
-						required="required"></p> 
-					<p><label class="checkbox"> 
-						<input type="checkbox" value="remember-me"> Remember me
-					</label></p>
-				</form>
+					@helper.input(signInForm("email"),
+						 '_showConstraints -> false,
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="email" class="form-control" name="@name" id="@id"
+							placeholder="Email">
+					}
+					
+					@helper.input(signInForm("password"),
+						 '_showConstraints -> false,
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="password" class="form-control" name="@name" id="@id"
+							placeholder="Password">
+					}
+					<!-- <p><button type="button" class="btn btn-default">Select Image</button>
+						<b>1005003.jpg</b></p>  --> 
 
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-success">Sign In</button>
-			</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success">Sign In</button>
+				</div>
+			}
+			
 		</div>
 	</div>
 </div>
