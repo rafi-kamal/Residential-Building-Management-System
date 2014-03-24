@@ -14,6 +14,7 @@ GET		/editTask					controllers.maintenance.EditTask.index()
 
 # Account
 POST	/signup						controllers.account.MainController.signUp()
+POST	/signin						controllers.account.MainController.signIn()
 GET		/selectApartment			controllers.account.SelectApartment.index()
 GET		/profile					controllers.account.ProfileController.index()
 GET		/verifyAccount				controllers.account.VerifyAccount.index()
