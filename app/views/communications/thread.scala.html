@@ -1,4 +1,4 @@
-@(threadForm:Form[models.Thread], receivers:Seq[UserAccount])
+@(threadForm:Form[models.Thread], receivers:Seq[UserAccount], messageForm:Form[models.Message])
 
 @common.main ("Create new Thread") {
   @helper.form(action = controllers.communications.routes.ThreadController.createThread) {
@@ -6,9 +6,10 @@
 	@helper.inputText(threadForm("category"))
 	@helper.inputRadioGroup(
 		threadForm("receiver"),
-		options = receivers.map(i=>(i.name)->i.id.toString),
+		options = receivers.map(i => (i.id.toString->i.name)),
 		'_label -> "Receiver",
-		'_error -> threadForm("receiver").error.map(_.withMessage("select receiver")))
+		'_error -> threadForm("receiver").error.map(_.withMessage("select receiver"))),
+	@helper.inputText(messageForm("body"))
     <input type="submit" value="Create"/>
   }
 }

@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.joda.time.LocalDate;
+import org.joda.time.*;
+
 import static scala.collection.JavaConversions.*;
 import models.Message;
 import models.Thread;
@@ -13,11 +14,11 @@ import models.UserAccount;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-
 import controllers.routes;
 
 public class ThreadController extends Controller {
 	  static public Form<Thread> threadForm  = Form.form(Thread.class);
+	  static public Form<Message>  messageForm  = Form.form(Message.class);
 	  
 	  public static Result registerThread() {
 		  Map<String, String> m = new HashMap<String, String>();
@@ -25,7 +26,8 @@ public class ThreadController extends Controller {
 	        Thread.occurrencesFor(LocalDate.now())+1;
 	      m.put("occurrence", ""+nextOccurrence);
 	      List<UserAccount> receivers = UserAccount.find.all();
-	      return ok(views.html.communications.thread.render(threadForm.bind(m), asScalaBuffer(receivers)));
+	      String message = new String(); 
+	      return ok(views.html.communications.thread.render(threadForm.bind(m), asScalaBuffer(receivers), messageForm));
 	  }
 
 	  public static Result loadThread() {
@@ -34,11 +36,7 @@ public class ThreadController extends Controller {
 
 	    Thread thread = Thread.find
 	                      .where()
-	                        .eq("internalId", threadId)
-	                        .join("messages")
-	                          .fetch("messages.sender")
-	                          .fetch("messages.receiver")
-	                        .findUnique();
+	                        .eq("internalId", threadId).findUnique();
 
 	    return ok(
 	      views.html.communications.viewthread.render(thread, messageForm)
@@ -52,31 +50,32 @@ public class ThreadController extends Controller {
 	  }
 
 	  public static Result createThread() {
-	      Form<Thread> boundForm = threadForm.bindFromRequest();
-	      if (boundForm.hasErrors()) {
-	          return badRequest("Cannot create thread : "
-	            + boundForm.errorsAsJson().toString());
-	      } else {
-	          Thread thread = boundForm.get();
-	          UserAccount sender = UserAccount.find.where().eq("id", session("userId")).findUnique();
-	          thread.sender=sender;
-	          thread.save();
-	          return redirect( controllers.communications.routes.ThreadController.allThreads() );
-	      }
+		  Map<String, String[]> params = request().body().asFormUrlEncoded();
+		  
+		  String category = params.get("category")[0];
+		  String subject = params.get("subject")[0];
+	      String receiverId = params.get("receiver")[0];
+	      String body = params.get("body")[0];
+	      
+	      UserAccount sender = UserAccount.find.where().eq("id", session("userId")).findUnique();
+	      UserAccount receiver = UserAccount.find.where().eq("id", Long.parseLong(receiverId)).findUnique();
+          Thread thread = new Thread(category, LocalDate.now(), subject, sender, receiver);
+          Message message = new Message(LocalTime.now(), body, sender);
+          thread.messages.add(message);
+	      thread.save();
+	      return redirect( controllers.communications.routes.ThreadController.allThreads() );
 	  }
 
-	  static public Form<Message>  messageForm  = Form.form(Message.class);
 	  
 	  public static Result talk(Long threadId) {
-	    UserAccount sender = UserAccount.find.where().eq("email", session("email")).findUnique();
+	    UserAccount sender = UserAccount.find.where().eq("id", session("id")).findUnique();
 	    Thread thread = models.Thread.find
 	                      .where()
 	                        .eq("internalId", threadId)
-	                      .join("messages")
 	                    .findUnique();
 	    
 	    Form<Message> boundForm = messageForm.bindFromRequest();
-	    Message message = messageForm.bindFromRequest().get();
+	    Message message = boundForm.get();
 	    message.sender = sender;
 	    thread.messages.add(message);
 
