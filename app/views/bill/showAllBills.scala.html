@@ -1,0 +1,35 @@
+@(bills:List[Bill])
+
+@common.main("Bills") {
+
+	<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading"><h3>Bill Records</h3></div>
+		  <div class="panel-body">	   
+		 </div>
+	
+	<table class="table table-bordered table-striped table-hover">
+		
+		<tr>
+			<th> <h4> ID </h4> </th>
+			<th> <h4> Description </h4> </th>
+			<th> <h4> Date of Issuing </h4> </th>
+			<th> <h4> Deadline </h4> </th>
+			<th> <h4> Status </h4> </th>
+			<th> <h4> Amount </h4> </th>
+		</tr>
+								
+		@for(bill <- bills){
+			<tr>		    
+		        <th> <h5>@bill.id</h5> </th>
+		        <th> <h5>@bill.description</h5> </th>
+		        <th> <h5>@bill.dateOfIssuing</h5> </th>
+		        <th> <h5>@bill.deadline</h5> </th>
+		        <th> <h5>@bill.status</h5> </th>
+		        <th> <h5>@bill.amount</h5> </th>		    
+		    </tr>
+		    }
+		    
+	</table>
+
+}

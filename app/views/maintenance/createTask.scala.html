@@ -1,0 +1,38 @@
+@(taskForm:Form[MaintenanceTask], buildings:Seq[ApartmentBuilding])
+
+@common.main("New Maintenance Task") {
+	<h1> Add a Maintenance Task </h1>
+	@helper.form(action = controllers.maintenance.routes.MaintenanceTaskController.postTask()) {
+	
+		<!-- Building selection drop down goes here -->
+		
+		@helper.input(taskForm("taskType"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Description">
+					}
+		
+		@helper.input(taskForm("description"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Description">
+					}
+					
+		@helper.input(taskForm("status"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Description">
+					}
+		
+		@helper.input(taskForm("deadline"),
+						 '_showConstraints -> false,
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="date" class="form-control" name="@name" id="@id">
+					}                  
+        
+        <button type="submit" class="btn btn-success">Submit</button>           
+	}
+}

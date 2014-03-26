@@ -1,44 +1,40 @@
 package models;
 
-import org.joda.time.LocalTime;
+import java.util.Date;
 
-import play.data.*;
 import play.data.validation.Constraints.*;
+import play.db.ebean.*;
 
-import javax.validation.Valid;
 import javax.persistence.*;
 
 @Entity
-public class MaintenanceTask extends play.db.ebean.Model {
+public class MaintenanceTask extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	public Long id;
-	
-	@Required
+
+	@ManyToOne
 	public ApartmentBuilding apartmentBuilding;
-	
+
 	@Required
 	public String taskType;
-	
+
 	public String description;
-	
+
 	@Required
 	public String status;
 	
 	@Required
-	public LocalTime deadline;
-	
-	public MaintenanceTask() {}
+	public Date dateOfIssuing = new Date();
 
-	public MaintenanceTask(Long id, ApartmentBuilding apartmentBuilding,
-			String taskType, String description, String status,
-			LocalTime deadline) {
-		super();
-		this.id = id;
-		this.apartmentBuilding = apartmentBuilding;
-		this.taskType = taskType;
-		this.description = description;
-		this.status = status;
-		this.deadline = deadline;
-	}
+	@Required
+	public Date deadline;
+
+	public MaintenanceTask() {
+	}	
 }

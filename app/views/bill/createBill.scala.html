@@ -2,24 +2,39 @@
 
 @common.main("New Bill") {
 	<h1> Add a Bill </h1>
-	@helper.form(action = controllers.bill.routes.BillController.postBill) {
+	@helper.form(action = controllers.bill.routes.BillController.postBill()) {
 	
-		<!-- Apartment selection dropdown goes here -->
+		<!-- Apartment selection drop down goes here -->
 		
-		@helper.inputText(billForm("desciption"))
-				
-		@helper.input(billForm("deadline")) { (id, name, value, args) =>
-                <input type="date" name="@name" id="@id" @toHtmlArgs(args)>
-            }
+		@helper.input(billForm("description"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Description">
+					}
+		
+		@helper.input(billForm("deadline"),
+						 '_showConstraints -> false,
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="date" class="form-control" name="@name" id="@id"
+							placeholder="Deadline">
+					}
             
-        @helper.input(billForm("status")) { (id, name, value, args) =>
-                <input type="text" name="@name" id="@id" @toHtmlArgs(args)>
-            }
+        @helper.input(billForm("status"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Status">
+					}
             
-        @helper.input(billForm("amount")) { (id, name, value, args) =>
-                <input type="number" name="@name" id="@id" @toHtmlArgs(args)>
-            }
-            
-        <input type="submit" name="send" value="Feed" />
+        @helper.input(billForm("amount"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="number" class="form-control" name="@name" id="@id"
+							placeholder="Amount">
+					}
+        
+        <button type="submit" class="btn btn-success">Submit</button>    
+        
 	}
 }

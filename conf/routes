@@ -22,6 +22,10 @@ GET		/verifyAccount				controllers.account.VerifyAccount.index()
 # Bill & Maintenance
 GET		/createBill					controllers.bill.BillController.createBill()
 POST 	/postBill					controllers.bill.BillController.postBill()
+GET		/showAllBills				controllers.bill.BillController.showAllBills()
+
+GET 	/createTask					controllers.maintenance.MaintenanceTaskController.createTask()
+GET 	/postTask					controllers.maintenance.MaintenanceTaskController.postTask()
 
 # Messaging
 GET  /form/thread           		controllers.communications.ThreadController.registerThread()
