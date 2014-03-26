@@ -73,7 +73,6 @@ public class ThreadController extends Controller {
 	                      .where()
 	                        .eq("internalId", threadId)
 	                    .findUnique();
-	    
 	    Form<Message> boundForm = messageForm.bindFromRequest();
 	    Message message = boundForm.get();
 	    message.sender = sender;

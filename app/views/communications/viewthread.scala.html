@@ -21,9 +21,8 @@
   <div style="float:left;width:500px;">
     <h3>React</h3>
     @form(action = controllers.communications.routes.ThreadController.talk(thread.internalId)) {
-      <input type="hidden" name="time" value="@org.joda.time.LocalTime.now"/>
       @inputText(message("body"))
-      <button>send</button>
+      <input type="submit" value="send"/>
     }
   </div>
 

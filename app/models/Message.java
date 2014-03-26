@@ -18,7 +18,7 @@ public class Message extends play.db.ebean.Model {
 	public Long internalId;
 
 	@Required
-	public LocalTime time;
+	public LocalTime time = LocalTime.now();
 
 	public String body;
 
