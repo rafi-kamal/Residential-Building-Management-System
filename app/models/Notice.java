@@ -22,8 +22,7 @@ public class Notice extends play.db.ebean.Model {
 	@Required
 	public String subject="(No Subject)";
 	
-	@Required
-	public LocalDate publishDate;
+	public LocalDate publishDate = LocalDate.now();
 	
 	@Required
 	public Date validUntil;

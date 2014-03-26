@@ -58,7 +58,7 @@ public class ThreadController extends Controller {
 	            + boundForm.errorsAsJson().toString());
 	      } else {
 	          Thread thread = boundForm.get();
-	          UserAccount sender = UserAccount.find.where().eq("email", session("email")).findUnique();
+	          UserAccount sender = UserAccount.find.where().eq("id", session("userId")).findUnique();
 	          thread.sender=sender;
 	          thread.save();
 	          return redirect( controllers.communications.routes.ThreadController.allThreads() );

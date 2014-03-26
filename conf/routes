@@ -32,6 +32,11 @@ POST /thread/:thread/message  		controllers.communications.ThreadController.talk
 
 # POST /chat/:chat/image    controllers.Chats.receiveImage(chat:Long)
 
+# NoticeBoard
+GET  /form/notice					controllers.communications.NoticeController.newNotice()
+GET  /noticeBoard              		controllers.communications.NoticeController.noticeBoard()
+POST /createnotice                	controllers.communications.NoticeController.createNotice()
+GET  /viewnotice            		controllers.communications.NoticeController.loadNotice()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
