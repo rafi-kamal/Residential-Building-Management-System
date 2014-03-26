@@ -45,7 +45,7 @@ public class Thread extends play.db.ebean.Model {
 	  
 	@Valid
     @OneToMany(cascade=CascadeType.ALL)
-    @OrderBy("timestamp")
+    @OrderBy("time")
     @JoinColumn(name="THREAD_ID", referencedColumnName="internal_id")
     public List<Message> messages = new ArrayList<Message>();
 	
