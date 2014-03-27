@@ -1,39 +1,41 @@
 package controllers.maintenance;
 
-import java.util.List;
+import java.util.Date;
+import java.util.Map;
 
-import models.*;
+import models.ApartmentBuilding;
+import models.MaintenanceTask;
+import models.UserAccount;
+import play.Logger;
 import play.data.Form;
-import play.mvc.*;
-import static scala.collection.JavaConversions.*;
+import play.mvc.Controller;
+import play.mvc.Result;
 
 public class MaintenanceTaskController extends Controller {
 	
 	static public Form<MaintenanceTask> taskForm  = Form.form(MaintenanceTask.class);
 	
-	public static Result createTask()
-	{		
-		List<ApartmentBuilding> buildings = ApartmentBuilding.find.all();
-		return ok(views.html.maintenance.createTask.render(taskForm, asScalaBuffer(buildings)));
+	public static Result createTask(){		
+		return ok(views.html.maintenance.createTask.render(taskForm));
 	}
 	
 	public static Result postTask() {
-    	Form<MaintenanceTask> filledTaskForm = taskForm.bindFromRequest();
-    	if (filledTaskForm.hasErrors()) {
-    		return ok(views.html.maintenance.postTask.render(filledTaskForm));
-    		//return ok(filledBillForm.errors().toString());
-    	}
+		Map<String, String[]> params = request().body().asFormUrlEncoded();
+		
+		String taskType = params.get("taskType")[0];
+		String description = params.get("description")[0];
+		String status = params.get("status")[0];
+		String dline = params.get("deadline")[0];
+		
+		Date deadline = new Date(dline);
+		UserAccount user =  UserAccount.find.byId(Long.parseLong(session("userId")));
+		ApartmentBuilding building = user.apartment.apartmentBuilding;
     	
-    	MaintenanceTask maintenanceTask = filledTaskForm.get();
-    	
+    	MaintenanceTask maintenanceTask = new MaintenanceTask(building, taskType, description, status, deadline);
     	maintenanceTask.save();
-    	
-    	return ok(views.html.maintenance.postTask.render(filledTaskForm));
+    	taskForm = taskForm.fill(maintenanceTask);
+    	return ok(views.html.maintenance.postTask.render(taskForm));
     	//return ok("Registered " + bill.toString());
     }
 	
-	/*public static Result postBill()
-	{
-		return ok(views.html.bill.postBill.render(billForm.bindFromRequest()));
-	}*/
 }

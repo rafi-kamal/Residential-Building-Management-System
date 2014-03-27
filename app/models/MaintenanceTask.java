@@ -9,9 +9,7 @@ import javax.persistence.*;
 
 @Entity
 public class MaintenanceTask extends Model {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,12 +27,18 @@ public class MaintenanceTask extends Model {
 	@Required
 	public String status;
 	
-	@Required
 	public Date dateOfIssuing = new Date();
 
-	@Required
 	public Date deadline;
 
 	public MaintenanceTask() {
 	}	
+	
+	public MaintenanceTask(ApartmentBuilding apartmentBuilding, String taskType, String description, String status, Date deadline){
+		this.apartmentBuilding = apartmentBuilding;
+		this.taskType = taskType;
+		this.description = description;
+		this.status = status;
+		this.deadline = deadline;
+	}
 }
