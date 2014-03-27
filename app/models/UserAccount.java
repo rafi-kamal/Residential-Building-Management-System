@@ -32,7 +32,6 @@ public class UserAccount extends Model {
 	@MaxLength(50)
 	public String name;
 	
-	@Id
 	@MinLength(5)
 	@MaxLength(60)
 	@Column(unique=true)
