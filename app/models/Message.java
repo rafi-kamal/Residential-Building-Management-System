@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.joda.time.LocalTime;
 
@@ -24,6 +25,7 @@ public class Message extends play.db.ebean.Model {
 
 	public boolean isRead=false;
 	
+	@ManyToOne
 	public UserAccount sender;
 
 	public Message(){

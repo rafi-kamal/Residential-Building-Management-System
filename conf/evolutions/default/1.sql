@@ -70,6 +70,8 @@ create table message (
   time                      time,
   body                      varchar(255),
   is_read                   boolean,
+  sender_id                 bigint,
+  sender_email              varchar(255),
   constraint pk_message primary key (internal_id))
 ;
 
@@ -158,14 +160,16 @@ alter table maintenance_task_notification add constraint fk_maintenance_task_not
 create index ix_maintenance_task_notificati_8 on maintenance_task_notification (maintenance_task_id);
 alter table message add constraint fk_message_thread_9 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
 create index ix_message_thread_9 on message (THREAD_ID);
-alter table notice add constraint fk_notice_publishedBy_10 foreign key (published_by_id,published_by_email) references user_account (id,email) on delete restrict on update restrict;
-create index ix_notice_publishedBy_10 on notice (published_by_id,published_by_email);
-alter table thread add constraint fk_thread_sender_11 foreign key (sender_id,sender_email) references user_account (id,email) on delete restrict on update restrict;
-create index ix_thread_sender_11 on thread (sender_id,sender_email);
-alter table thread add constraint fk_thread_receiver_12 foreign key (receiver_id,receiver_email) references user_account (id,email) on delete restrict on update restrict;
-create index ix_thread_receiver_12 on thread (receiver_id,receiver_email);
-alter table user_account add constraint fk_user_account_apartment_13 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
-create index ix_user_account_apartment_13 on user_account (apartment_id);
+alter table message add constraint fk_message_sender_10 foreign key (sender_id,sender_email) references user_account (id,email) on delete restrict on update restrict;
+create index ix_message_sender_10 on message (sender_id,sender_email);
+alter table notice add constraint fk_notice_publishedBy_11 foreign key (published_by_id,published_by_email) references user_account (id,email) on delete restrict on update restrict;
+create index ix_notice_publishedBy_11 on notice (published_by_id,published_by_email);
+alter table thread add constraint fk_thread_sender_12 foreign key (sender_id,sender_email) references user_account (id,email) on delete restrict on update restrict;
+create index ix_thread_sender_12 on thread (sender_id,sender_email);
+alter table thread add constraint fk_thread_receiver_13 foreign key (receiver_id,receiver_email) references user_account (id,email) on delete restrict on update restrict;
+create index ix_thread_receiver_13 on thread (receiver_id,receiver_email);
+alter table user_account add constraint fk_user_account_apartment_14 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+create index ix_user_account_apartment_14 on user_account (apartment_id);
 
 
 

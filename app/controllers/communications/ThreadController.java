@@ -28,7 +28,6 @@ public class ThreadController extends Controller {
 	        Thread.occurrencesFor(LocalDate.now())+1;
 	      m.put("occurrence", ""+nextOccurrence);
 	      List<UserAccount> receivers = UserAccount.find.where().ne("id", session("userId")).findList();
-	      String message = new String(); 
 	      return ok(views.html.communications.thread.render(threadForm.bind(m), asScalaBuffer(receivers), messageForm));
 	  }
 
@@ -59,8 +58,10 @@ public class ThreadController extends Controller {
 	      String receiverId = params.get("receiver")[0];
 	      String body = params.get("body")[0];
 	      
-	      UserAccount sender = UserAccount.find.byId(Long.parseLong(session("userId")));
-	      UserAccount receiver = UserAccount.find.byId(Long.parseLong(receiverId));
+	      //UserAccount sender = UserAccount.find.byId(Long.parseLong(session("userId")));
+	      //UserAccount receiver = UserAccount.find.byId(Long.parseLong(receiverId));
+	      UserAccount sender = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
+	      UserAccount receiver = UserAccount.find.where().eq("id", Long.parseLong(receiverId)).findUnique();
           Thread thread = new Thread(category, LocalDate.now(), subject, sender, receiver);
           Message message = new Message(LocalTime.now(), body, sender);
           thread.messages.add(message);
