@@ -1,6 +1,6 @@
 package models;
 
-import java.sql.*;
+import java.util.*;
 
 import org.joda.time.LocalDate;
 
@@ -24,7 +24,6 @@ public class Notice extends play.db.ebean.Model {
 	
 	public LocalDate publishDate = LocalDate.now();
 	
-	@Required
 	public Date validUntil;
 	
 	@Required 
@@ -37,7 +36,7 @@ public class Notice extends play.db.ebean.Model {
 	
 	public Notice() {};
 
-	public Notice(String category, String subject, LocalDate publishDate,
+	public Notice(String category, String subject, LocalDate publishDate, 
 			Date validUntil, String description, UserAccount publishedBy) {
 		this.category = category;
 		this.subject = subject;

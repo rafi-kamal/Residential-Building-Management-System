@@ -2,25 +2,13 @@
 
 @import org.joda.time.LocalDate
 
-@common.main ("Allthreads") {
-  <h2>Archives</h2>
+@common.main ("Notice Board") {
     @helper.form(action = controllers.communications.routes.NoticeController.loadNotice) {
       <select>
-        @notices.filter(_.publishDate isBefore LocalDate.now).sortBy(_.validUntil.getTime).map { n =>
+        @notices.sortBy(_.validUntil.getTime).map { n =>
         <option value="@n.internalId">@n.subject on @n.publishDate</option>
         }
       </select>
       <button>Show</button>
     }
-  <h2>Active</h2>
-    @helper.form(action = controllers.communications.routes.NoticeController.loadNotice) {
-      <select name="threadid">
-        @notices.filter(_.publishDate == LocalDate.now).sortBy(_.validUntil.getTime).map { n =>
-        <option value="@n.internalId">@n.subject on @n.publishDate</option>
-        }
-      </select>
-      <button>Load</button>
-    }
-  <hr>
-  <a href="@controllers.communications.routes.NoticeController.newNotice()">Create a new one</a>
 }

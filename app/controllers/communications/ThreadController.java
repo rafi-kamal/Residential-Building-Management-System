@@ -7,7 +7,10 @@ import java.util.Map;
 
 import org.joda.time.*;
 
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Expr;
 import com.avaje.ebean.ExpressionList;
+import com.avaje.ebean.Query;
 
 import static scala.collection.JavaConversions.*;
 import models.Message;
@@ -45,8 +48,11 @@ public class ThreadController extends Controller {
 	  }
 
 	  public static Result allThreads() {
-	      return ok(
-	          views.html.communications.threads.render(Thread.find.all())
+		  UserAccount user = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
+		  Query<Thread> query = Ebean.createQuery(Thread.class, "find Thread where sender.id = :user or receiver.id = :user");
+	      query.setParameter("user", user.id);
+		  return ok(
+	          views.html.communications.threads.render(query.findList())
 	      );
 	  }
 
@@ -58,20 +64,20 @@ public class ThreadController extends Controller {
 	      String receiverId = params.get("receiver")[0];
 	      String body = params.get("body")[0];
 	      
-	      //UserAccount sender = UserAccount.find.byId(Long.parseLong(session("userId")));
-	      //UserAccount receiver = UserAccount.find.byId(Long.parseLong(receiverId));
 	      UserAccount sender = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
 	      UserAccount receiver = UserAccount.find.where().eq("id", Long.parseLong(receiverId)).findUnique();
           Thread thread = new Thread(category, LocalDate.now(), subject, sender, receiver);
           Message message = new Message(LocalTime.now(), body, sender);
           thread.messages.add(message);
 	      thread.save();
-	      return redirect( controllers.communications.routes.ThreadController.allThreads() );
+	      return ok(
+	    	      views.html.communications.viewthread.render(thread, messageForm)
+	    	    );
 	  }
 
 	  
 	  public static Result talk(Long threadId) {
-		UserAccount sender = UserAccount.find.byId(Long.parseLong(session("userId")));
+		UserAccount sender = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
 	    Thread thread = models.Thread.find
 	                      .where()
 	                        .eq("internalId", threadId)

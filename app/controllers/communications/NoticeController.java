@@ -1,13 +1,16 @@
 package controllers.communications;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 import static scala.collection.JavaConversions.*;
+import models.Message;
 import models.Notice;
 import models.Thread;
 import models.UserAccount;
@@ -24,22 +27,25 @@ public class NoticeController extends Controller{
 	}
 	
 	public static Result createNotice() {
-		Form<Notice> boundForm = noticeForm.bindFromRequest();
-	      if (boundForm.hasErrors()) {
-	          return badRequest("Cannot create notcie : "
-	            + boundForm.errorsAsJson().toString());
-	      } else {
-	          Notice notice = boundForm.get();
-	          UserAccount publishedBy  = UserAccount.find.where().eq("id", session("userId")).findUnique();
-	          notice.publishedBy = publishedBy;
-	          notice.save();
-	          return redirect( controllers.communications.routes.NoticeController.noticeBoard() );
-	      }
+		Map<String, String[]> params = request().body().asFormUrlEncoded();
+		  
+		String category = params.get("category")[0];
+		String subject = params.get("subject")[0];
+	    String description = params.get("description")[0];
+	    String validity = params.get("validUntil")[0];
+	    
+	    Date validUntil = new Date(validity);
+	      
+	    UserAccount publishedBy = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
+	    Notice notice = new Notice(category, subject, LocalDate.now(), validUntil, description, publishedBy);
+	    notice.save();
+	    return ok(
+	  	      views.html.communications.viewnotice.render(notice) );
 	}
 	
 	public static Result loadNotice() {
 	    Map<String,String[]> queryString = request().queryString();
-	    Long noticeId = Long.parseLong(queryString.get("noticeId")[0]);
+	    Long noticeId = Long.parseLong(queryString.get("internalId")[0]);
 	    Notice notice = Notice.find
 	                      .where()
 	                        .eq("internalId", noticeId)
@@ -50,7 +56,8 @@ public class NoticeController extends Controller{
 	  }
 	
 	public static Result noticeBoard() {
-		List<Notice> noticeList = Notice.find.all();
+		Date current = new Date();
+		List<Notice> noticeList = Notice.find.where().ge("validUntil", current).findList();
 		return ok(views.html.communications.noticeboard.render(noticeList));
 	}
 	
