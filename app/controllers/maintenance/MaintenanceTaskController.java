@@ -1,6 +1,7 @@
 package controllers.maintenance;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import models.ApartmentBuilding;
@@ -37,5 +38,17 @@ public class MaintenanceTaskController extends Controller {
     	return ok(views.html.maintenance.postTask.render(taskForm));
     	//return ok("Registered " + bill.toString());
     }
+	
+	public static Result viewActiveTasks() {
+		Date now = new Date();
+		List<MaintenanceTask> activeTasks = MaintenanceTask.find.where().ge("deadline", now).findList();
+		return ok(views.html.maintenance.viewactivetasks.render(activeTasks));
+	}
+	
+	public static Result viewArchivedTasks() {
+		Date now = new Date();
+		List<MaintenanceTask> activeTasks = MaintenanceTask.find.where().lt("deadline", now).findList();
+		return ok(views.html.maintenance.viewarchivedtasks.render(activeTasks));
+	}
 	
 }

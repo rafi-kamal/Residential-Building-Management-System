@@ -41,4 +41,6 @@ public class MaintenanceTask extends Model {
 		this.status = status;
 		this.deadline = deadline;
 	}
+	
+	public static Finder<Long, MaintenanceTask> find = new Finder<Long, MaintenanceTask>(Long.class, MaintenanceTask.class);
 }

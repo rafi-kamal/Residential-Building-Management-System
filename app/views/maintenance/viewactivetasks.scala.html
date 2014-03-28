@@ -1,0 +1,11 @@
+@(activeTasks:List[MaintenanceTask])
+
+@common.main ("Active Task Schedules") {
+  <div style="float:left;width:500px;">
+    <ul>
+    @activeTasks.map { i =>
+      @listTask(i)
+    }
+    </ul>
+  </div>
+}
