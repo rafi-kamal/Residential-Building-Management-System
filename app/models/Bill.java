@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import play.data.format.Formats;
-
 import play.db.ebean.*;
 
 import javax.persistence.*;
@@ -29,10 +28,9 @@ public class Bill extends Model {
 	@Required
 	public String description;
 
-	@Formats.DateTime(pattern = "dd/MM/yyyy")
-	public Date dateOfIssuing = new Date();
+	//@Formats.DateTime(pattern = "dd/MM/yyyy")
+	public Date dateOfIssuing;
 
-	@Required
 	// @Formats.DateTime(pattern = "dd/MM/yyyy")
 	public Date deadline;
 
@@ -46,6 +44,16 @@ public class Bill extends Model {
 			Bill.class);
 
 	public Bill() {
+	}
+
+	public Bill(Apartment apartment, Date dateOfIssuing, String description,
+			String status, Date deadline, Double amount) {
+			this.apartment = apartment;
+			this.dateOfIssuing = dateOfIssuing;
+			this.description =  description;
+			this.status = status;
+			this.deadline = deadline;
+			this.amount = amount;
 	}
 
 	@Override

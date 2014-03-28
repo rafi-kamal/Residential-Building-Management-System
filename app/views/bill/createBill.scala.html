@@ -1,40 +1,20 @@
-@(billForm:Form[Bill], apartments:Seq[Apartment])
+@(billForm:Form[models.Bill], apartments: Seq[models.Apartment])
 
-@common.main("New Bill") {
-	<h1> Add a Bill </h1>
+@common.main("New Bill Record") {
+	<h1> Add a bill record </h1>
 	@helper.form(action = controllers.bill.routes.BillController.postBill()) {
-	
-		<!-- Apartment selection drop down goes here -->
+     	@helper.select(field = billForm("apartment"), apartments.map {a => a.id.toString -> a.apartmentNo}, '_label -> "Choose Apartment")
 		
-		@helper.input(billForm("description"),
-						 '_showConstraints -> false, 
-						 '_class -> "no-dt") { (id, name, value, args) =>
-							<input type="text" class="form-control" name="@name" id="@id"
-							placeholder="Description">
-					}
+		@helper.inputText(billForm("dateOfIssuing"))
 		
-		@helper.input(billForm("deadline"),
-						 '_showConstraints -> false,
-						 '_class -> "no-dt") { (id, name, value, args) =>
-							<input type="date" class="form-control" name="@name" id="@id"
-							placeholder="Deadline">
-					}
-            
-        @helper.input(billForm("status"),
-						 '_showConstraints -> false, 
-						 '_class -> "no-dt") { (id, name, value, args) =>
-							<input type="text" class="form-control" name="@name" id="@id"
-							placeholder="Status">
-					}
-            
-        @helper.input(billForm("amount"),
-						 '_showConstraints -> false, 
-						 '_class -> "no-dt") { (id, name, value, args) =>
-							<input type="number" class="form-control" name="@name" id="@id"
-							placeholder="Amount">
-					}
+		@helper.inputText(billForm("description"))
+					
+		@helper.inputText(billForm("status"))
+		
+		@helper.inputText(billForm("deadline"))
+		
+		@helper.inputText(billForm("amount"))              
         
-        <button type="submit" class="btn btn-success">Submit</button>    
-        
+        <button type="submit" class="btn btn-success">Create</button>           
 	}
 }
