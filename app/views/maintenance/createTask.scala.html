@@ -3,15 +3,35 @@
 @common.main("New Maintenance Task") {
 	<h1> Add a Maintenance Task </h1>
 	@helper.form(action = controllers.maintenance.routes.MaintenanceTaskController.postTask()) {
-		
-		@helper.inputText(taskForm("taskType"))
-		
-		@helper.inputText(taskForm("description"))
+				
+		@helper.input(taskForm("taskType"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Task Type">
+					}
 					
-		@helper.inputText(taskForm("status"))
-		
-		@helper.inputText(taskForm("deadline"))              
-        
-        <button type="submit" class="btn btn-success">Create</button>           
+		@helper.input(taskForm("description"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Description">
+					}
+					
+		@helper.input(taskForm("status"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Status">
+					}
+					
+		@helper.input(taskForm("deadline"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="date" class="form-control" name="@name" id="@id"
+							placeholder="Deadline">
+					}										
+				
+        <button type="submit" class="btn btn-success">Submit</button>           
 	}
 }
