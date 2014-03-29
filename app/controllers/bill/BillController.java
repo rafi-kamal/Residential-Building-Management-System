@@ -13,14 +13,15 @@ public class BillController extends Controller {
 	
 	static public Form<Bill> billForm  = Form.form(Bill.class);
 	
-	public static Result createBill() {		
+	public static Result createBill() {						
 		UserAccount user = UserAccount.find.byId(Long.parseLong(session("userId")));
 		ApartmentBuilding building = user.apartment.apartmentBuilding;
 		List<Apartment> apartments = Apartment.find.where().eq("apartmentBuilding", building).findList();
 		return ok(views.html.bill.createBill.render(billForm, asScalaBuffer(apartments)));
+		//return ok(views.html.bill.createBill.render(billForm, asScalaBuffer(Apartment.find.all())));
 	}
 	
-	public static Result postBill() {
+	public static Result postBill() {	
 		Map<String, String[]> params = request().body().asFormUrlEncoded();
 		
 		String apt = params.get("apartment")[0];
@@ -40,6 +41,7 @@ public class BillController extends Controller {
     	Bill bill = new Bill(apartment, dateOfIssuing, description, status, deadline, amount);
     	bill.save();
     	billForm = billForm.fill(bill);
+		
     	return ok(views.html.bill.postBill.render(billForm));
     	//return ok("Registered " + bill.toString());
     }

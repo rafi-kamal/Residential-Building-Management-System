@@ -7,7 +7,8 @@
 		<h1>Incomplete Bill Information</h1>
         The form has @billForm.errors.size errors
     </div>
-    } else {    	
+    } else {
+    	<h1> Bill submitted successfully. </h1>    	
     	<h2>Bill ID : @billForm.get.id</h2> <br>
         <h4>@billForm.get.description</h4> <br>
         <h4>Issuing Date : @billForm.get.dateOfIssuing</h4> <br>

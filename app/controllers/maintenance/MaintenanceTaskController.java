@@ -27,7 +27,7 @@ public class MaintenanceTaskController extends Controller {
 		String description = params.get("description")[0];
 		String status = params.get("status")[0];
 		String dline = params.get("deadline")[0];
-		
+		Logger.info(dline);
 		Date deadline = new Date(dline);
 		UserAccount user =  UserAccount.find.byId(Long.parseLong(session("userId")));
 		ApartmentBuilding building = user.apartment.apartmentBuilding;
@@ -42,13 +42,15 @@ public class MaintenanceTaskController extends Controller {
 	public static Result viewActiveTasks() {
 		Date now = new Date();
 		List<MaintenanceTask> activeTasks = MaintenanceTask.find.where().ge("deadline", now).findList();
-		return ok(views.html.maintenance.viewactivetasks.render(activeTasks));
+		return ok(views.html.maintenance.showTasks.render(activeTasks, "Active Tasks"));
+		//return ok(views.html.maintenance.viewactivetasks.render(activeTasks));
 	}
 	
 	public static Result viewArchivedTasks() {
 		Date now = new Date();
-		List<MaintenanceTask> activeTasks = MaintenanceTask.find.where().lt("deadline", now).findList();
-		return ok(views.html.maintenance.viewarchivedtasks.render(activeTasks));
+		List<MaintenanceTask> archivedTasks = MaintenanceTask.find.where().lt("deadline", now).findList();
+		return ok(views.html.maintenance.showTasks.render(archivedTasks, "Archived Tasks"));
+		//return ok(views.html.maintenance.viewarchivedtasks.render(activeTasks));
 	}
 	
 }

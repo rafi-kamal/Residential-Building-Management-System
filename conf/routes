@@ -18,6 +18,8 @@ GET		/showAllBills				controllers.bill.BillController.showAllBills()
 
 GET 	/createTask					controllers.maintenance.MaintenanceTaskController.createTask()
 POST 	/postTask					controllers.maintenance.MaintenanceTaskController.postTask()
+GET		/activeTasks				controllers.maintenance.MaintenanceTaskController.viewActiveTasks()
+GET		/archivedTasks				controllers.maintenance.MaintenanceTaskController.viewArchivedTasks()
 
 # Messaging
 GET  /form/thread           		controllers.communications.ThreadController.registerThread()

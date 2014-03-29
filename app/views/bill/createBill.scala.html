@@ -1,20 +1,47 @@
 @(billForm:Form[models.Bill], apartments: Seq[models.Apartment])
 
 @common.main("New Bill Record") {
-	<h1> Add a bill record </h1>
+	<h1> Add a Bill Record </h1>
 	@helper.form(action = controllers.bill.routes.BillController.postBill()) {
      	@helper.select(field = billForm("apartment"), apartments.map {a => a.id.toString -> a.apartmentNo}, '_label -> "Choose Apartment")
 		
-		@helper.inputText(billForm("dateOfIssuing"))
+		<h5> Date of Issuing </h5>
+		@helper.input(billForm("dateOfIssuing"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="date" class="form-control" name="@name" id="@id"
+							placeholder="Date of Issuing">
+					}		
+				
+		@helper.input(billForm("description"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Description">
+					}		
 		
-		@helper.inputText(billForm("description"))
-					
-		@helper.inputText(billForm("status"))
+		@helper.input(billForm("status"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Status">
+					}				
 		
-		@helper.inputText(billForm("deadline"))
+		<h5> Deadline </h5>
+		@helper.input(billForm("deadline"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="date" class="form-control" name="@name" id="@id"
+							placeholder="Deadline">
+					}		
 		
-		@helper.inputText(billForm("amount"))              
+		@helper.input(billForm("amount"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Amount">
+					}		            
         
-        <button type="submit" class="btn btn-success">Create</button>           
+        <button type="submit" class="btn btn-success">Submit</button>           
 	}
 }
