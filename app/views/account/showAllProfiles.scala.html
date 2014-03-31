@@ -1,0 +1,26 @@
+@(apartments:List[Apartment])
+
+@common.main("Apartments") {
+
+	<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading"><h3> Apartment Records </h3></div>
+		  <div class="panel-body">	   
+		 </div>
+	
+	<table class="table table-bordered table-striped table-hover">
+		
+		<tr>
+			<th> <h4> Apartment No </h4> </th>
+			<th> <h4> Resident Name </h4> </th>			
+		</tr>
+								
+		@for(apartment <- apartments){
+			<tr>		    
+		        <th> <h5><a href="\profile\:@apartment.id">@apartment.apartmentNo</a></h5></th>		      		       	        		 
+		    </tr>		    		    
+		    }
+		    
+	</table>
+
+}

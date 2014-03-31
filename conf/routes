@@ -8,8 +8,9 @@ GET     /                           controllers.account.MainController.index()
 POST	/signup						controllers.account.MainController.signUp()
 POST	/signin						controllers.account.MainController.signIn()
 GET		/selectApartment			controllers.account.SelectApartment.index()
-GET		/profile					controllers.account.ProfileController.index()
+GET		/profile					controllers.account.ProfileController.index(id: Long ?= -1)
 GET		/verifyAccount				controllers.account.VerifyAccount.index()
+GET		/showAllProfiles			controllers.account.ProfileController.showAllProfiles()
 
 # Bill & Maintenance
 GET		/createBill					controllers.bill.BillController.createBill()
