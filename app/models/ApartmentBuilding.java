@@ -18,6 +18,7 @@ import play.db.ebean.Model;
 
 @Entity
 public class ApartmentBuilding extends Model {
+	
 	private static final long serialVersionUID = -888907934350076591L;
 
 	@Id
@@ -31,6 +32,13 @@ public class ApartmentBuilding extends Model {
 	@Max(100)
 	public String address;
 	
+	public ApartmentBuilding(String name, String address,
+			RealEstateCompany realEstateCompany) {
+		this.name = name;
+		this.address = address;
+		this.realEstateCompany = realEstateCompany;
+	}
+
 	@Valid
 	@ManyToOne(fetch=FetchType.LAZY)
 	public RealEstateCompany realEstateCompany;

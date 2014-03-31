@@ -22,6 +22,10 @@ public class Apartment extends Model {
 	@Required
 	public String apartmentNo;
 	
+	public Apartment(String apartmentNo) {
+		this.apartmentNo = apartmentNo;
+	}
+
 	@Valid
 	@ManyToOne(fetch=FetchType.LAZY)
 	public ApartmentBuilding apartmentBuilding;

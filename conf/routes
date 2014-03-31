@@ -47,6 +47,7 @@ GET		/admin						controllers.admin.AdminPanelController.index()
 GET		/admin/users				controllers.admin.UserController.index()
 GET		/admin/realEstateCompanies	controllers.admin.RealEstateCompanyController.index()
 POST	/admin/addCompany			controllers.admin.RealEstateCompanyController.addCompany()
+POST 	/admin/listBuildings/:id    controllers.admin.AdminPanelController.index(id:Long)
 POST	/admin/updateUser/:userId/:accountType	controllers.admin.UserController.updateUser(userId: Long, accountType: String)
 
 # Map static resources from the /public folder to the /assets URL path
