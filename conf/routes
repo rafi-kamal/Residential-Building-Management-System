@@ -38,6 +38,12 @@ GET  /form/notice					controllers.communications.NoticeController.newNotice()
 GET  /noticeBoard              		controllers.communications.NoticeController.noticeBoard()
 POST /createnotice                	controllers.communications.NoticeController.createNotice()
 GET  /viewnotice            		controllers.communications.NoticeController.loadNotice()
+
+# admin
+GET		/admin/signin				controllers.admin.SignInController.index()
+POST	/admin/signin				controllers.admin.SignInController.signIn()
+GET		/admin						controllers.admin.AdminPanelController.index()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
