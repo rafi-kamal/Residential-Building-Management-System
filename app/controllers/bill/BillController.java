@@ -70,4 +70,9 @@ public class BillController extends Controller {
 		List<Bill> bills = Bill.find.all();
 		return ok(views.html.bill.showAllBills.render(bills));
 	}
+	
+	public static Result setBillPaid() {
+		List<Bill> bills = Bill.find.all();
+		return ok(views.html.bill.showAllBills.render(bills));
+	}
 }
