@@ -41,6 +41,8 @@ public class Thread extends play.db.ebean.Model {
 	@ManyToOne
 	public UserAccount receiver;
 	
+	public String status = "Active";
+	
 	public int occurrence;
 	  
 	@Valid
