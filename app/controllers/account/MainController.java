@@ -24,8 +24,12 @@ public class MainController extends Controller {
     	UserAccount userAccount = filledSignUpForm.get();
     	
     	userAccount.save();
-    	
-    	return ok("Registered " + userAccount.toString());
+		
+    	session().clear();
+		session("userId", String.valueOf(userAccount.id));
+		session("name", userAccount.name);
+		
+		return redirect("/selectApartment");
     }
     
     public static Result signIn() {
@@ -56,5 +60,10 @@ public class MainController extends Controller {
     		return ok("Invalid password");
     	}
     	
+    }
+    
+    public static Result signOut() {
+    	session().clear();
+    	return redirect("/");
     }
 }
