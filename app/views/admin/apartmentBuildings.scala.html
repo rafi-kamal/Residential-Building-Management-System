@@ -1,0 +1,14 @@
+@(buildings: Seq[models.Building], buildingForm: play.data.Form[models.Building])
+
+@common.guest("Apartment Buildings") {
+	@for(building <- buildings) {
+		<div>@building.name</div>
+		<div>@building.address</div>
+		<div><a href="/admin/apartmentBuildings/@building.id">Apartments</a></div><p/>
+	}
+	
+	<button type="button" id="add-buildings" class="btn btn-primary btn-large btn-block btn-lg" 
+					role="button" data-toggle="modal" data-target="#addBuilding">Add Company</button>
+					
+	@addApartmentBuildingModal(buildingForm)				
+}

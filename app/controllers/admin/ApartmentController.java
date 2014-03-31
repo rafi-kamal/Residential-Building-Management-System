@@ -9,7 +9,6 @@ import java.util.Map;
 import models.*;
 import play.data.Form;
 import play.mvc.*;
-import scala.collection.JavaConversions;
 import static scala.collection.JavaConversions.*;
 
 public class ApartmentController extends Controller {
@@ -19,7 +18,7 @@ public class ApartmentController extends Controller {
     	List<Apartment> apartments = Apartment.find.where().eq("apartmentBuilding.id", id)
     		.findList();
         return ok(views.html.admin.apartments.render(
-        		JavaConversions.asScalaBuffer(apartments), apartmentForm));
+        		asScalaBuffer(apartments), apartmentForm));
 	}
 	public static Result addApartment() {
 		Map<String, String[]> params = request().body().asFormUrlEncoded();
@@ -35,6 +34,6 @@ public class ApartmentController extends Controller {
 		
     	
         return ok(views.html.admin.apartmentBuildings.render(
-        		JavaConversions.asScalaBuffer(apartments), apartmentForm));
+        		asScalaBuffer(apartments), apartmentForm));
 	}
 }

@@ -1,0 +1,35 @@
+@(buildingForm: play.data.Form[models.ApartmentBuilding])
+
+<div class="modal fade" id="addBuilding" tabindex="-1" role="dialog"
+	aria-labelledby="addBuildingModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="addBuildingModalLabel">Add New Building</h4>
+			</div>
+			@helper.form(action = controllers.admin.routes.ApartmentBuildingController.addBuilding()) {
+				<div class="modal-body">
+
+					@helper.input(buildingForm("name"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Name">
+					}
+					
+					@helper.input(buildingForm("address"),
+						 '_showConstraints -> false,
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Address">
+					}
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success">Add</button>
+				</div>
+			}
+		</div>
+	</div>
+</div>

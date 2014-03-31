@@ -48,7 +48,11 @@ GET		/admin						controllers.admin.AdminPanelController.index()
 GET		/admin/users				controllers.admin.UserController.index()
 GET		/admin/realEstateCompanies	controllers.admin.RealEstateCompanyController.index()
 POST	/admin/addCompany			controllers.admin.RealEstateCompanyController.addCompany()
-POST 	/admin/listBuildings/:id    controllers.admin.AdminPanelController.index(id:Long)
+GET 	/admin/listBuildings/:id    controllers.admin.ApartmentBuildingController.index(id:Long)
+POST    /admin/addBuilding/			controllers.admin.ApartmentBuildingController.addBuilding()
+GET     /admin/listApartments/		controllers.admin.ApartmentController.index(id: Long)
+POST 	/admin/addApartment			controllers.admin.ApartmentController.addApartment()
+
 POST	/admin/updateUser/:userId/:accountType	controllers.admin.UserController.updateUser(userId: Long, accountType: String)
 
 

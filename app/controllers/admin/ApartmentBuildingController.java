@@ -13,7 +13,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import scala.collection.JavaConversions;
 
-public class ApartmentBuildingController extends Controller{
+public class ApartmentBuildingController extends Controller {
 	static Form<ApartmentBuilding> buildingForm = Form.form(ApartmentBuilding.class);
 	
 	public static Result index(Long id) {
