@@ -1,7 +1,12 @@
-@common.guest("Sign In") {
-	<form class="form-admin-signin" action="/admin/signin" method="POST">
-		<p><input type="password" class="form-control" id="password" name="password"
-			placeholder="Password" required></p> 
-		<button type="submit" class="btn btn-success">Sign In</button>
-	</form>
+@(companies: Seq[models.RealEstateCompany], realEstateCompanyForm: play.data.Form[models.RealEstateCompany])
+
+@common.guest("Real Estate Companies") {
+	@for(company <- companies) {
+		<div>@company.name</div>
+	}
+	
+	<button type="button" id="add-company" class="btn btn-primary btn-large btn-block btn-lg" 
+					role="button" data-toggle="modal" data-target="#addCompany">Add Company</button>
+					
+	@addRealEstateCompanyModal(realEstateCompanyForm)				
 }
