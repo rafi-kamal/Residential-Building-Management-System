@@ -29,8 +29,7 @@ public class ApartmentController extends Controller {
 		
 		ApartmentBuilding building = ApartmentBuilding.find.byId(Long.parseLong(bdId));
 		
-		Apartment apartment = new Apartment(apartmentNo);
-		Logger.debug(bdId);
+		Apartment apartment = new Apartment(apartmentNo, building);
 		
 		apartment.save();
 		
