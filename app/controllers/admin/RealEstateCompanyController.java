@@ -31,6 +31,6 @@ public class RealEstateCompanyController extends Controller {
     	
     	company.save();
     	
-    	return redirect("admin/realEstateCompanies");
+    	return redirect("/admin/realEstateCompanies");
     }
 }
