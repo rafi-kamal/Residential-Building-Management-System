@@ -24,7 +24,6 @@
 		
 		@helper.select(field = billForm("status"), options = options(Seq("Unpaid", "Paid")), '_label -> "Status")
 						
-		
 		<h5> Deadline </h5>
 		@helper.input(billForm("deadline"),
 						 '_showConstraints -> false, 

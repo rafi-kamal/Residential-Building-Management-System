@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import models.ApartmentBuilding;
+import models.Bill;
 import models.MaintenanceTask;
 import models.UserAccount;
 import play.Logger;
@@ -39,18 +40,23 @@ public class MaintenanceTaskController extends Controller {
     	//return ok("Registered " + bill.toString());
     }
 	
-	public static Result viewActiveTasks() {
+	public static Result showActiveTasks() {
 		Date now = new Date();
 		List<MaintenanceTask> activeTasks = MaintenanceTask.find.where().ge("deadline", now).findList();
 		return ok(views.html.maintenance.showTasks.render(activeTasks, "Active Tasks"));
 		//return ok(views.html.maintenance.viewactivetasks.render(activeTasks));
 	}
 	
-	public static Result viewArchivedTasks() {
+	public static Result showArchivedTasks() {
 		Date now = new Date();
 		List<MaintenanceTask> archivedTasks = MaintenanceTask.find.where().lt("deadline", now).findList();
 		return ok(views.html.maintenance.showTasks.render(archivedTasks, "Archived Tasks"));
 		//return ok(views.html.maintenance.viewarchivedtasks.render(activeTasks));
+	}
+	
+	public static Result setTaskCompleted() {
+		/* Add code to set the task as completed corresponding to the id from request. */
+		return showActiveTasks();		
 	}
 	
 }

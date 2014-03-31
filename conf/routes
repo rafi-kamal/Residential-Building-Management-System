@@ -19,8 +19,9 @@ GET		/editBill					controllers.bill.BillController.setBillPaid()
 
 GET 	/createTask					controllers.maintenance.MaintenanceTaskController.createTask()
 POST 	/postTask					controllers.maintenance.MaintenanceTaskController.postTask()
-GET		/activeTasks				controllers.maintenance.MaintenanceTaskController.viewActiveTasks()
-GET		/archivedTasks				controllers.maintenance.MaintenanceTaskController.viewArchivedTasks()
+GET		/activeTasks				controllers.maintenance.MaintenanceTaskController.showActiveTasks()
+GET		/archivedTasks				controllers.maintenance.MaintenanceTaskController.showArchivedTasks()
+GET		/editTask					controllers.maintenance.MaintenanceTaskController.setTaskCompleted()
 
 # Messaging
 GET  /allthreads               		controllers.communications.ThreadController.allThreads()
