@@ -1,4 +1,7 @@
 @(title: String)
+@import models.enums.AccountType
+@user = @{UserAccount.find.where.eq("id", (session.get("userId"))).findUnique()}
+
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -14,10 +17,14 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bill <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="/showAllBills">Show Bills</a></li>
+          @{if (user.accountType == AccountType.Supervisor) { 
             <li class="divider"></li>
             <li><a href="/createBill">Create Bill</a></li>
+            }
+          }
           </ul>
         </li>
+      @{if (user.accountType == AccountType.Supervisor) {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maintenance <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -27,6 +34,8 @@
             <li><a href="/createTask">Create Task</a></li>
           </ul>
         </li>
+        }
+      }
         <li><a href="/noticeBoard">Notice Board</a></li>
       </ul>
 
@@ -34,7 +43,7 @@
         <li><a href="/allthreads"><span class="glyphicon glyphicon-envelope"></span></a></li>
         <li><a href="/notifications"><span class="glyphicon glyphicon-globe"></span></a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rafi Kamal <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">@session.get("name") <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
             <li><a href="/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
