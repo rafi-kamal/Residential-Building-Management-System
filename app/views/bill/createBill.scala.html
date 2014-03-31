@@ -1,5 +1,7 @@
 @(billForm:Form[models.Bill], apartments: Seq[models.Apartment])
 
+@import helper._
+
 @common.main("New Bill Record") {
 	<h1> Add a Bill Record </h1>
 	@helper.form(action = controllers.bill.routes.BillController.postBill()) {
@@ -20,12 +22,8 @@
 							placeholder="Description">
 					}		
 		
-		@helper.input(billForm("status"),
-						 '_showConstraints -> false, 
-						 '_class -> "no-dt") { (id, name, value, args) =>
-							<input type="text" class="form-control" name="@name" id="@id"
-							placeholder="Status">
-					}				
+		@helper.select(field = billForm("status"), options = options(Seq("Unpaid", "Paid")), '_label -> "Status")
+						
 		
 		<h5> Deadline </h5>
 		@helper.input(billForm("deadline"),
@@ -38,7 +36,7 @@
 		@helper.input(billForm("amount"),
 						 '_showConstraints -> false, 
 						 '_class -> "no-dt") { (id, name, value, args) =>
-							<input type="text" class="form-control" name="@name" id="@id"
+							<input type="number" class="form-control" name="@name" id="@id"
 							placeholder="Amount">
 					}		            
         

@@ -15,6 +15,7 @@ GET		/verifyAccount				controllers.account.VerifyAccount.index()
 GET		/createBill					controllers.bill.BillController.createBill()
 POST 	/postBill					controllers.bill.BillController.postBill()
 GET		/showAllBills				controllers.bill.BillController.showAllBills()
+GET		/editBill					controllers.bill.BillController.setBillPaid()
 
 GET 	/createTask					controllers.maintenance.MaintenanceTaskController.createTask()
 POST 	/postTask					controllers.maintenance.MaintenanceTaskController.postTask()
