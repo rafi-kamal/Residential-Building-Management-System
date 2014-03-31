@@ -1,4 +1,4 @@
-@(apartments: Seq[models.Apartment], apartmentForm: play.data.Form[models.Apartment])
+@(apartments: Seq[models.Apartment], apartmentForm: play.data.Form[models.Apartment], buildingId: Long)
 
 @common.guest("Apartments") {
 	@for(apartment <- apartments) {
@@ -8,5 +8,5 @@
 	<button type="button" id="add-apartments" class="btn btn-primary btn-large btn-block btn-lg" 
 					role="button" data-toggle="modal" data-target="#addApartment">Add Apartment</button>
 					
-	@addApartmentModal(apartmentForm)				
+	@addApartmentModal(apartmentForm, buildingId)				
 }

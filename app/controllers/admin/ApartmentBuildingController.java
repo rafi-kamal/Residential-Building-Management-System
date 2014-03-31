@@ -11,7 +11,7 @@ import models.UserAccount;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.collection.JavaConversions;
+import scala.collection.JavaConversions.*;
 
 public class ApartmentBuildingController extends Controller {
 	static Form<ApartmentBuilding> buildingForm = Form.form(ApartmentBuilding.class);
@@ -22,7 +22,7 @@ public class ApartmentBuildingController extends Controller {
 		
     	
         return ok(views.html.admin.apartmentBuildings.render(
-        		JavaConversions.asScalaBuffer(buildings), buildingForm));
+        		asScalaBuffer(buildings), buildingForm, id));
     }
 	
 	public static Result addBuilding() {
@@ -36,11 +36,13 @@ public class ApartmentBuildingController extends Controller {
 		
 		ApartmentBuilding building = new ApartmentBuilding(name, address, company);
 		
-		List<ApartmentBuilding> buildings = ApartmentBuilding.find.where().eq("realEstateCompany.id", rsId).findList();
+		building.save();
+		
+		List<ApartmentBuilding> buildings = ApartmentBuilding.find.where().eq("realEstateCompany.id", Long.parseLong(rsId)).findList();
 		
     	
         return ok(views.html.admin.apartmentBuildings.render(
-        		JavaConversions.asScalaBuffer(buildings), buildingForm));
+        		asScalaBuffer(buildings), buildingForm, Long.parseLong(rsId)));
 	}
 
 }

@@ -1,4 +1,4 @@
-@(buildingForm: play.data.Form[models.ApartmentBuilding])
+@(buildingForm: play.data.Form[models.ApartmentBuilding], realEstateId: Long)
 
 <div class="modal fade" id="addBuilding" tabindex="-1" role="dialog"
 	aria-labelledby="addBuildingModalLabel" aria-hidden="true">
@@ -25,6 +25,8 @@
 							<input type="text" class="form-control" name="@name" id="@id"
 							placeholder="Address">
 					}
+							<input type="hidden" class="form-control" name="id" id="@realEstateId" value="@realEstateId">
+				
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-success">Add</button>
