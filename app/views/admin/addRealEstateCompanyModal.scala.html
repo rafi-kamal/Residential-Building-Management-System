@@ -9,7 +9,7 @@
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="addCompanyModalLabel">Add New Company</h4>
 			</div>
-			@helper.form(action = controllers.account.routes.MainController.signUp()) {
+			@helper.form(action = controllers.admin.routes.RealEstateCompanyController.addCompany()) {
 				<div class="modal-body">
 
 					@helper.input(realEstateCompanyForm("name"),

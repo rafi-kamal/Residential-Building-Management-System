@@ -3,6 +3,7 @@ package controllers.admin;
 import java.util.List;
 
 import models.RealEstateCompany;
+import models.UserAccount;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -18,5 +19,18 @@ public class RealEstateCompanyController extends Controller {
     	
         return ok(views.html.admin.realEstateCompanies.render(
         		JavaConversions.asScalaBuffer(companies), realEstateCompanyForm));
+    }
+    
+    public static Result addCompany() {
+    	Form<RealEstateCompany> filledCompanyForm = realEstateCompanyForm.bindFromRequest();
+    	if (filledCompanyForm.hasErrors()) {
+    		return ok(filledCompanyForm.errors().toString());
+    	}
+    	
+    	RealEstateCompany company = filledCompanyForm.get();
+    	
+    	company.save();
+    	
+    	return redirect("admin/realEstateCompanies");
     }
 }

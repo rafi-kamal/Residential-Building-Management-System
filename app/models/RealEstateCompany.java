@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
-import play.data.validation.Constraints.Max;
-import play.data.validation.Constraints.Min;
+import play.data.validation.Constraints.MaxLength;
+import play.data.validation.Constraints.MinLength;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -28,17 +28,17 @@ public class RealEstateCompany extends Model {
 	public String name;
 	
 	@Required
-	@Min(5)
-	@Max(60)
+	@MinLength(5)
+	@MaxLength(60)
 	public String email;
 	
 	@Required
-	@Min(6)
-	@Max(20)
+	@MinLength(6)
+	@MaxLength(20)
 	public String phone;
 	
 	@Required
-	@Max(100)
+	@MaxLength(100)
 	public String address;
 	
 	@Valid

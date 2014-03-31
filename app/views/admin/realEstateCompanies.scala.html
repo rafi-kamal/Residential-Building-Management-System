@@ -3,6 +3,9 @@
 @common.guest("Real Estate Companies") {
 	@for(company <- companies) {
 		<div>@company.name</div>
+		<div>@company.email</div>
+		<div>@company.phone</div>
+		<div>@company.address</div>
 	}
 	
 	<button type="button" id="add-company" class="btn btn-primary btn-large btn-block btn-lg" 
