@@ -1,4 +1,4 @@
-@user = @{UserAccount.find.where.eq("id", (session.get("userId"))).findUnique()}
+@(user:UserAccount)
 
 @common.main("Profile") {
 
