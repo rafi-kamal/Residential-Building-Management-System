@@ -1,6 +1,6 @@
 @(noticeForm:Form[models.Notice])
 
-@common.main ("Create new Notice") {
+@common.main("Create new Notice") {
   @helper.form(action = controllers.communications.routes.NoticeController.createNotice) {
     @helper.inputText(noticeForm("subject"))
 	@helper.inputText(noticeForm("category"))

@@ -1,6 +1,6 @@
 @(threadForm:Form[models.Thread], receivers:Seq[UserAccount], messageForm:Form[models.Message])
 
-@common.main ("Create new Thread") {
+@common.main("Create new Thread") {
   @helper.form(action = controllers.communications.routes.ThreadController.createThread) {
     @helper.inputText(threadForm("subject"))
 	@helper.inputText(threadForm("category"))

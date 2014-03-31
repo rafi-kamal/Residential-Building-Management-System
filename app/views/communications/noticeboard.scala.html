@@ -2,7 +2,7 @@
 
 @import org.joda.time.LocalDate
 
-@common.main ("Notice Board") {
+@common.main("Notice Board") {
     @helper.form(action = controllers.communications.routes.NoticeController.loadNotice) {
       <select>
         @notices.sortBy(_.validUntil.getTime).map { n =>
