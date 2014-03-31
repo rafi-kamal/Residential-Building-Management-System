@@ -7,6 +7,7 @@ GET     /                           controllers.account.MainController.index()
 # Account
 POST	/signup						controllers.account.MainController.signUp()
 POST	/signin						controllers.account.MainController.signIn()
+POST	/signOut					controllers.account.MainController.signOut()
 GET		/selectApartment			controllers.account.SelectApartmentController.index()
 GET		/profile					controllers.account.ProfileController.index(id: Long ?= -1)
 GET		/verifyAccount				controllers.account.VerifyAccount.index()
