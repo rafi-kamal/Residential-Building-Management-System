@@ -3,6 +3,13 @@
 @import helper._
 
 @common.main("Notice ID : " + notice.internalId) {
-<h1>@notice.subject</h1>
-	<h2>@notice.description</h2>
+	
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title"> @notice.subject </h3>
+	  </div>
+	  <div class="panel-body">
+	    @notice.description
+	  </div>
+	</div>
 }

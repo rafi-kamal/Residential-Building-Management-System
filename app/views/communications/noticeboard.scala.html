@@ -4,6 +4,9 @@
 
 @common.main("Notice Board") {
     @helper.form(action = controllers.communications.routes.NoticeController.loadNotice) {
+    
+    <h1> Notice Board </h1>
+    
       <select>
         @notices.sortBy(_.validUntil.getTime).map { n =>
         <option value="@n.internalId">@n.subject on @n.publishDate</option>
