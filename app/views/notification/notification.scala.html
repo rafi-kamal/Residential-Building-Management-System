@@ -1,0 +1,7 @@
+@(notifications: List[models.Notification])
+
+@common.main("Maintenance Tasks") {
+	@for(notification <- notifications) {
+		<div>@notification.issueDate</div>	
+	} 
+}

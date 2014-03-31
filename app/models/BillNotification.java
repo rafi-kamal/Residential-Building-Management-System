@@ -13,4 +13,7 @@ public class BillNotification extends Notification {
 	@ManyToOne
 	@Required
 	public Bill bill;
+	
+	public static Finder<Long, BillNotification> find = 
+			new Finder<Long, BillNotification> (Long.class, BillNotification.class);
 }

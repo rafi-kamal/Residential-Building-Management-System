@@ -13,4 +13,7 @@ public class MaintenanceTaskNotification extends Notification {
 	@ManyToOne
 	@Required
 	public MaintenanceTask maintenanceTask;
+	
+	public static Finder<Long, MaintenanceTaskNotification> find = 
+			new Finder<Long, MaintenanceTaskNotification> (Long.class, MaintenanceTaskNotification.class);
 }
