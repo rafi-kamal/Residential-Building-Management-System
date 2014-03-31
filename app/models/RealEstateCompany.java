@@ -44,4 +44,7 @@ public class RealEstateCompany extends Model {
 	@Valid
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="realEstateCompany", cascade=CascadeType.ALL)
 	public List<ApartmentBuilding> apartmentBuildings;
+	
+	public static Finder<Long, RealEstateCompany> find = 
+			new Finder<Long, RealEstateCompany> (Long.class, RealEstateCompany.class);
 }
