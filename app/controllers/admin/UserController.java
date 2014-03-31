@@ -2,10 +2,10 @@ package controllers.admin;
 
 import java.util.List;
 
+import enums.AccountType;
 import models.UserAccount;
 import play.mvc.Controller;
 import play.mvc.Result;
-import enums.AccountType;
 
 public class UserController extends Controller {
 
@@ -15,6 +15,10 @@ public class UserController extends Controller {
     }
     
     public static Result updateUser(Long userId, String accountType) {
-    	return ok(accountType);
+    	UserAccount user = UserAccount.find.byId(userId);
+    	user.accountType = AccountType.valueOf(accountType);
+    	user.save();
+    	
+    	return redirect("/admin/users");
     }
 }
