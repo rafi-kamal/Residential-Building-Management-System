@@ -1,8 +1,10 @@
+@(companies: List[RealEstateCompany])
+
 @common.main("Select Apartment") {
-<!-- <div class="col-md-12 text-center">
+<div class="col-md-12 text-center">
 	<span class="label label-info">Congratulations! You've successfully created your account.</span>
 </div>
- -->
+
 <div class="col-md-4 col-md-offset-4">
 	<div class="heading-banner">
 		<h2>Select Apartment</h2>
@@ -10,7 +12,9 @@
 	<hr/>
 	<form id="form-select-apartment" role="form">
 		<p><select class="form-control" id="selectRealEstate">
-			<option>Sheltech</option>
+			@for(company <- companies) {
+				<option>@company.name</option>
+			}
 		</select></p>
 		
 		<p><select class="form-control" id="selectBuilding">

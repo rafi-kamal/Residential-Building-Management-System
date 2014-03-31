@@ -7,10 +7,11 @@ GET     /                           controllers.account.MainController.index()
 # Account
 POST	/signup						controllers.account.MainController.signUp()
 POST	/signin						controllers.account.MainController.signIn()
-GET		/selectApartment			controllers.account.SelectApartment.index()
+GET		/selectApartment			controllers.account.SelectApartmentController.index()
 GET		/profile					controllers.account.ProfileController.index(id: Long ?= -1)
 GET		/verifyAccount				controllers.account.VerifyAccount.index()
 GET		/showAllProfiles			controllers.account.ProfileController.showAllProfiles()
+GET		/getApartmentBuilding/:realEstateId		controllers.account.SelectApartmentController.getApartmentBuildings(realEstateId: Long)
 
 # Bill & Maintenance
 GET		/createBill					controllers.bill.BillController.createBill()
@@ -48,6 +49,7 @@ GET		/admin/users				controllers.admin.UserController.index()
 GET		/admin/realEstateCompanies	controllers.admin.RealEstateCompanyController.index()
 POST	/admin/addCompany			controllers.admin.RealEstateCompanyController.addCompany()
 POST	/admin/updateUser/:userId/:accountType	controllers.admin.UserController.updateUser(userId: Long, accountType: String)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
