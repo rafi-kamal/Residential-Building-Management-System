@@ -24,15 +24,6 @@ import controllers.routes;
 public class ThreadController extends Controller {
 	  static public Form<Thread> threadForm  = Form.form(Thread.class);
 	  static public Form<Message>  messageForm  = Form.form(Message.class);
-	  
-	  public static Result registerThread() {
-		  Map<String, String> m = new HashMap<String, String>();
-	      int nextOccurrence =
-	        Thread.occurrencesFor(LocalDate.now())+1;
-	      m.put("occurrence", ""+nextOccurrence);
-	      List<UserAccount> receivers = UserAccount.find.where().ne("id", session("userId")).findList();
-	      return ok(views.html.communications.thread.render(threadForm.bind(m), asScalaBuffer(receivers), messageForm));
-	  }
 
 	  public static Result loadThread() {
 	    Map<String,String[]> queryString = request().queryString();
@@ -51,8 +42,12 @@ public class ThreadController extends Controller {
 		  UserAccount user = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
 		  Query<Thread> query = Ebean.createQuery(Thread.class, "find Thread where sender.id = :user or receiver.id = :user");
 	      query.setParameter("user", user.id);
+	      Map<String, String> m = new HashMap<String, String>();
+	      int nextOccurrence = Thread.occurrencesFor(LocalDate.now())+1;
+	      m.put("occurrence", ""+nextOccurrence);
+	      List<UserAccount> receivers = UserAccount.find.where().ne("id", session("userId")).findList();
 		  return ok(
-	          views.html.communications.threads.render(query.findList())
+	          views.html.communications.threads.render(query.findList(), threadForm.bind(m), asScalaBuffer(receivers), messageForm)
 	      );
 	  }
 

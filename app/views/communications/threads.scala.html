@@ -1,8 +1,8 @@
-@(threads:List[models.Thread])
+@(threads:List[models.Thread], threadForm:Form[models.Thread], receivers:Seq[UserAccount], messageForm:Form[models.Message])
 
 @import org.joda.time.LocalDate
 
-@common.main ("Allthreads") {
+@common.main("Allthreads") {
   <h2>Archives</h2>
     @helper.form(action = controllers.communications.routes.ThreadController.loadThread) {
       <select>
@@ -22,5 +22,7 @@
       <button>Load</button>
     }
   <hr>
-  <a href="@controllers.communications.routes.ThreadController.registerThread()">Create a new one</a>
+  <button type="button" id="create-new" class="btn btn-default btn-large btn-block btn-lg"
+					role="button" data-toggle="modal" data-target="#createThreadModal">Create New Thread</button>
+  @views.html.communications.thread(threadForm, receivers, messageForm)
 }

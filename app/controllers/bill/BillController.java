@@ -1,5 +1,7 @@
 package controllers.bill;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +35,26 @@ public class BillController extends Controller {
 		
 		Double amount = Double.parseDouble(amnt);
 		
-		Date deadline = new Date(dline);
-		Date dateOfIssuing = new Date(issueDate);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("DD/MM/YYYY");
+		
+		Date deadline = null;
+		
+		try {
+			deadline = dateFormat.parse(dline);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		Date dateOfIssuing = null;
+		
+		try {
+			dateOfIssuing = dateFormat.parse(issueDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Apartment apartment = Apartment.find.byId(Long.parseLong(apt));
     	
