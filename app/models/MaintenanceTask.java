@@ -25,7 +25,7 @@ public class MaintenanceTask extends Model {
 	public String description;
 
 	@Required
-	public String status;
+	public String status = "Queued";
 	
 	public Date dateOfIssuing = new Date();
 
