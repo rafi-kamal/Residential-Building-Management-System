@@ -10,19 +10,34 @@
 		<h2>Select Apartment</h2>
 	</div>
 	<hr/>
-	<form id="form-select-apartment" role="form">
+	<form id="form-select-apartment" role="form" method="post" action="">
 		<p><select class="form-control" id="selectRealEstate">
 			@for(company <- companies) {
-				<option>@company.name</option>
+				<option value="@company.id">@company.name</option>
 			}
 		</select></p>
 		
 		<p><select class="form-control" id="selectBuilding">
-			<option>Kheya</option>
+			
 		</select></p>
 		
-		<p><input class="form-control" type="text" placeholder="Apartment Number"></p>
+		<p><select class="form-control" id="selectApartment">
+			
+		</select></p>
+		
 		<button type="submit" class="btn btn-success btn-block" id="selectApartmentSubmit">Submit</button>
+		
+		<script>
+			$("#selectRealEstate").change(function() {
+				$.getJSON("/getApartmentBuilding/" + $(this).val(),
+				function(json) {
+					for (var i = 0; i < json.length; i++) {
+						$("#selectBuilding").append("<option value=" + json[i].id + ">" + 
+							json[i].name + "</option>");
+					}
+				}
+			};
+		</script>
 	</form>
 </div>
 }
