@@ -1,4 +1,4 @@
-name := """hello-play"""
+name := """Residential Building Management System"""
 
 version := "1.0-SNAPSHOT"
 
