@@ -20,13 +20,10 @@ public class SelectApartmentController extends Controller {
     public static Result getApartmentBuildings(Long realEstateId) {
     	List<ApartmentBuilding> apartmentBuildings = ApartmentBuilding.find
     			.where()
-    			.eq("real_estate_company_id", realEstateId);
+    			.eq("real_estate_company_id", realEstateId)
+    			.findList();
     	
     	return ok(Json.toJson(apartmentBuildings));
     }
     
-    public static Result select() {
-    	
-    	return ok(views.html.account.showAllProfiles.render(apartments));
-    }
 }

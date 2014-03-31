@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import models.*;
+import play.Logger;
 import play.data.Form;
 import play.mvc.*;
 import static scala.collection.JavaConversions.*;
@@ -29,6 +30,7 @@ public class ApartmentController extends Controller {
 		ApartmentBuilding building = ApartmentBuilding.find.byId(Long.parseLong(bdId));
 		
 		Apartment apartment = new Apartment(apartmentNo);
+		Logger.debug(bdId);
 		
 		apartment.save();
 		

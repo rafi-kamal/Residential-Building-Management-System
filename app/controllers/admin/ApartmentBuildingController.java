@@ -1,17 +1,14 @@
 package controllers.admin;
 
-import models.*;
-
 import java.util.List;
 import java.util.Map;
 
-import controllers.account.routes;
+import models.ApartmentBuilding;
 import models.RealEstateCompany;
-import models.UserAccount;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.collection.JavaConversions.*;
+import scala.collection.JavaConversions;
 
 public class ApartmentBuildingController extends Controller {
 	static Form<ApartmentBuilding> buildingForm = Form.form(ApartmentBuilding.class);
@@ -22,7 +19,7 @@ public class ApartmentBuildingController extends Controller {
 		
     	
         return ok(views.html.admin.apartmentBuildings.render(
-        		asScalaBuffer(buildings), buildingForm, id));
+        		JavaConversions.asScalaBuffer(buildings), buildingForm, id));
     }
 	
 	public static Result addBuilding() {
@@ -42,7 +39,7 @@ public class ApartmentBuildingController extends Controller {
 		
     	
         return ok(views.html.admin.apartmentBuildings.render(
-        		asScalaBuffer(buildings), buildingForm, Long.parseLong(rsId)));
+        		JavaConversions.asScalaBuffer(buildings), buildingForm, Long.parseLong(rsId)));
 	}
 
 }

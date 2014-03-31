@@ -30,6 +30,6 @@ public class NotificationController extends Controller {
         notifications.addAll(billNotifications);
         notifications.addAll(maintenanceNotifications);
         
-        return ok(views.notification.html.notification.render(notifications));
+        return ok(views.html.notification.notification.render(notifications));
     }
 }
