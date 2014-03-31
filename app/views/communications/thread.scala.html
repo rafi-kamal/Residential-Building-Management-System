@@ -1,5 +1,32 @@
 @(threadForm:Form[models.Thread], receivers:Seq[UserAccount], messageForm:Form[models.Message])
 
+<<<<<<< HEAD
+<div class="modal fade" id="createThreadModal" tabindex="-1" role="dialog"
+	aria-labelledby="threadLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="createThreadModal">Create New Thread</h4>
+				</div>
+					@helper.form(action = controllers.communications.routes.ThreadController.createThread) {
+					    @helper.inputText(threadForm("subject"))
+						@helper.inputText(threadForm("category"))
+						<select name="receiver">
+					        @receivers.sortBy(_.name).map { r =>
+					        <option value="@r.id">@r.name</option>}
+					 	</select>
+						@helper.inputText(messageForm("body")) }
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success">Create</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+=======
 @common.main("Create new Thread") {
   @helper.form(action = controllers.communications.routes.ThreadController.createThread) {
     @helper.inputText(threadForm("subject"))
@@ -13,3 +40,4 @@
     <input type="submit" value="Create"/>
   }
 }
+>>>>>>> FETCH_HEAD

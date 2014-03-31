@@ -23,7 +23,6 @@ GET		/activeTasks				controllers.maintenance.MaintenanceTaskController.viewActiv
 GET		/archivedTasks				controllers.maintenance.MaintenanceTaskController.viewArchivedTasks()
 
 # Messaging
-GET  /form/thread           		controllers.communications.ThreadController.registerThread()
 GET  /allthreads               		controllers.communications.ThreadController.allThreads()
 POST /thread                		controllers.communications.ThreadController.createThread()
 GET  /viewthread            		controllers.communications.ThreadController.loadThread()
