@@ -18,7 +18,7 @@ public class ApartmentController extends Controller {
     	List<Apartment> apartments = Apartment.find.where().eq("apartmentBuilding.id", id)
     		.findList();
         return ok(views.html.admin.apartments.render(
-        		asScalaBuffer(apartments), apartmentForm));
+        		asScalaBuffer(apartments), apartmentForm, id));
 	}
 	public static Result addApartment() {
 		Map<String, String[]> params = request().body().asFormUrlEncoded();
@@ -30,10 +30,12 @@ public class ApartmentController extends Controller {
 		
 		Apartment apartment = new Apartment(apartmentNo);
 		
-		List<Apartment> apartments = Apartment.find.where().eq("apartmentBuilding.id", bdId).findList();
+		apartment.save();
+		
+		List<Apartment> apartments = Apartment.find.where().eq("apartmentBuilding.id", Long.parseLong(bdId)).findList();
 		
     	
-        return ok(views.html.admin.apartmentBuildings.render(
-        		asScalaBuffer(apartments), apartmentForm));
+        return ok(views.html.admin.apartments.render(
+        		asScalaBuffer(apartments), apartmentForm, Long.parseLong(bdId)));
 	}
 }

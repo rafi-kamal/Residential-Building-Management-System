@@ -1,4 +1,4 @@
-@(apartmentForm: Form[models.Apartment])
+@(apartmentForm: Form[models.Apartment], buildingId: Long)
 
 <div class="modal fade" id="addApartment" tabindex="-1" role="dialog"
 	aria-labelledby="addApartmentModalLabel" aria-hidden="true">
@@ -12,15 +12,16 @@
 			@helper.form(action = controllers.admin.routes.ApartmentController.addApartment()) {
 				<div class="modal-body">
 
-					@helper.input(realEstateCompanyForm("apartmentNo"),
+					@helper.input(apartmentForm("apartmentNo"),
 						 '_showConstraints -> false, 
 						 '_class -> "no-dt") { (id, name, value, args) =>
 							<input type="text" class="form-control" name="@name" id="@id"
 							placeholder="Name">
 					}
+						<input type="hidden" class="form-control" name="id" id="@buildingId" value="@buildingId">
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-success">Sign Up</button>
+					<button type="submit" class="btn btn-success">Add Apartment</button>
 				</div>
 			}
 		</div>
