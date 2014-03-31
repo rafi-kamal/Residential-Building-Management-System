@@ -1,8 +1,10 @@
+@user = @{UserAccount.find.where.eq("id", (session.get("userId"))).findUnique()}
+
 @common.main("Profile") {
 
 <div class="col-md-6 col-md-offset-1">
 <div class="heading-banner">
-	<h4>Rafi Kamal</h4>
+	<h4>@user.name</h4>
 </div>
 <hr/>
 <div class="col-md-3 col-md-offset-1">
@@ -15,12 +17,12 @@
 </div>
 
 <div class="col-md-3 col-md-offset-1">
-	<div>01939373436</div>
-	<div>rafikamal93&#64;gmail.com</div>
+	<div>@user.phone</div>
+	<div>@user.email</div>
 	<p></p>
-	<div>11-H</div>
-	<div>Kheya</div>
-	<div>Shelteck</div>
+	<div>@user.apartment.apartmentNo</div>
+	<div>@user.apartment.apartmentBuilding.name</div>
+	<div>@user.apartment.apartmentBuilding.realEstateCompany</div>
 	</div>
 </div>
 <div class="col-md-4">

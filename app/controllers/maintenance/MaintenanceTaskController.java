@@ -40,6 +40,11 @@ public class MaintenanceTaskController extends Controller {
     	//return ok("Registered " + bill.toString());
     }
 	
+	public static Result showAllTasks() {		
+		List<MaintenanceTask> tasks = MaintenanceTask.find.all();
+		return ok(views.html.maintenance.showTasks.render(tasks, "Archived Tasks"));
+	}
+	
 	public static Result showActiveTasks() {
 		Date now = new Date();
 		List<MaintenanceTask> activeTasks = MaintenanceTask.find.where().ge("deadline", now).findList();
