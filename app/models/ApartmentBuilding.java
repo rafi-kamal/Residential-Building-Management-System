@@ -28,16 +28,6 @@ public class ApartmentBuilding extends Model {
 	public String name;
 	
 	@Required
-	@Min(5)
-	@Max(60)
-	public String email;
-	
-	@Required
-	@Min(6)
-	@Max(20)
-	public String phone;
-	
-	@Required
 	@Max(100)
 	public String address;
 	

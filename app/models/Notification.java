@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
-import models.enums.NotificationStatus;
 import play.data.format.Formats;
 import play.data.validation.Constraints.Required;
+import enums.NotificationStatus;
 
 @MappedSuperclass
 public class Notification extends play.db.ebean.Model {

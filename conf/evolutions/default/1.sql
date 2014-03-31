@@ -13,8 +13,6 @@ create table apartment (
 create table apartment_building (
   id                        bigint not null,
   name                      varchar(255),
-  email                     varchar(255),
-  phone                     varchar(255),
   address                   varchar(255),
   real_estate_company_id    bigint,
   constraint pk_apartment_building primary key (id))

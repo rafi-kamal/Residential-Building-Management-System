@@ -12,13 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
-import models.enums.AccountType;
 import play.data.format.Formats;
 import play.data.validation.Constraints.MaxLength;
 import play.data.validation.Constraints.MinLength;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
+import enums.AccountType;
 
 @Entity
 public class UserAccount extends Model {
