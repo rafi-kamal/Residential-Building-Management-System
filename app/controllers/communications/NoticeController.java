@@ -50,6 +50,7 @@ public class NoticeController extends Controller{
 	                      .where()
 	                        .eq("internalId", noticeId)
 	                        .findUnique();
+	    notice.viewcount++;
 
 	    return ok(
 	      views.html.communications.viewnotice.render(notice) );
