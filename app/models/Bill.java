@@ -35,7 +35,7 @@ public class Bill extends Model {
 	public Date deadline;
 
 	@Required
-	public String status;
+	public String status = "Unpaid";
 
 	@Required
 	public Double amount;

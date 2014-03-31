@@ -98,6 +98,7 @@ create table thread (
   subject                   varchar(255),
   sender_id                 bigint,
   receiver_id               bigint,
+  status                    varchar(255),
   occurrence                integer,
   constraint pk_thread primary key (internal_id))
 ;

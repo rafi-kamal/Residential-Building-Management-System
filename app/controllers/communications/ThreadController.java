@@ -40,14 +40,18 @@ public class ThreadController extends Controller {
 
 	  public static Result allThreads() {
 		  UserAccount user = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
-		  Query<Thread> query = Ebean.createQuery(Thread.class, "find Thread where sender.id = :user or receiver.id = :user");
-	      query.setParameter("user", user.id);
+		  Query<Thread> queryActive = Ebean.createQuery(Thread.class, "find Thread where sender.id = :user and status = :sts or receiver.id = :user and status = :sts");
+	      queryActive.setParameter("user", user.id);
+	      queryActive.setParameter("status", "Active");
+	      Query<Thread> queryArchived = Ebean.createQuery(Thread.class, "find Thread where sender.id = :user and status = :sts or receiver.id = :user and status = :sts");
+	      queryArchived.setParameter("user", user.id);
+	      queryArchived.setParameter("status", "Archived");
 	      Map<String, String> m = new HashMap<String, String>();
 	      int nextOccurrence = Thread.occurrencesFor(LocalDate.now())+1;
 	      m.put("occurrence", ""+nextOccurrence);
 	      List<UserAccount> receivers = UserAccount.find.where().ne("id", session("userId")).findList();
 		  return ok(
-	          views.html.communications.threads.render(query.findList(), threadForm.bind(m), asScalaBuffer(receivers), messageForm)
+	          views.html.communications.threads.render(queryActive.findList(), queryArchived.findList(), threadForm.bind(m), asScalaBuffer(receivers), messageForm)
 	      );
 	  }
 

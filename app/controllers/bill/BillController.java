@@ -72,12 +72,15 @@ public class BillController extends Controller {
 	}
 	
 	public static Result showUnpaidBills() {
-		List<Bill> bills = Bill.find.where().eq("status", "unpaid").findList();
+		List<Bill> bills = Bill.find.where().eq("status", "Unpaid").findList();
 		return ok(views.html.bill.showUnpaidBills.render(bills));
 	}
 	
 	public static Result setBillPaid() {
-		/* Add code to set the bill as paid corresponding to the id from request. */
+		Map<String, String[]> params = request().body().asFormUrlEncoded();
+		String id = params.get("id")[0];
+		Bill bill = Bill.find.byId(Long.parseLong(id));
+		bill.status = "Paid";
 		return showUnpaidBills();		
 	}
 }

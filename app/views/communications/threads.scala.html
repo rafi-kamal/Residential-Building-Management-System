@@ -1,4 +1,4 @@
-@(threads:List[models.Thread], threadForm:Form[models.Thread], receivers:Seq[UserAccount], messageForm:Form[models.Message])
+@(activeThreads:List[models.Thread], archivedThreads:List[models.Thread], threadForm:Form[models.Thread], receivers:Seq[UserAccount], messageForm:Form[models.Message])
 
 @import org.joda.time.LocalDate
 
@@ -6,7 +6,7 @@
   <h2>Archives</h2>
     @helper.form(action = controllers.communications.routes.ThreadController.loadThread) {
       <select>
-        @threads.filter(_.date isBefore LocalDate.now).sortBy(_.occurrence).map { t =>
+        @archivedThreads.sortBy(_.occurrence).map { t =>
         <option value="@t.internalId">@t.subject on @t.date</option>
         }
       </select>
@@ -15,7 +15,7 @@
   <h2>Active</h2>
     @helper.form(action = controllers.communications.routes.ThreadController.loadThread) {
       <select name="threadid">
-        @threads.filter(_.date == LocalDate.now).sortBy(_.occurrence).map { t =>
+        @activeThreads.sortBy(_.occurrence).map { t =>
         <option value="@t.internalId">@t.subject on @t.date</option>
         }
       </select>
