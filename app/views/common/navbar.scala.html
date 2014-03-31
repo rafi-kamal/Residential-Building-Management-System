@@ -10,21 +10,36 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li><a href="#">Bill</a></li>
-        <li><a href="#">Poll</a></li>
-        <li><a href="/showTasks">Maintenance</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bill <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/showAllBills">Show Bills</a></li>
+            <li class="divider"></li>
+            <li><a href="/createBill">Create Bill</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maintenance <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/activeTasks">Active Tasks</a></li>
+            <li><a href="/archivedTasks">Archived Tasks</a></li>
+            <li class="divider"></li>
+            <li><a href="/createTask">Create Task</a></li>
+          </ul>
+        </li>
+        <li><a href="/noticeBoard">Notice Board</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-globe"></span></a></li>
+        <li><a href="/allthreads"><span class="glyphicon glyphicon-envelope"></span></a></li>
+        <li><a href="/notifications"><span class="glyphicon glyphicon-globe"></span></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rafi Kamal <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+            <li><a href="/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
             <li class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+            <li><a href="/signOut"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
           </ul>
         </li>
       </ul>
