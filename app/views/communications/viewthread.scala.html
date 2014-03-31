@@ -3,27 +3,35 @@
 @import helper._
 
 @common.main("Thread ID : " + thread.internalId) {
-<h1>@thread.subject</h1>
 
-  <div style="float:left;width:500px;">
-    <h2>So far...</h2>
-    <ul>
-    @thread.messages.map { i =>
-      @listMessage(i)
-    }
-    </ul>
-  </div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">@thread.subject</h3>
+	  </div>
+	  <div class="panel-body">
+	  	<p> So far... </p>
+      </div>
+      
+      <ul class="list-group">
+      	@for(msg <- thread.messages){
+	    	<li class="list-group-item">
+	    		<span class="time">[@msg.time]</span> <span>{@msg.sender.name}</span> > @msg.body
+	    	</li>
+	    }
+	  </ul>	    	    		   		    		  
+		  
+	  <div style="clear:both"/>
 
-  <div style="clear:both"/>
-
-  <hr/>
-
-  <div style="float:left;width:500px;">
-    <h3>React</h3>
-    @form(action = controllers.communications.routes.ThreadController.talk(thread.internalId)) {
-      @inputText(message("body"))
-      <input type="submit" value="send"/>
-    }
-  </div>
+	  <hr/>
+	
+	  <div style="float:left;width:500px;">
+	    <h3>React</h3>
+	    @form(action = controllers.communications.routes.ThreadController.talk(thread.internalId)) {
+	      @inputText(message("body"))
+	      <input type="submit" value="send"/>
+	    }
+	  </div>
+		  	  
+	</div>
 
 }

@@ -1,11 +1,38 @@
 @(noticeForm:Form[models.Notice])
 
 @common.main("Create new Notice") {
+	<h1> Add a Notice </h1>
   @helper.form(action = controllers.communications.routes.NoticeController.createNotice) {
-    @helper.inputText(noticeForm("subject"))
-	@helper.inputText(noticeForm("category"))
-	@helper.inputText(noticeForm("validUntil"))
-	@helper.inputText(noticeForm("description"))
-    <input type="submit" value="Create"/>
+  	
+  	@helper.input(noticeForm("subject"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Subject">
+					}
+					
+	@helper.input(noticeForm("category"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Category">
+					}
+	
+	<h5> Valid until: </h5>				
+	@helper.input(noticeForm("validUntil"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="date" class="form-control" name="@name" id="@id"
+							placeholder="Category">
+					}
+					
+	@helper.input(noticeForm("description"),
+						 '_showConstraints -> false, 
+						 '_class -> "no-dt") { (id, name, value, args) =>
+							<input type="text" class="form-control" name="@name" id="@id"
+							placeholder="Description">
+					}	
+    
+    <button type="submit" class="btn btn-success">Submit</button>    
   }
 }
