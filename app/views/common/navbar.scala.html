@@ -40,7 +40,17 @@
         </li>
         }
       }
-        <li><a href="/noticeBoard">Notice Board</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notice Board <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/noticeBoard">View Notices</a></li>
+          @{if (user.accountType == AccountType.Supervisor || user.accountType == AccountType.Manager) { 
+            <li class="divider"></li>
+            <li><a href="/form/notice">Create Notice</a></li>
+            }
+          }
+          </ul>
+        </li>
         <li><a href="/showAllProfiles">Users</a>
       </ul>
 
