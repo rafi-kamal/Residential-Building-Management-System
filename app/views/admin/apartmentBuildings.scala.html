@@ -1,14 +1,27 @@
 @(buildings: Seq[models.ApartmentBuilding], buildingForm: play.data.Form[models.ApartmentBuilding], realEstateId: Long)
 
 @common.guest("Apartment Buildings") {
-	@for(building <- buildings) {
-		<div>@building.name</div>
-		<div>@building.address</div>
-		<div><a href="/admin/listApartments/@building.id">Apartments</a></div><p/>
-	}
+	<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading"><h3> Apartment Buildings </h3></div>
+		  <div class="panel-body">	   
 	
+		<table class="table table-bordered table-striped table-hover">
+		@for(building <- buildings) {
+			<tr>
+				<td>@building.name</td>
+				<td>@building.address</td>
+				<td><a href="/admin/listApartments/@building.id">Apartments</a></td><p/>
+			</tr>
+		}
+		</table>
+	</div>
+	</div>
+	<p></p>
+	<div class="col-md-4 col-md-offset-4">
 	<button type="button" id="add-buildings" class="btn btn-primary btn-large btn-block btn-lg" 
 					role="button" data-toggle="modal" data-target="#addBuilding">Add Building</button>
+	</div>
 					
 	@addApartmentBuildingModal(buildingForm, realEstateId)				
 }

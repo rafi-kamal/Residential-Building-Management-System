@@ -1,16 +1,29 @@
 @(companies: Seq[models.RealEstateCompany], realEstateCompanyForm: play.data.Form[models.RealEstateCompany])
 
 @common.guest("Real Estate Companies") {
-	@for(company <- companies) {
-		<div>@company.name</div>
-		<div>@company.email</div>
-		<div>@company.phone</div>
-		<div>@company.address</div>
-		<div><a href="/admin/apartmentBuildings/@company.id">Apartment Buildings</a></div><p/>
-	}
+	<div class="panel panel-default">
+		  <div class="panel-heading"><h3>Real Estate Companies </h3></div>
+		  <div class="panel-body">	   
 	
-	<button type="button" id="add-company" class="btn btn-primary btn-large btn-block btn-lg" 
+		<table class="table table-bordered table-striped table-hover">
+			@for(company <- companies) {
+				<tr>
+					<td>@company.name</td>
+					<td>@company.email</td>
+					<td>@company.phone</td>
+					<td>@company.address</td>
+					<td><a href="/admin/apartmentBuildings/@company.id">Apartment Buildings</a></div><p/>
+				</tr>
+			}
+	</table>
+	</div>
+	</div>
+	
+	<p></p>	
+	<div class="col-md-4 col-md-offset-4">
+		<button type="button" id="add-company" class="btn btn-primary btn-large btn-block btn-lg" 
 					role="button" data-toggle="modal" data-target="#addCompany">Add Company</button>
+	</div>
 					
 	@addRealEstateCompanyModal(realEstateCompanyForm)				
 }
