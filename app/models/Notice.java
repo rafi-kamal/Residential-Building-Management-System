@@ -2,10 +2,9 @@ package models;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import play.data.validation.Constraints.MaxLength;
+import play.data.validation.Constraints.MinLength;
 
 import org.joda.time.LocalDate;
 
