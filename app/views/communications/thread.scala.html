@@ -8,7 +8,8 @@
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="createThreadModal">Create New Thread</h4>
-				</div>
+			</div>
+				<div>
 					@helper.form(action = controllers.communications.routes.ThreadController.createThread) {
 					    @helper.inputText(threadForm("subject"))
 						@helper.inputText(threadForm("category"))
@@ -16,12 +17,12 @@
 					        @receivers.sortBy(_.name).map { r =>
 					        <option value="@r.id">@r.name</option>}
 					 	</select>
-						@helper.inputText(messageForm("body")) }
+						@helper.inputText(messageForm("body")) 
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success">Create</button>
+					</div>
+					}
 				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-success">Create</button>
-				</div>
-			</form>
 		</div>
 	</div>
 </div>

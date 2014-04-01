@@ -28,10 +28,10 @@ public class Bill extends Model {
 	@Required
 	public String description;
 
-	//@Formats.DateTime(pattern = "dd/MM/yyyy")
+	@Formats.DateTime(pattern = "YYYY-MM-DD")
 	public Date dateOfIssuing;
 
-	// @Formats.DateTime(pattern = "dd/MM/yyyy")
+	@Formats.DateTime(pattern = "YYY-MM-DD")
 	public Date deadline;
 
 	@Required

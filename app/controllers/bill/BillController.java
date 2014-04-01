@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import models.*;
+import play.Logger;
 import play.data.Form;
 import play.mvc.*;
 import static scala.collection.JavaConversions.*;
@@ -35,12 +36,15 @@ public class BillController extends Controller {
 		
 		Double amount = Double.parseDouble(amnt);
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("DD/MM/YYYY");
+		Logger.debug(dline);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date deadline = null;
 		
 		try {
 			deadline = dateFormat.parse(dline);
+			Logger.debug(deadline.toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
