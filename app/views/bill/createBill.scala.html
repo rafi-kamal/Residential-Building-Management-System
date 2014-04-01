@@ -22,7 +22,7 @@
 							placeholder="Description">
 					}		
 		
-		@helper.select(field = billForm("status"), options = options(Seq("Unpaid", "Paid")), '_label -> "Status")
+		@helper.select(field = billForm("status"), options = options(Seq("Unpaid", "Paid")), '_label -> "Status", '_showConstraints -> false)
 						
 		<h5> Deadline </h5>
 		@helper.input(billForm("deadline"),

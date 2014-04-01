@@ -17,6 +17,7 @@
 			<th> <h4> Deadline </h4> </th>
 			<th> <h4> Status </h4> </th>
 			<th> <h4> Amount </h4> </th>
+			<th> Set as Paid </th>
 		</tr>
 								
 		@for(bill <- bills){
@@ -27,7 +28,13 @@
 		        <th> <h5>@bill.deadline</h5> </th>
 		        <th> <h5>@bill.status</h5> </th>
 		        <th> <h5>@bill.amount</h5> </th>
+<<<<<<< HEAD
 		        <form action=@controllers.bill.routes.BillController.setBillPaid(bill.id)><button type="submit"> Set as paid </button></form>		    
+=======
+		        <th>		     
+		        	<form action="/editBill?id=@bill.id"><input type="submit"> </form>
+		        </th>		    
+>>>>>>> FETCH_HEAD
 		    </tr>		    		    
 		    }
 		    
