@@ -7,7 +7,7 @@
     
     <h1> Notice Board </h1>
     
-      <select>
+      <select name="internalId">
         @notices.sortBy(_.validUntil.getTime).map { n =>
         <option value="@n.internalId">@n.subject on @n.publishDate</option>
         }
