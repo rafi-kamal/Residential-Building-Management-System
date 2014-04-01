@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 
 import org.joda.time.LocalTime;
 
+import play.data.validation.Constraints.MaxLength;
 import play.data.validation.Constraints.Required;
 
 @Entity
@@ -20,7 +21,8 @@ public class Message extends play.db.ebean.Model {
 
 	@Required
 	public LocalTime time = LocalTime.now();
-
+	
+	@MaxLength(1024)
 	public String body;
 
 	public boolean isRead=false;
