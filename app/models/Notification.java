@@ -37,4 +37,5 @@ public class Notification extends play.db.ebean.Model {
 			new Finder<Long, Notification> (Long.class, Notification.class);
 	
 	public String getNotificationMessage() {return null;}
+	public String getUrl() {return null;}
 }

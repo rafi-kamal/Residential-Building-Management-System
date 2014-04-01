@@ -12,7 +12,10 @@ public class MainController extends Controller {
 	static Form<UserAccount> signUpForm = Form.form(UserAccount.class);
 	
     public static Result index() {
-        return ok(views.html.index.render(signUpForm));
+    	if (session().containsKey("userId"))
+    		return redirect("/profile/" + session("userId"));
+    	else
+    		return ok(views.html.index.render(signUpForm));
     }
     
     public static Result signUp() {
