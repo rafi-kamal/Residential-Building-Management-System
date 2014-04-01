@@ -3,26 +3,29 @@
 @import org.joda.time.LocalDate
 
 @common.main("Allthreads") {
-  <h2>Archives</h2>
+	<div class="col-md-6 col-md-offset-3">
+<!--   <h2>Archives</h2>
     @helper.form(action = controllers.communications.routes.ThreadController.loadThread) {
-      <select>
+      <select class="form-control">
         @archivedThreads.sortBy(_.occurrence).map { t =>
         <option value="@t.internalId">@t.subject on @t.sentTime</option>
         }
       </select>
-      <button>Show</button>
+      <button class="btn btn-default">Show</button>
     }
-  <h2>Active</h2>
+ -->
+  <h2>Threads</h2>
     @helper.form(action = controllers.communications.routes.ThreadController.loadThread) {
-      <select name="threadid">
+      <select name="threadid" class="form-control">
         @activeThreads.sortBy(_.occurrence).map { t =>
         <option value="@t.internalId">@t.subject on @t.sentTime</option>
         }
-      </select>
-      <button>Load</button>
+      </select><p/>
+      <button class="btn btn-default">Load</button>
     }
   <hr>
-  <button type="button" id="create-new" class="btn btn-default btn-large btn-block btn-lg"
+  <button type="button" id="create-new" class="btn btn-success btn-large btn-block btn-lg"
 					role="button" data-toggle="modal" data-target="#createThreadModal">Create New Thread</button>
+	</div>
   @views.html.communications.thread(threadForm, receivers, messageForm)
 }
