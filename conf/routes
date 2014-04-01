@@ -28,7 +28,7 @@ POST 	/postTask					controllers.maintenance.MaintenanceTaskController.postTask()
 GET 	/showAllTasks				controllers.maintenance.MaintenanceTaskController.showAllTasks()
 GET		/activeTasks				controllers.maintenance.MaintenanceTaskController.showActiveTasks()
 GET		/archivedTasks				controllers.maintenance.MaintenanceTaskController.showArchivedTasks()
-GET		/editTask					controllers.maintenance.MaintenanceTaskController.setTaskCompleted()
+GET		/editTask/:id					controllers.maintenance.MaintenanceTaskController.setTaskCompleted(id:Long)
 
 # Messaging
 GET  /allthreads               		controllers.communications.ThreadController.allThreads()
