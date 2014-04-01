@@ -48,7 +48,7 @@ public class MainController extends Controller {
     			session().clear();
     			session("userId", String.valueOf(userAccount.id));
     			session("name", userAccount.name);
-    			return redirect("/profile");
+    			return redirect("/profile/" + userAccount.id);
     		}
     		else
     			throw new IllegalStateException();

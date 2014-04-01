@@ -17,11 +17,13 @@ public class ProfileController extends Controller {
     
     public static Result index(Long id)
     {
-    	UserAccount userAccount;
-    	if(id!=-1)
-    		userAccount = UserAccount.find.where().eq("apartment_id", id).findUnique();
-    	else
-    		userAccount = UserAccount.find.where().eq("id", (session().get("userId"))).findUnique();
+    	UserAccount userAccount = UserAccount.find.byId(id);
+    	return ok(views.html.account.profile.render(userAccount));
+    }
+
+    public static Result getByApartment(Long apartmentId)
+    {
+    	UserAccount userAccount = UserAccount.find.where().eq("apartment_id", apartmentId).findUnique();
     	return ok(views.html.account.profile.render(userAccount));
     }
     

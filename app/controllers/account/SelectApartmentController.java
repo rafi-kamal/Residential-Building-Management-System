@@ -1,6 +1,5 @@
 package controllers.account;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,6 @@ import models.ApartmentBuilding;
 import models.RealEstateCompany;
 import models.UserAccount;
 import play.Logger;
-import play.api.db.DB;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -74,6 +72,6 @@ public class SelectApartmentController extends Controller {
 		user = UserAccount.find.byId(Long.parseLong(session("userId")));
 		Logger.debug(user.toString());
 		
-		return redirect("/profile");
+		return redirect("/profile/" + session("userId"));
 	}
 }
