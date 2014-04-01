@@ -4,115 +4,115 @@
 # --- !Ups
 
 create table apartment (
-  id                        bigint not null,
-  apartment_no              varchar(255),
-  user_account_id           bigint,
-  apartment_building_id     bigint,
+  id                        number(19) not null,
+  apartment_no              varchar2(255),
+  user_account_id           number(19),
+  apartment_building_id     number(19),
   constraint pk_apartment primary key (id))
 ;
 
 create table apartment_building (
-  id                        bigint not null,
-  name                      varchar(255),
-  address                   varchar(255),
-  real_estate_company_id    bigint,
+  id                        number(19) not null,
+  name                      varchar2(255),
+  address                   varchar2(255),
+  real_estate_company_id    number(19),
   constraint pk_apartment_building primary key (id))
 ;
 
 create table bill (
-  id                        bigint not null,
-  apartment_id              bigint,
-  description               varchar(255),
+  id                        number(19) not null,
+  apartment_id              number(19),
+  description               varchar2(255),
   date_of_issuing           timestamp,
   deadline                  timestamp,
-  status                    varchar(255),
-  amount                    double,
+  status                    varchar2(255),
+  amount                    number(19,4),
   constraint pk_bill primary key (id))
 ;
 
 create table bill_notification (
-  id                        bigint not null,
-  receiver_id               bigint,
+  id                        number(19) not null,
+  receiver_id               number(19),
   issue_date                timestamp,
-  status                    varchar(6),
-  bill_id                   bigint,
+  status                    varchar2(6),
+  bill_id                   number(19),
   constraint ck_bill_notification_status check (status in ('Read','Unread')),
   constraint pk_bill_notification primary key (id))
 ;
 
-create table maintenance_task (
-  id                        bigint not null,
-  apartment_building_id     bigint,
-  task_type                 varchar(255),
-  description               varchar(255),
-  status                    varchar(255),
-  date_of_issuing           timestamp,
-  deadline                  timestamp,
-  constraint pk_maintenance_task primary key (id))
-;
-
-create table maintenance_task_notification (
-  id                        bigint not null,
-  receiver_id               bigint,
-  issue_date                timestamp,
-  status                    varchar(6),
-  maintenance_task_id       bigint,
-  constraint ck_maintenance_task_notification_status check (status in ('Read','Unread')),
-  constraint pk_maintenance_task_notification primary key (id))
-;
-
 create table message (
-  internal_id               bigint not null,
-  THREAD_ID                 bigint not null,
-  time                      time,
-  body                      varchar(255),
-  is_read                   boolean,
-  sender_id                 bigint,
+  internal_id               number(19) not null,
+  THREAD_ID                 number(19) not null,
+  time                      timestamp,
+  body                      varchar2(255),
+  is_read                   number(1),
+  sender_id                 number(19),
   constraint pk_message primary key (internal_id))
 ;
 
 create table notice (
-  internal_id               bigint not null,
-  category                  varchar(255),
-  subject                   varchar(255),
+  internal_id               number(19) not null,
+  category                  varchar2(255),
+  subject                   varchar2(255),
   publish_date              date,
   valid_until               timestamp,
-  description               varchar(255),
-  published_by_id           bigint,
-  viewcount                 integer,
+  description               varchar2(255),
+  published_by_id           number(19),
+  viewcount                 number(10),
   constraint pk_notice primary key (internal_id))
 ;
 
 create table real_estate_company (
-  id                        bigint not null,
-  name                      varchar(255),
-  email                     varchar(255),
-  phone                     varchar(255),
-  address                   varchar(255),
+  id                        number(19) not null,
+  name                      varchar2(255),
+  email                     varchar2(255),
+  phone                     varchar2(255),
+  address                   varchar2(255),
   constraint pk_real_estate_company primary key (id))
 ;
 
+create table task (
+  id                        number(19) not null,
+  apartment_building_id     number(19),
+  task_type                 varchar2(255),
+  description               varchar2(255),
+  status                    varchar2(255),
+  date_of_issuing           timestamp,
+  deadline                  timestamp,
+  constraint pk_task primary key (id))
+;
+
+create table task_notification (
+  id                        number(19) not null,
+  receiver_id               number(19),
+  issue_date                timestamp,
+  status                    varchar2(6),
+  maintenance_task_id       number(19),
+  constraint ck_task_notification_status check (status in ('Read','Unread')),
+  constraint pk_task_notification primary key (id))
+;
+
 create table thread (
-  internal_id               bigint not null,
-  category                  varchar(255),
-  date                      date,
-  subject                   varchar(255),
-  sender_id                 bigint,
-  receiver_id               bigint,
-  status                    varchar(255),
-  occurrence                integer,
+  internal_id               number(19) not null,
+  category                  varchar2(255),
+  sent_time                 date,
+  subject                   varchar2(255),
+  sender_id                 number(19),
+  receiver_id               number(19),
+  status                    varchar2(255),
+  occurrence                number(10),
   constraint pk_thread primary key (internal_id))
 ;
 
 create table user_account (
-  id                        bigint auto_increment not null,
-  name                      varchar(255),
-  email                     varchar(255),
-  phone                     varchar(255),
-  password                  varchar(255),
-  account_type              varchar(10),
+  id                        number(19) not null,
+  name                      varchar2(255),
+  email                     varchar2(255),
+  phone                     varchar2(255),
+  password                  varchar2(255),
+  account_type              varchar2(10),
   join_date                 timestamp,
-  apartment_id              bigint,
+  apartment_id              number(19),
   constraint ck_user_account_account_type check (account_type in ('Resident','Manager','Supervisor')),
   constraint uq_user_account_email unique (email),
   constraint pk_user_account primary key (id))
@@ -126,96 +126,51 @@ create sequence bill_seq;
 
 create sequence bill_notification_seq;
 
-create sequence maintenance_task_seq;
-
-create sequence maintenance_task_notification_seq;
-
 create sequence message_seq;
 
 create sequence notice_seq;
 
 create sequence real_estate_company_seq;
 
+create sequence task_seq;
+
+create sequence task_notification_seq;
+
 create sequence thread_seq;
 
-alter table apartment add constraint fk_apartment_userAccount_1 foreign key (user_account_id) references user_account (id) on delete restrict on update restrict;
+create sequence user_account_seq;
+
+alter table apartment add constraint fk_apartment_userAccount_1 foreign key (user_account_id) references user_account (id);
 create index ix_apartment_userAccount_1 on apartment (user_account_id);
-alter table apartment add constraint fk_apartment_apartmentBuilding_2 foreign key (apartment_building_id) references apartment_building (id) on delete restrict on update restrict;
-create index ix_apartment_apartmentBuilding_2 on apartment (apartment_building_id);
-alter table apartment_building add constraint fk_apartment_building_realEsta_3 foreign key (real_estate_company_id) references real_estate_company (id) on delete restrict on update restrict;
-create index ix_apartment_building_realEsta_3 on apartment_building (real_estate_company_id);
-alter table bill add constraint fk_bill_apartment_4 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+alter table apartment add constraint fk_apartment_apartmentBuildi_2 foreign key (apartment_building_id) references apartment_building (id);
+create index ix_apartment_apartmentBuildi_2 on apartment (apartment_building_id);
+alter table apartment_building add constraint fk_apartment_building_realEs_3 foreign key (real_estate_company_id) references real_estate_company (id);
+create index ix_apartment_building_realEs_3 on apartment_building (real_estate_company_id);
+alter table bill add constraint fk_bill_apartment_4 foreign key (apartment_id) references apartment (id);
 create index ix_bill_apartment_4 on bill (apartment_id);
-alter table bill_notification add constraint fk_bill_notification_receiver_5 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
-create index ix_bill_notification_receiver_5 on bill_notification (receiver_id);
-alter table bill_notification add constraint fk_bill_notification_bill_6 foreign key (bill_id) references bill (id) on delete restrict on update restrict;
+alter table bill_notification add constraint fk_bill_notification_receive_5 foreign key (receiver_id) references user_account (id);
+create index ix_bill_notification_receive_5 on bill_notification (receiver_id);
+alter table bill_notification add constraint fk_bill_notification_bill_6 foreign key (bill_id) references bill (id);
 create index ix_bill_notification_bill_6 on bill_notification (bill_id);
-alter table maintenance_task add constraint fk_maintenance_task_apartmentB_7 foreign key (apartment_building_id) references apartment_building (id) on delete restrict on update restrict;
-create index ix_maintenance_task_apartmentB_7 on maintenance_task (apartment_building_id);
-alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_8 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
-create index ix_maintenance_task_notificati_8 on maintenance_task_notification (receiver_id);
-alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_9 foreign key (maintenance_task_id) references maintenance_task (id) on delete restrict on update restrict;
-create index ix_maintenance_task_notificati_9 on maintenance_task_notification (maintenance_task_id);
-alter table message add constraint fk_message_thread_10 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
-create index ix_message_thread_10 on message (THREAD_ID);
-alter table message add constraint fk_message_sender_11 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
-create index ix_message_sender_11 on message (sender_id);
-alter table notice add constraint fk_notice_publishedBy_12 foreign key (published_by_id) references user_account (id) on delete restrict on update restrict;
-create index ix_notice_publishedBy_12 on notice (published_by_id);
-alter table thread add constraint fk_thread_sender_13 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
+alter table message add constraint fk_message_thread_7 foreign key (THREAD_ID) references thread (internal_id);
+create index ix_message_thread_7 on message (THREAD_ID);
+alter table message add constraint fk_message_sender_8 foreign key (sender_id) references user_account (id);
+create index ix_message_sender_8 on message (sender_id);
+alter table notice add constraint fk_notice_publishedBy_9 foreign key (published_by_id) references user_account (id);
+create index ix_notice_publishedBy_9 on notice (published_by_id);
+alter table task add constraint fk_task_apartmentBuilding_10 foreign key (apartment_building_id) references apartment_building (id);
+create index ix_task_apartmentBuilding_10 on task (apartment_building_id);
+alter table task_notification add constraint fk_task_notification_receiv_11 foreign key (receiver_id) references user_account (id);
+create index ix_task_notification_receiv_11 on task_notification (receiver_id);
+alter table task_notification add constraint fk_task_notification_mainte_12 foreign key (maintenance_task_id) references task (id);
+create index ix_task_notification_mainte_12 on task_notification (maintenance_task_id);
+alter table thread add constraint fk_thread_sender_13 foreign key (sender_id) references user_account (id);
 create index ix_thread_sender_13 on thread (sender_id);
-alter table thread add constraint fk_thread_receiver_14 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+alter table thread add constraint fk_thread_receiver_14 foreign key (receiver_id) references user_account (id);
 create index ix_thread_receiver_14 on thread (receiver_id);
-alter table user_account add constraint fk_user_account_apartment_15 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+alter table user_account add constraint fk_user_account_apartment_15 foreign key (apartment_id) references apartment (id);
 create index ix_user_account_apartment_15 on user_account (apartment_id);
 
 
 
-# --- !Downs
-
-SET REFERENTIAL_INTEGRITY FALSE;
-
-drop table if exists apartment;
-
-drop table if exists apartment_building;
-
-drop table if exists bill;
-
-drop table if exists bill_notification;
-
-drop table if exists maintenance_task;
-
-drop table if exists maintenance_task_notification;
-
-drop table if exists message;
-
-drop table if exists notice;
-
-drop table if exists real_estate_company;
-
-drop table if exists thread;
-
-drop table if exists user_account;
-
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists apartment_seq;
-
-drop sequence if exists apartment_building_seq;
-
-drop sequence if exists bill_seq;
-
-drop sequence if exists bill_notification_seq;
-
-drop sequence if exists maintenance_task_seq;
-
-drop sequence if exists maintenance_task_notification_seq;
-
-drop sequence if exists message_seq;
-
-drop sequence if exists notice_seq;
-
-drop sequence if exists real_estate_company_seq;
-
-drop sequence if exists thread_seq;
 

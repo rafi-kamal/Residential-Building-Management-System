@@ -8,7 +8,7 @@ import java.util.Map;
 
 import models.ApartmentBuilding;
 import models.Bill;
-import models.MaintenanceTask;
+import models.Task;
 import models.UserAccount;
 import play.Logger;
 import play.data.Form;
@@ -17,7 +17,7 @@ import play.mvc.Result;
 
 public class MaintenanceTaskController extends Controller {
 	
-	static public Form<MaintenanceTask> taskForm  = Form.form(MaintenanceTask.class);
+	static public Form<Task> taskForm  = Form.form(Task.class);
 	
 	public static Result createTask(){		
 		return ok(views.html.maintenance.createTask.render(taskForm));
@@ -47,7 +47,7 @@ public class MaintenanceTaskController extends Controller {
 		UserAccount user =  UserAccount.find.byId(Long.parseLong(session("userId")));
 		ApartmentBuilding building = user.apartment.apartmentBuilding;
     	
-    	MaintenanceTask maintenanceTask = new MaintenanceTask(building, taskType, description, status, deadline);
+    	Task maintenanceTask = new Task(building, taskType, description, status, deadline);
     	maintenanceTask.save();
     	taskForm = taskForm.fill(maintenanceTask);
     	return ok(views.html.maintenance.postTask.render(taskForm));
@@ -55,20 +55,20 @@ public class MaintenanceTaskController extends Controller {
     }
 	
 	public static Result showAllTasks() {		
-		List<MaintenanceTask> tasks = MaintenanceTask.find.all();
+		List<Task> tasks = Task.find.all();
 		return ok(views.html.maintenance.showTasks.render(tasks, "Archived Tasks"));
 	}
 	
 	public static Result showActiveTasks() {
 		Date now = new Date();
-		List<MaintenanceTask> activeTasks = MaintenanceTask.find.where().eq("status", "Queued").findList();
+		List<Task> activeTasks = Task.find.where().eq("status", "Queued").findList();
 		return ok(views.html.maintenance.showTasks.render(activeTasks, "Active Tasks"));
 		//return ok(views.html.maintenance.viewactivetasks.render(activeTasks));
 	}
 	
 	public static Result showArchivedTasks() {
 		Date now = new Date();
-		List<MaintenanceTask> archivedTasks = MaintenanceTask.find.where().lt("deadline", now).findList();
+		List<Task> archivedTasks = Task.find.where().lt("deadline", now).findList();
 		return ok(views.html.maintenance.showTasks.render(archivedTasks, "Archived Tasks"));
 		//return ok(views.html.maintenance.viewarchivedtasks.render(activeTasks));
 	}
@@ -76,7 +76,7 @@ public class MaintenanceTaskController extends Controller {
 	public static Result setTaskCompleted() {
 		Map<String, String[]> params = request().body().asFormUrlEncoded();
 		String id = params.get("id")[0];
-		MaintenanceTask task = MaintenanceTask.find.byId(Long.parseLong(id));
+		Task task = Task.find.byId(Long.parseLong(id));
 		task.status = "Completed";
 		return showActiveTasks();		
 	}
