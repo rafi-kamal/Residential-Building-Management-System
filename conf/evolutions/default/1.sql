@@ -188,5 +188,3 @@ alter table user_account add constraint fk_user_account_apartment_17 foreign key
 create index ix_user_account_apartment_17 on user_account (apartment_id);
 
 
-
-
