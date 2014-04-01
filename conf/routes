@@ -59,6 +59,9 @@ POST 	/admin/addApartment			controllers.admin.ApartmentController.addApartment()
 
 POST	/admin/updateUser/:userId/:accountType	controllers.admin.UserController.updateUser(userId: Long, accountType: String)
 
+# notifications
+GET		/notifications				controllers.notifications.NotificationController.index()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
