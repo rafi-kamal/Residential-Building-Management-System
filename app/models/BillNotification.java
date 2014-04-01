@@ -16,4 +16,11 @@ public class BillNotification extends Notification {
 	
 	public static Finder<Long, BillNotification> find = 
 			new Finder<Long, BillNotification> (Long.class, BillNotification.class);
+	
+	@Override
+	public String getNotificationMessage() {
+		return "You have a new bill " + bill.description
+				+ "; issued at " + bill.dateOfIssuing
+				+ ". You have to pay it within " + bill.deadline + ".";
+	}
 }
