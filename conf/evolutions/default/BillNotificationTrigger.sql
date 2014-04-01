@@ -10,8 +10,8 @@ BEGIN
 	from USER_ACCOUNT
 	where USER_ACCOUNT.apartment_id = :new.apartment_id;
 	
-	insert into BILL_NOTIFICATION (receiver_id, bill_id)
-	values(user_id, :new.id);
+	insert into BILL_NOTIFICATION (id, receiver_id, bill_id)
+	values(:new.id, user_id, :new.id);
 	
 END;
 /
