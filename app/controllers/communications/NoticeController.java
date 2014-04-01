@@ -1,6 +1,8 @@
 package controllers.communications;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
@@ -34,8 +36,18 @@ public class NoticeController extends Controller{
 	    String description = params.get("description")[0];
 	    String validity = params.get("validUntil")[0];
 	    
-	    Date validUntil = new Date(validity);
-	      
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+	    Date validUntil = null;
+	    
+		try {
+			validUntil = dateFormat.parse(validity);
+			//Logger.debug(deadline.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 	    UserAccount publishedBy = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
 	    Notice notice = new Notice(category, subject, LocalDate.now(), validUntil, description, publishedBy);
 	    notice.save();
