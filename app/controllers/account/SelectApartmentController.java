@@ -1,11 +1,16 @@
 package controllers.account;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import models.Apartment;
 import models.ApartmentBuilding;
 import models.RealEstateCompany;
+import models.UserAccount;
+import play.Logger;
+import play.api.db.DB;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -54,4 +59,21 @@ public class SelectApartmentController extends Controller {
 		return ok(Json.toJson(apartmentNames));
 	}
     
+	public static Result selectApartment() {
+		Map<String, String[]> params = request().body().asFormUrlEncoded();
+		
+		Long apartmentId = Long.parseLong(params.get("apartment")[0]);
+		
+		UserAccount user = UserAccount.find.byId(Long.parseLong(session("userId")));
+		user.apartment = Apartment.find.byId(apartmentId);
+		
+		Logger.debug(user.toString());
+		
+		user.save();
+		
+		user = UserAccount.find.byId(Long.parseLong(session("userId")));
+		Logger.debug(user.toString());
+		
+		return redirect("/profile");
+	}
 }

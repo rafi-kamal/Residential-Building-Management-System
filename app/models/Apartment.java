@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
 import play.data.validation.Constraints.Required;
@@ -26,6 +27,9 @@ public class Apartment extends Model {
 	
 	@Required
 	public String apartmentNo;
+	
+	@OneToOne
+	public UserAccount userAccount;
 
 	@Valid
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -33,4 +37,11 @@ public class Apartment extends Model {
 	
 	public static Finder<Long, Apartment> find = 
 			new Finder<Long, Apartment> (Long.class, Apartment.class);
+
+	@Override
+	public String toString() {
+		return "Apartment [id=" + id + ", apartmentNo=" + apartmentNo
+				+ ", apartmentBuilding=" + apartmentBuilding + "]";
+	}
+	
 }

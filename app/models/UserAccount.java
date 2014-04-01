@@ -6,9 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
@@ -59,7 +61,8 @@ public class UserAccount extends Model {
 	public Date joinDate = new Date();
 	
 	@Valid
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="apartment_id")
 	public Apartment apartment;
 	
 	public static Finder<Long, UserAccount> find = 
@@ -67,9 +70,10 @@ public class UserAccount extends Model {
 
 	@Override
 	public String toString() {
-		return "UserAccount [name=" + name + ", phone="
-				+ phone + ", accountType=" + accountType + ", joinDate="
-				+ joinDate + "]";
+		return "UserAccount [id=" + id + ", name=" + name + ", email=" + email
+				+ ", phone=" + phone + ", password=" + password
+				+ ", accountType=" + accountType + ", joinDate=" + joinDate
+				+ ", apartment=" + apartment + "]";
 	}
 	
 }

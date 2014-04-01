@@ -6,6 +6,7 @@
 create table apartment (
   id                        bigint not null,
   apartment_no              varchar(255),
+  user_account_id           bigint,
   apartment_building_id     bigint,
   constraint pk_apartment primary key (id))
 ;
@@ -137,34 +138,36 @@ create sequence real_estate_company_seq;
 
 create sequence thread_seq;
 
-alter table apartment add constraint fk_apartment_apartmentBuilding_1 foreign key (apartment_building_id) references apartment_building (id) on delete restrict on update restrict;
-create index ix_apartment_apartmentBuilding_1 on apartment (apartment_building_id);
-alter table apartment_building add constraint fk_apartment_building_realEsta_2 foreign key (real_estate_company_id) references real_estate_company (id) on delete restrict on update restrict;
-create index ix_apartment_building_realEsta_2 on apartment_building (real_estate_company_id);
-alter table bill add constraint fk_bill_apartment_3 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
-create index ix_bill_apartment_3 on bill (apartment_id);
-alter table bill_notification add constraint fk_bill_notification_receiver_4 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
-create index ix_bill_notification_receiver_4 on bill_notification (receiver_id);
-alter table bill_notification add constraint fk_bill_notification_bill_5 foreign key (bill_id) references bill (id) on delete restrict on update restrict;
-create index ix_bill_notification_bill_5 on bill_notification (bill_id);
-alter table maintenance_task add constraint fk_maintenance_task_apartmentB_6 foreign key (apartment_building_id) references apartment_building (id) on delete restrict on update restrict;
-create index ix_maintenance_task_apartmentB_6 on maintenance_task (apartment_building_id);
-alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_7 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
-create index ix_maintenance_task_notificati_7 on maintenance_task_notification (receiver_id);
-alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_8 foreign key (maintenance_task_id) references maintenance_task (id) on delete restrict on update restrict;
-create index ix_maintenance_task_notificati_8 on maintenance_task_notification (maintenance_task_id);
-alter table message add constraint fk_message_thread_9 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
-create index ix_message_thread_9 on message (THREAD_ID);
-alter table message add constraint fk_message_sender_10 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
-create index ix_message_sender_10 on message (sender_id);
-alter table notice add constraint fk_notice_publishedBy_11 foreign key (published_by_id) references user_account (id) on delete restrict on update restrict;
-create index ix_notice_publishedBy_11 on notice (published_by_id);
-alter table thread add constraint fk_thread_sender_12 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
-create index ix_thread_sender_12 on thread (sender_id);
-alter table thread add constraint fk_thread_receiver_13 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
-create index ix_thread_receiver_13 on thread (receiver_id);
-alter table user_account add constraint fk_user_account_apartment_14 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
-create index ix_user_account_apartment_14 on user_account (apartment_id);
+alter table apartment add constraint fk_apartment_userAccount_1 foreign key (user_account_id) references user_account (id) on delete restrict on update restrict;
+create index ix_apartment_userAccount_1 on apartment (user_account_id);
+alter table apartment add constraint fk_apartment_apartmentBuilding_2 foreign key (apartment_building_id) references apartment_building (id) on delete restrict on update restrict;
+create index ix_apartment_apartmentBuilding_2 on apartment (apartment_building_id);
+alter table apartment_building add constraint fk_apartment_building_realEsta_3 foreign key (real_estate_company_id) references real_estate_company (id) on delete restrict on update restrict;
+create index ix_apartment_building_realEsta_3 on apartment_building (real_estate_company_id);
+alter table bill add constraint fk_bill_apartment_4 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+create index ix_bill_apartment_4 on bill (apartment_id);
+alter table bill_notification add constraint fk_bill_notification_receiver_5 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+create index ix_bill_notification_receiver_5 on bill_notification (receiver_id);
+alter table bill_notification add constraint fk_bill_notification_bill_6 foreign key (bill_id) references bill (id) on delete restrict on update restrict;
+create index ix_bill_notification_bill_6 on bill_notification (bill_id);
+alter table maintenance_task add constraint fk_maintenance_task_apartmentB_7 foreign key (apartment_building_id) references apartment_building (id) on delete restrict on update restrict;
+create index ix_maintenance_task_apartmentB_7 on maintenance_task (apartment_building_id);
+alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_8 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+create index ix_maintenance_task_notificati_8 on maintenance_task_notification (receiver_id);
+alter table maintenance_task_notification add constraint fk_maintenance_task_notificati_9 foreign key (maintenance_task_id) references maintenance_task (id) on delete restrict on update restrict;
+create index ix_maintenance_task_notificati_9 on maintenance_task_notification (maintenance_task_id);
+alter table message add constraint fk_message_thread_10 foreign key (THREAD_ID) references thread (internal_id) on delete restrict on update restrict;
+create index ix_message_thread_10 on message (THREAD_ID);
+alter table message add constraint fk_message_sender_11 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
+create index ix_message_sender_11 on message (sender_id);
+alter table notice add constraint fk_notice_publishedBy_12 foreign key (published_by_id) references user_account (id) on delete restrict on update restrict;
+create index ix_notice_publishedBy_12 on notice (published_by_id);
+alter table thread add constraint fk_thread_sender_13 foreign key (sender_id) references user_account (id) on delete restrict on update restrict;
+create index ix_thread_sender_13 on thread (sender_id);
+alter table thread add constraint fk_thread_receiver_14 foreign key (receiver_id) references user_account (id) on delete restrict on update restrict;
+create index ix_thread_receiver_14 on thread (receiver_id);
+alter table user_account add constraint fk_user_account_apartment_15 foreign key (apartment_id) references apartment (id) on delete restrict on update restrict;
+create index ix_user_account_apartment_15 on user_account (apartment_id);
 
 
 

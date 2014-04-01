@@ -10,18 +10,18 @@
 		<h2>Select Apartment</h2>
 	</div>
 	<hr/>
-	<form id="form-select-apartment" role="form" method="post" action="">
-		<p><select class="form-control" id="selectRealEstate" onChange="getApartmentBuildings($(this));">
+	<form id="form-select-apartment" role="form" method="post" action="/selectApartment">
+		<p><select class="form-control" id="selectRealEstate" name="realEstateCompany" onChange="getApartmentBuildings($(this));">
 			@for(company <- companies) {
 				<option value="@company.id">@company.name</option>
 			}
 		</select></p>
 		
-		<p><select class="form-control" id="selectBuilding" onChange="getApartments($(this));">
+		<p><select class="form-control" id="selectBuilding" name="apartmentBuilding" onChange="getApartments($(this));">
 			
 		</select></p>
 		
-		<p><select class="form-control" id="selectApartment">
+		<p><select class="form-control" id="selectApartment" name="apartment">
 			
 		</select></p>
 		<script>
