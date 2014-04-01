@@ -31,7 +31,7 @@ public class Notification extends play.db.ebean.Model {
 	
 	@Required
 	@Enumerated(EnumType.STRING)
-	public NotificationStatus status;
+	public NotificationStatus status = NotificationStatus.Unread;
 	
 	public static Finder<Long, Notification> find = 
 			new Finder<Long, Notification> (Long.class, Notification.class);
