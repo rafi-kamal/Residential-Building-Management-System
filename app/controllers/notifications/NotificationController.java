@@ -27,6 +27,16 @@ public class NotificationController extends Controller {
         		.eq("receiver_id", session("userId"))
         		.findList();
         
+        for (BillNotification billNotification : billNotifications) {
+        	billNotification.status = NotificationStatus.Read;
+        	billNotification.save();
+        }
+        
+        for (MessageNotification messageNotification : messageNotifications) {
+        	messageNotification.status = NotificationStatus.Read;
+        	messageNotification.save();
+        }
+        
         notifications.addAll(billNotifications);
         notifications.addAll(messageNotifications);
         
