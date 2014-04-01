@@ -31,6 +31,8 @@ public class Notice extends play.db.ebean.Model {
 	public Date validUntil;
 	
 	@Required 
+	@MaxLength(2048)
+	@MinLength(10)
 	public String description;
 	
 	@ManyToOne
