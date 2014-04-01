@@ -1,10 +1,11 @@
 @(notifications: List[models.Notification])
 
 @common.main("Maintenance Tasks") {
+	<table>
 	@for(notification <- notifications) {
 		<tr>
-			<td>@notification.getNotificationMessage()</td>
-			<td>@notification.issueDate</td>	
+			<td><a href="@notification.getUrl()">@notification.getNotificationMessage()</a></td>
 		</tr>
-	} 
+	}
+	</table>
 }

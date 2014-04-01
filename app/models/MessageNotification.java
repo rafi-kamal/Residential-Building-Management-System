@@ -22,4 +22,9 @@ public class MessageNotification extends Notification {
 		return "You have a new message from " + message.sender.name
 				+ "; sent at " + message.time;
 	}
+	
+	@Override
+	public String getUrl() {
+		return "/allthreads";
+	}
 }

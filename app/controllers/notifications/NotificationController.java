@@ -6,7 +6,6 @@ import java.util.List;
 import models.BillNotification;
 import models.MessageNotification;
 import models.Notification;
-import models.TaskNotification;
 import play.mvc.Controller;
 import play.mvc.Result;
 import enums.NotificationStatus;

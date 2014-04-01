@@ -23,4 +23,9 @@ public class BillNotification extends Notification {
 				+ "; issued at " + bill.dateOfIssuing
 				+ ". You have to pay it within " + bill.deadline + ".";
 	}
+	
+	@Override
+	public String getUrl() {
+		return "/showAllBills";
+	}
 }
