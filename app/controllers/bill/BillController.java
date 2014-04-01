@@ -34,9 +34,10 @@ public class BillController extends Controller {
 		String dline = params.get("deadline")[0];
 		String amnt = params.get("amount")[0];
 		
+		
 		Double amount = Double.parseDouble(amnt);
 		
-		Logger.debug(dline);
+		//Logger.debug(dline);
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		

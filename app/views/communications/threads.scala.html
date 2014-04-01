@@ -7,7 +7,7 @@
     @helper.form(action = controllers.communications.routes.ThreadController.loadThread) {
       <select>
         @archivedThreads.sortBy(_.occurrence).map { t =>
-        <option value="@t.internalId">@t.subject on @t.date</option>
+        <option value="@t.internalId">@t.subject on @t.sentTime</option>
         }
       </select>
       <button>Show</button>
@@ -16,7 +16,7 @@
     @helper.form(action = controllers.communications.routes.ThreadController.loadThread) {
       <select name="threadid">
         @activeThreads.sortBy(_.occurrence).map { t =>
-        <option value="@t.internalId">@t.subject on @t.date</option>
+        <option value="@t.internalId">@t.subject on @t.sentTime</option>
         }
       </select>
       <button>Load</button>

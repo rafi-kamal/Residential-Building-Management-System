@@ -1,17 +1,21 @@
 package models;
 
-import java.util.*;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.joda.time.LocalDate;
 
-import play.data.*;
-import play.data.validation.Constraints.*;
-
-import javax.validation.Valid;
-import javax.persistence.*;
+import play.data.validation.Constraints.Required;
 
 @Entity 
 public class Notice extends play.db.ebean.Model {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	public Long internalId;

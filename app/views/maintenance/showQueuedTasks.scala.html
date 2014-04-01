@@ -1,4 +1,4 @@
-@(tasks:List[MaintenanceTask], listHeading:String)
+@(tasks:List[Task], listHeading:String)
 
 @common.main("Maintenance Tasks") {
 
@@ -29,7 +29,7 @@
 		        <th> <h5>@task.dateOfIssuing</h5> </th>
 		        <th> <h5>@task.deadline</h5> </th>
 		        <th>
-		        	<form action=@controllers.maintenance.routes.MaintenanceTaskController.setTaskCompleted(task.id)><button type="submit"> </button></form>
+		        	<form action=@controllers.maintenance.routes.MaintenanceTaskController.setTaskCompleted(task.id)><button type="submit"> Set as completed </button></form>
 		        </th>		    
 		    </tr>
 		    }
