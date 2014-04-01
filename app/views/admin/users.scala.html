@@ -11,13 +11,15 @@
 			
 			<td>
 				<div class="btn-group">
-					<form method="post" action="/admin/updateUser/@user.id/AccountType.Resident">
+					<form method="post" action="/admin/updateUser/@user.id/Resident">
 					<button type="submit" class="btn @{if (user.accountType != AccountType.Resident)
 						"btn-default" else "btn-success"}">Resident</button></form>
+					<form method="post" action="/admin/updateUser/@user.id/Manager">
 					<button type="button" class="btn @{if (user.accountType != AccountType.Manager)
-						"btn-default" else "btn-success"}">Manager</button>
+						"btn-default" else "btn-success"}">Manager</button></form>
+					<form method="post" action="/admin/updateUser/@user.id/Supervisor">
 					<button type="button" class="btn @{if (user.accountType != AccountType.Supervisor)
-						"btn-default" else "btn-success"}">Supervisor</button>
+						"btn-default" else "btn-success"}">Supervisor</button></form>
 				</div>
 			</td>
 		</tr>			
