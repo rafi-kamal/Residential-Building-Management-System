@@ -56,7 +56,7 @@ public class MaintenanceTaskController extends Controller {
 	
 	public static Result showAllTasks() {		
 		List<Task> tasks = Task.find.all();
-		return ok(views.html.maintenance.showTasks.render(tasks, "Archived Tasks"));
+		return ok(views.html.maintenance.showTasks.render(tasks, "Maintenance Tasks"));
 	}
 	
 	public static Result showActiveTasks() {

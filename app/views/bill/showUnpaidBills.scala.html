@@ -12,6 +12,7 @@
 		
 		<tr>
 			<th> <h4> ID </h4> </th>
+			<th> <h4> Apartment </h4> </th>
 			<th> <h4> Description </h4> </th>
 			<th> <h4> Date of Issuing </h4> </th>
 			<th> <h4> Deadline </h4> </th>
@@ -23,6 +24,7 @@
 		@for(bill <- bills){
 			<tr>		    
 		        <th> <h5>@bill.id</h5> </th>
+		        <th> <h5>@bill.apartment.apartmentNo</h5> </th>
 		        <th> <h5>@bill.description</h5> </th>
 		        <th> <h5>@bill.dateOfIssuing</h5> </th>
 		        <th> <h5>@bill.deadline</h5> </th>
