@@ -12,6 +12,7 @@
 	<hr/>
 	<form id="form-select-apartment" role="form" method="post" action="">
 		<p><select class="form-control" id="selectRealEstate">
+			<option>Select Real Estate Company</option>
 			@for(company <- companies) {
 				<option value="@company.id">@company.name</option>
 			}
@@ -24,20 +25,20 @@
 		<p><select class="form-control" id="selectApartment">
 			
 		</select></p>
-		
-		<button type="submit" class="btn btn-success btn-block" id="selectApartmentSubmit">Submit</button>
-		
 		<script>
-			$("#selectRealEstate").change(function() {
-				$.getJSON("/getApartmentBuilding/" + $(this).val(),
+		$("#selectRealEstate").change(function() {
+			$.getJSON("/getApartmentBuilding/" + $(this).val(), {},
 				function(json) {
+				$("#selectBuilding").empty();
 					for (var i = 0; i < json.length; i++) {
-						$("#selectBuilding").append("<option value=" + json[i].id + ">" + 
-							json[i].name + "</option>");
+						$("#selectBuilding")
+							.append("<option value=" + json[i].id + ">" + json[i].name + "</option>");
 					}
 				}
-			};
+			)
+		});
 		</script>
+		<button type="submit" class="btn btn-success btn-block" id="selectApartmentSubmit">Submit</button>
 	</form>
 </div>
 }

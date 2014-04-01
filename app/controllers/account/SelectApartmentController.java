@@ -3,8 +3,11 @@ package controllers.account;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.internal.util.logging.Log;
+
 import models.ApartmentBuilding;
 import models.RealEstateCompany;
+import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -33,6 +36,9 @@ public class SelectApartmentController extends Controller {
     	for (ApartmentBuilding apartmentBuilding : apartmentBuildings) {
     		apartmentBuildingNames.add(new Container(apartmentBuilding.id, apartmentBuilding.name));
     	}
+    	
+    	Logger.debug(apartmentBuildingNames.toString());
+    	
     	return ok(Json.toJson(apartmentBuildingNames));
     }
     
