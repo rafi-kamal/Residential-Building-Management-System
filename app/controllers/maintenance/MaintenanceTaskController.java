@@ -62,7 +62,7 @@ public class MaintenanceTaskController extends Controller {
 	public static Result showActiveTasks() {
 		Date now = new Date();
 		List<Task> activeTasks = Task.find.where().eq("status", "Queued").findList();
-		return ok(views.html.maintenance.showTasks.render(activeTasks, "Active Tasks"));
+		return ok(views.html.maintenance.showQueuedTasks.render(activeTasks, "Active Tasks"));
 		//return ok(views.html.maintenance.viewactivetasks.render(activeTasks));
 	}
 	
@@ -73,11 +73,10 @@ public class MaintenanceTaskController extends Controller {
 		//return ok(views.html.maintenance.viewarchivedtasks.render(activeTasks));
 	}
 	
-	public static Result setTaskCompleted() {
-		Map<String, String[]> params = request().body().asFormUrlEncoded();
-		String id = params.get("id")[0];
-		Task task = Task.find.byId(Long.parseLong(id));
+	public static Result setTaskCompleted(Long id) {
+		Task task = Task.find.byId(id);
 		task.status = "Completed";
+		task.save();
 		return showActiveTasks();		
 	}
 	
