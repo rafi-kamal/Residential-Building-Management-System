@@ -3,11 +3,9 @@ package controllers.account;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.validator.internal.util.logging.Log;
-
+import models.Apartment;
 import models.ApartmentBuilding;
 import models.RealEstateCompany;
-import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -19,27 +17,41 @@ public class SelectApartmentController extends Controller {
     	return ok(views.html.account.selectApartment.render(companies));
     }
     
+    static class Container {
+		public Long id;
+		public String name;
+		public Container(Long id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+	}
+    
     public static Result getApartmentBuildings(Long realEstateId) {
     	List<ApartmentBuilding> apartmentBuildings = ApartmentBuilding.find
     			.where()
     			.eq("real_estate_company_id", realEstateId)
     			.findList();
-    	class Container {
-    		public Long id;
-    		public String name;
-			public Container(Long id, String name) {
-				this.id = id;
-				this.name = name;
-			}
-    	}
+    
     	List<Container> apartmentBuildingNames = new ArrayList<Container>();
     	for (ApartmentBuilding apartmentBuilding : apartmentBuildings) {
     		apartmentBuildingNames.add(new Container(apartmentBuilding.id, apartmentBuilding.name));
     	}
     	
-    	Logger.debug(apartmentBuildingNames.toString());
-    	
     	return ok(Json.toJson(apartmentBuildingNames));
     }
+    
+	public static Result getApartments(Long buildingId) {
+		List<Apartment> apartments = Apartment.find
+				.where()
+				.eq("apartment_building_id", buildingId)
+				.findList();
+		
+		List<Container> apartmentNames = new ArrayList<Container>();
+		for (Apartment apartment : apartments) {
+			apartmentNames.add(new Container(apartment.id, apartment.apartmentNo));
+		}
+		
+		return ok(Json.toJson(apartmentNames));
+	}
     
 }

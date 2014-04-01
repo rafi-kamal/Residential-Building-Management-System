@@ -13,6 +13,7 @@ GET		/profile					controllers.account.ProfileController.index(id: Long ?= -1)
 GET		/verifyAccount				controllers.account.VerifyAccount.index()
 GET		/showAllProfiles			controllers.account.ProfileController.showAllProfiles()
 GET		/getApartmentBuilding/:realEstateId		controllers.account.SelectApartmentController.getApartmentBuildings(realEstateId: Long)
+GET		/getApartment/:buildingId	controllers.account.SelectApartmentController.getApartments(buildingId: Long)
 
 # Bill & Maintenance
 GET		/createBill					controllers.bill.BillController.createBill()

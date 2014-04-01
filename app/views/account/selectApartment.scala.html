@@ -11,14 +11,13 @@
 	</div>
 	<hr/>
 	<form id="form-select-apartment" role="form" method="post" action="">
-		<p><select class="form-control" id="selectRealEstate">
-			<option>Select Real Estate Company</option>
+		<p><select class="form-control" id="selectRealEstate" onChange="getApartmentBuildings($(this));">
 			@for(company <- companies) {
 				<option value="@company.id">@company.name</option>
 			}
 		</select></p>
 		
-		<p><select class="form-control" id="selectBuilding">
+		<p><select class="form-control" id="selectBuilding" onChange="getApartments($(this));">
 			
 		</select></p>
 		
@@ -26,17 +25,33 @@
 			
 		</select></p>
 		<script>
-		$("#selectRealEstate").change(function() {
-			$.getJSON("/getApartmentBuilding/" + $(this).val(), {},
+		
+		function getApartmentBuildings(e) {
+			$.getJSON("/getApartmentBuilding/" + $(e).val(), {},
 				function(json) {
 				$("#selectBuilding").empty();
 					for (var i = 0; i < json.length; i++) {
 						$("#selectBuilding")
 							.append("<option value=" + json[i].id + ">" + json[i].name + "</option>");
 					}
+					getApartments($("#selectBuilding").children(":first"));
 				}
 			)
-		});
+		};
+
+		function getApartments(e) {
+			$.getJSON("/getApartment/" + $(e).val(), {},
+				function(json) {
+				$("#selectApartment").empty();
+					for (var i = 0; i < json.length; i++) {
+						$("#selectApartment")
+							.append("<option value=" + json[i].id + ">" + json[i].name + "</option>");
+					}
+				}
+			)
+		};
+
+		getApartmentBuildings($("#selectRealEstate").children(":first"));
 		</script>
 		<button type="submit" class="btn btn-success btn-block" id="selectApartmentSubmit">Submit</button>
 	</form>
