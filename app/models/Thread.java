@@ -29,7 +29,7 @@ public class Thread extends play.db.ebean.Model {
 	@Required
 	public String category;
 	
-	public LocalDate date=LocalDate.now();
+	public LocalDate sentTime=LocalDate.now();
 	
 	public String subject="(No Subject)";
 	
@@ -55,7 +55,7 @@ public class Thread extends play.db.ebean.Model {
 	
 	public Thread(String category, LocalDate date, String subject, UserAccount sender, UserAccount receiver) {
 		this.category=category;
-		this.date=date;
+		this.sentTime=date;
 		this.subject=subject;
 		this.sender=sender;
 		this.receiver=receiver;
@@ -64,7 +64,7 @@ public class Thread extends play.db.ebean.Model {
 	public static Finder<Long, Thread> find = new Finder<Long, Thread> (Long.class, Thread.class);
 	
 	 public static int occurrencesFor(LocalDate date) {
-		    return find.where("date = :date").setParameter("date", date).findRowCount();
+		    return find.where("sentTime = :date").setParameter("date", date).findRowCount();
 		  }
 	
 }

@@ -8,7 +8,7 @@ import play.db.ebean.*;
 import javax.persistence.*;
 
 @Entity
-public class MaintenanceTask extends Model {
+public class Task extends Model {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,10 +31,10 @@ public class MaintenanceTask extends Model {
 
 	public Date deadline;
 
-	public MaintenanceTask() {
+	public Task() {
 	}	
 	
-	public MaintenanceTask(ApartmentBuilding apartmentBuilding, String taskType, String description, String status, Date deadline){
+	public Task(ApartmentBuilding apartmentBuilding, String taskType, String description, String status, Date deadline){
 		this.apartmentBuilding = apartmentBuilding;
 		this.taskType = taskType;
 		this.description = description;
@@ -42,5 +42,5 @@ public class MaintenanceTask extends Model {
 		this.deadline = deadline;
 	}
 	
-	public static Finder<Long, MaintenanceTask> find = new Finder<Long, MaintenanceTask>(Long.class, MaintenanceTask.class);
+	public static Finder<Long, Task> find = new Finder<Long, Task>(Long.class, Task.class);
 }

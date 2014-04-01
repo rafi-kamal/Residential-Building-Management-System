@@ -5,7 +5,7 @@ import java.util.List;
 
 import enums.NotificationStatus;
 import models.BillNotification;
-import models.MaintenanceTaskNotification;
+import models.TaskNotification;
 import models.Notification;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -21,7 +21,7 @@ public class NotificationController extends Controller {
         		.eq("receiver_id", session("userId"))
         		.findList();
         
-        List<MaintenanceTaskNotification> maintenanceNotifications = MaintenanceTaskNotification.find
+        List<TaskNotification> maintenanceNotifications = TaskNotification.find
         		.where()
         		.eq("status", NotificationStatus.Unread)
         		.eq("receiver_id", session("userId"))
