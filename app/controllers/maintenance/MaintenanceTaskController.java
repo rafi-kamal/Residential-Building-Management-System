@@ -1,5 +1,7 @@
 package controllers.maintenance;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,19 @@ public class MaintenanceTaskController extends Controller {
 		String status = params.get("status")[0];
 		String dline = params.get("deadline")[0];
 		Logger.info(dline);
-		Date deadline = new Date(dline);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date deadline = null;
+		
+		try {
+			deadline = dateFormat.parse(dline);
+			Logger.debug(deadline.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		UserAccount user =  UserAccount.find.byId(Long.parseLong(session("userId")));
 		ApartmentBuilding building = user.apartment.apartmentBuilding;
     	
