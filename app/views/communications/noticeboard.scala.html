@@ -6,12 +6,14 @@
     @helper.form(action = controllers.communications.routes.NoticeController.loadNotice) {
     
     <h1> Notice Board </h1>
-    
-      <select name="internalId">
+    <div class="col-md-8">
+      <select name="internalId" class="form-control">
         @notices.sortBy(_.validUntil.getTime).map { n =>
         <option value="@n.internalId">@n.subject on @n.publishDate</option>
         }
       </select>
-      <button>Show</button>
+      <p/>
+      <button class="btn btn-default">Show</button>
+      </div>
     }
 }

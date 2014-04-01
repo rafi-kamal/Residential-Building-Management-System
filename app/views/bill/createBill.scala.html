@@ -3,9 +3,13 @@
 @import helper._
 
 @common.main("New Bill Record") {
+	<div class="col-md-8 col-md-offset-2"> 
 	<h1> Add a Bill Record </h1>
 	@helper.form(action = controllers.bill.routes.BillController.postBill()) {
-     	@helper.select(field = billForm("apartment"), apartments.map {a => a.id.toString -> a.apartmentNo}, '_label -> "Choose Apartment")
+     	@helper.select(field = billForm("apartment"),
+     		 apartments.map {a => a.id.toString -> a.apartmentNo}, '_label -> "Choose Apartment",
+     		 '_class -> "no-dt form-control"
+     		 )
 		
 		<h5> Date of Issuing </h5>
 		@helper.input(billForm("dateOfIssuing"),
@@ -22,7 +26,9 @@
 							placeholder="Description">
 					}		
 		
-		@helper.select(field = billForm("status"), options = options(Seq("Unpaid", "Paid")), '_label -> "Status", '_showConstraints -> false)
+		@helper.select(field = billForm("status"), 
+			options = options(Seq("Unpaid", "Paid")), '_label -> "Status", 
+			'_showConstraints -> false, '_class -> "no-dt form-control")
 						
 		<h5> Deadline </h5>
 		@helper.input(billForm("deadline"),
@@ -39,6 +45,7 @@
 							placeholder="Amount">
 					}		            
         
-        <button type="submit" class="btn btn-success">Submit</button>           
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>           
 	}
 }
