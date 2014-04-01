@@ -44,7 +44,7 @@ public class BillController extends Controller {
 		
 		try {
 			deadline = dateFormat.parse(dline);
-			Logger.debug(deadline.toString());
+			//Logger.debug(deadline.toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,11 +80,13 @@ public class BillController extends Controller {
 		return ok(views.html.bill.showUnpaidBills.render(bills));
 	}
 	
-	public static Result setBillPaid() {
+	public static Result setBillPaid(Long id) {
 		Map<String, String[]> params = request().body().asFormUrlEncoded();
-		String id = params.get("id")[0];
-		Bill bill = Bill.find.byId(Long.parseLong(id));
+		//String id = params.get("id")[0];
+		//Logger.debug(id);
+		Bill bill = Bill.find.byId(id);
 		bill.status = "Paid";
+		bill.save();
 		return showUnpaidBills();		
 	}
 }

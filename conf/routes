@@ -21,7 +21,7 @@ GET		/createBill					controllers.bill.BillController.createBill()
 POST 	/postBill					controllers.bill.BillController.postBill()
 GET		/showAllBills				controllers.bill.BillController.showAllBills()
 GET		/showUnpaidBills			controllers.bill.BillController.showUnpaidBills()
-GET		/editBill					controllers.bill.BillController.setBillPaid()
+GET		/editBill:id					controllers.bill.BillController.setBillPaid(id: Long)
 
 GET 	/createTask					controllers.maintenance.MaintenanceTaskController.createTask()
 POST 	/postTask					controllers.maintenance.MaintenanceTaskController.postTask()
