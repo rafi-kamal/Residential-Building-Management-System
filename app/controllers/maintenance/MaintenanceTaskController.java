@@ -77,6 +77,7 @@ public class MaintenanceTaskController extends Controller {
 		Map<String, String[]> params = request().body().asFormUrlEncoded();
 		MaintenanceTask task = MaintenanceTask.find.byId(id);
 		task.status = "Completed";
+		task.save();
 		return showActiveTasks();		
 	}
 	
