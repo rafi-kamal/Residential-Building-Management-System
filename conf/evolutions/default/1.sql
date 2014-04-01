@@ -50,6 +50,16 @@ create table message (
   constraint pk_message primary key (internal_id))
 ;
 
+create table message_notification (
+  id                        number(19) not null,
+  receiver_id               number(19),
+  issue_date                timestamp,
+  status                    varchar2(6),
+  message_internal_id       number(19),
+  constraint ck_message_notification_status check (status in ('Read','Unread')),
+  constraint pk_message_notification primary key (id))
+;
+
 create table notice (
   internal_id               number(19) not null,
   category                  varchar2(255),
@@ -128,6 +138,8 @@ create sequence bill_notification_seq;
 
 create sequence message_seq;
 
+create sequence message_notification_seq;
+
 create sequence notice_seq;
 
 create sequence real_estate_company_seq;
@@ -156,20 +168,24 @@ alter table message add constraint fk_message_thread_7 foreign key (THREAD_ID) r
 create index ix_message_thread_7 on message (THREAD_ID);
 alter table message add constraint fk_message_sender_8 foreign key (sender_id) references user_account (id);
 create index ix_message_sender_8 on message (sender_id);
-alter table notice add constraint fk_notice_publishedBy_9 foreign key (published_by_id) references user_account (id);
-create index ix_notice_publishedBy_9 on notice (published_by_id);
-alter table task add constraint fk_task_apartmentBuilding_10 foreign key (apartment_building_id) references apartment_building (id);
-create index ix_task_apartmentBuilding_10 on task (apartment_building_id);
-alter table task_notification add constraint fk_task_notification_receiv_11 foreign key (receiver_id) references user_account (id);
-create index ix_task_notification_receiv_11 on task_notification (receiver_id);
-alter table task_notification add constraint fk_task_notification_mainte_12 foreign key (maintenance_task_id) references task (id);
-create index ix_task_notification_mainte_12 on task_notification (maintenance_task_id);
-alter table thread add constraint fk_thread_sender_13 foreign key (sender_id) references user_account (id);
-create index ix_thread_sender_13 on thread (sender_id);
-alter table thread add constraint fk_thread_receiver_14 foreign key (receiver_id) references user_account (id);
-create index ix_thread_receiver_14 on thread (receiver_id);
-alter table user_account add constraint fk_user_account_apartment_15 foreign key (apartment_id) references apartment (id);
-create index ix_user_account_apartment_15 on user_account (apartment_id);
+alter table message_notification add constraint fk_message_notification_rece_9 foreign key (receiver_id) references user_account (id);
+create index ix_message_notification_rece_9 on message_notification (receiver_id);
+alter table message_notification add constraint fk_message_notification_mes_10 foreign key (message_internal_id) references message (internal_id);
+create index ix_message_notification_mes_10 on message_notification (message_internal_id);
+alter table notice add constraint fk_notice_publishedBy_11 foreign key (published_by_id) references user_account (id);
+create index ix_notice_publishedBy_11 on notice (published_by_id);
+alter table task add constraint fk_task_apartmentBuilding_12 foreign key (apartment_building_id) references apartment_building (id);
+create index ix_task_apartmentBuilding_12 on task (apartment_building_id);
+alter table task_notification add constraint fk_task_notification_receiv_13 foreign key (receiver_id) references user_account (id);
+create index ix_task_notification_receiv_13 on task_notification (receiver_id);
+alter table task_notification add constraint fk_task_notification_mainte_14 foreign key (maintenance_task_id) references task (id);
+create index ix_task_notification_mainte_14 on task_notification (maintenance_task_id);
+alter table thread add constraint fk_thread_sender_15 foreign key (sender_id) references user_account (id);
+create index ix_thread_sender_15 on thread (sender_id);
+alter table thread add constraint fk_thread_receiver_16 foreign key (receiver_id) references user_account (id);
+create index ix_thread_receiver_16 on thread (receiver_id);
+alter table user_account add constraint fk_user_account_apartment_17 foreign key (apartment_id) references apartment (id);
+create index ix_user_account_apartment_17 on user_account (apartment_id);
 
 
 

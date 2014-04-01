@@ -2,6 +2,9 @@
 
 @common.main("Maintenance Tasks") {
 	@for(notification <- notifications) {
-		<div>@notification.issueDate</div>	
+		<tr>
+			<td>@notification.getNotificationMessage()</td>
+			<td>@notification.issueDate</td>	
+		</tr>
 	} 
 }

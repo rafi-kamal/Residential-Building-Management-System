@@ -10,6 +10,8 @@ drop table bill_notification cascade constraints purge;
 
 drop table message cascade constraints purge;
 
+drop table message_notification cascade constraints purge;
+
 drop table notice cascade constraints purge;
 
 drop table real_estate_company cascade constraints purge;
@@ -31,6 +33,8 @@ drop sequence bill_seq;
 drop sequence bill_notification_seq;
 
 drop sequence message_seq;
+
+drop sequence message_notification_seq;
 
 drop sequence notice_seq;
 
