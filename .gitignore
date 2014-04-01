@@ -17,3 +17,4 @@ dist
 /.cache
 /.target/
 /bin
+conf/application.conf
