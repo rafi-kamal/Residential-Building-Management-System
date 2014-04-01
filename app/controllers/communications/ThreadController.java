@@ -42,10 +42,10 @@ public class ThreadController extends Controller {
 		  UserAccount user = UserAccount.find.where().eq("id", Long.parseLong(session("userId"))).findUnique();
 		  Query<Thread> queryActive = Ebean.createQuery(Thread.class, "find Thread where sender.id = :user and status = :sts or receiver.id = :user and status = :sts");
 	      queryActive.setParameter("user", user.id);
-	      queryActive.setParameter("status", "Active");
+	      queryActive.setParameter("sts", "Active");
 	      Query<Thread> queryArchived = Ebean.createQuery(Thread.class, "find Thread where sender.id = :user and status = :sts or receiver.id = :user and status = :sts");
 	      queryArchived.setParameter("user", user.id);
-	      queryArchived.setParameter("status", "Archived");
+	      queryArchived.setParameter("sts", "Archived");
 	      Map<String, String> m = new HashMap<String, String>();
 	      int nextOccurrence = Thread.occurrencesFor(LocalDate.now())+1;
 	      m.put("occurrence", ""+nextOccurrence);
